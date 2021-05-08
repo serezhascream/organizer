@@ -4,7 +4,7 @@
   "description": "A simple calendar built with React and flexbox",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "cross-env NODE_ENV=development webpack serve --mode development --config conf/webpack.config.js --open"
   },
   "repository": {
     "type": "git",
@@ -30,8 +30,11 @@
     "@babel/preset-react": "^7.13.13",
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.3",
+    "@typescript-eslint/eslint-plugin": "^4.22.1",
+    "@typescript-eslint/parser": "^4.22.1",
     "babel": "^6.23.0",
     "babel-loader": "^8.2.2",
+    "cross-env": "^7.0.3",
     "eslint": "^7.26.0",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-react": "^7.23.2",
