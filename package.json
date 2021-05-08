@@ -1,0 +1,48 @@
+{
+  "name": "react-flex-calendar",
+  "version": "1.0.0",
+  "description": "A simple calendar built with React and flexbox",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serezhascream/react-flex-calendar.git"
+  },
+  "keywords": [
+    "react",
+    "calendar",
+    "flexbox",
+    "react-calendar"
+  ],
+  "author": "Sergei Matiushenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/serezhascream/react-flex-calendar/issues"
+  },
+  "homepage": "https://github.com/serezhascream/react-flex-calendar#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/eslint-parser": "^7.13.14",
+    "@babel/plugin-syntax-typescript": "^7.12.13",
+    "@babel/preset-env": "^7.14.1",
+    "@babel/preset-react": "^7.13.13",
+    "@types/react": "^17.0.5",
+    "@types/react-dom": "^17.0.3",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.26.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-react": "^7.23.2",
+    "mini-css-extract-plugin": "^1.6.0",
+    "node-sass": "^5.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sass-loader": "^11.0.1",
+    "typescript": "^4.2.4",
+    "webpack": "^5.36.2",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {}
+}
