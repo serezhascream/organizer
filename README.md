@@ -1,1 +1,1 @@
-# react-flex-calendar
+# react-grid-calendar
