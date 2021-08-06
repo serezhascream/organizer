@@ -1,33 +1,34 @@
 {
-  "name": "react-flex-calendar",
+  "name": "organizer",
   "version": "1.0.0",
-  "description": "A simple calendar built with React and flexbox",
+  "description": "A simple organizer built with React and css-grid",
   "main": "index.js",
   "scripts": {
-    "startDev": "cross-env NODE_ENV=development webpack serve --mode development --config conf/webpack.config.dev.js --open"
+    "start": "webpack serve --mode development --config conf/webpack.config.dev.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/serezhascream/react-flex-calendar.git"
+    "url": "git+https://github.com/serezhascream/organizer.git"
   },
   "keywords": [
     "react",
+	"organizer",
     "calendar",
-    "flexbox",
     "react-calendar"
   ],
   "author": "Sergei Matiushenko",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/serezhascream/react-flex-calendar/issues"
+    "url": "https://github.com/serezhascream/organizer/issues"
   },
-  "homepage": "https://github.com/serezhascream/react-flex-calendar#readme",
+  "homepage": "https://github.com/serezhascream/organizer#readme",
   "devDependencies": {
     "@babel/core": "^7.14.0",
     "@babel/eslint-parser": "^7.13.14",
     "@babel/plugin-syntax-typescript": "^7.12.13",
     "@babel/preset-env": "^7.14.1",
     "@babel/preset-react": "^7.13.13",
+    "@babel/preset-typescript": "^7.13.0",
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^4.22.1",
@@ -36,6 +37,7 @@
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "cross-env": "^7.0.3",
+    "css-loader": "^5.2.4",
     "eslint": "^7.26.0",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-react": "^7.23.2",
@@ -47,6 +49,7 @@
     "sass-loader": "^11.0.1",
     "typescript": "^4.2.4",
     "webpack": "^5.36.2",
+    "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
