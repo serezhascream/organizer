@@ -1,1 +1,1 @@
-# react-grid-calendar
+# Organizer
