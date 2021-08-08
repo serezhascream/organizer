@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { MONTHS_TITLES } from '../../data/constants';
-import { getClassNames } from '../../utils/common';
 import MonthItem from './monthItem';
 
 const YearView = ({ onClick, activeView }: { onClick(index: number): void, activeView: string }) => {
@@ -15,7 +14,7 @@ const YearView = ({ onClick, activeView }: { onClick(index: number): void, activ
 	}
 	
 	return (
-		<div className={getClassNames(['calendar__year'])}>
+		<div className="org-calendar__year">
 			{
 				MONTHS_TITLES.map((title, i) => (
 					<MonthItem

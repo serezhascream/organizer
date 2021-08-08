@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { TCalendarProps } from '../../data/types';
-import { getClassNames } from '../../utils/common';
 import useCalendar from '../../hooks/useCalendar';
 import useDecade from '../../hooks/useDecade';
 
@@ -70,7 +69,7 @@ const Calendar = ({
 	}, [active]);
 	
 	return (
-		<div className={getClassNames(['calendar'])}>
+		<div className="org-calendar">
 			<Controls
 				active={current}
 				activeView={activeView}

@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { TCalendarData, TDayObject, TDaySelectFunc } from '../../data/types';
-import { getClassNames } from '../../utils/common';
 import WeekdayTitles from './weekdayTitles';
 import Day from './day';
 
@@ -23,7 +22,7 @@ const MonthView = ({
 	return (
 		<React.Fragment>
 			<WeekdayTitles />
-			<div className={getClassNames(['calendar__month'])}>
+			<div className="org-calendar__month">
 				{
 					data.map(day => (
 						<Day key={day.timestamp} day={day} onClick={handlerClick} />

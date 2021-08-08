@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { getClassNames } from '../../utils/common';
 
 const YearItem = ({ year, onClick } : { year: number, onClick(year: number): void }) => {
 	const handlerClick = React.useCallback((): void => onClick(year), [onClick, year]);
 	
 	return (
 		<div
-			className={getClassNames(['calendar__decade-year'])}
+			className="org-calendar__decade-year"
 			onClick={handlerClick}
 		>
 			{year}
@@ -33,7 +32,7 @@ const DecadeView = ({
 	}
 	
 	return (
-		<div className={getClassNames(['calendar__decade'])}>
+		<div className="org-calendar__decade">
 			{
 				decade.map(year => (
 					<YearItem key={year} year={year} onClick={handlerClick} />

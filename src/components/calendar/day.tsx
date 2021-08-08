@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { TDayObject, TDaySelectFunc } from '../../data/types';
-import { getClassNames, getDayClasses } from '../../utils/common';
+import { getDayClasses } from '../../utils/common';
 
 const Day = ({
 	day,
@@ -16,7 +16,7 @@ const Day = ({
 	return (
 		<span
 			key={day.timestamp}
-			className={getClassNames(classes)}
+			className={classes.join(' ')}
 			onClick={handlerClick}
 		>
 			{day.day}
