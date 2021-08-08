@@ -1,27 +1,9 @@
 import * as React from 'react';
 
-const YearItem = ({ year, onClick } : { year: number, onClick(year: number): void }) => {
-	const handlerClick = React.useCallback((): void => onClick(year), [onClick, year]);
-	
-	return (
-		<div
-			className="org-calendar__decade-year"
-			onClick={handlerClick}
-		>
-			{year}
-		</div>
-	);
-};
+import { TDecadeViewProps } from '../../data/types';
+import YearItem from './yearItem';
 
-const DecadeView = ({
-	decade,
-	activeView,
-	onClick,
-}: {
-	decade: number[]
-	activeView: string,
-	onClick(year: number): void,
-}) => {
+const DecadeView = ({ decade, activeView, onClick, }: TDecadeViewProps) => {
 
 	const handlerClick = React.useCallback(
 		(year: number): void => onClick(year), [onClick]

@@ -43,6 +43,12 @@ export interface TControlsProps {
 	onSwitchView(view: string): void,
 }
 
+export interface TDecadeViewProps {
+	decade: number[]
+	activeView: string,
+	onClick(year: number): void,
+}
+
 export type TCalendarData = TDayObject[];
 
 
