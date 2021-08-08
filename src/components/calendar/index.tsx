@@ -38,12 +38,8 @@ const Calendar = ({
 	}, []);
 	
 	const handlerSelectDay = React.useCallback(day => {
-		if (day.month === 'past') {
-			switchMonth('prev');
-		}
-		
-		if (day.month === 'future') {
-			switchMonth('next');
+		if (day.month !== 'current') {
+			switchMonth(day.month);
 		}
 
 		onSelectDay(day);

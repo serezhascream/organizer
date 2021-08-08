@@ -73,11 +73,11 @@ const getMonthType = (
 	activeMonth: number
 ): string => {
 	if (year < activeYear || month < activeMonth) {
-		return 'past';
+		return 'prev';
 	}
 	
 	if (year > activeYear || month > activeMonth) {
-		return 'future';
+		return 'next';
 	}
 
 	return 'current';

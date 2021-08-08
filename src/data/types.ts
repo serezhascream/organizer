@@ -1,8 +1,10 @@
 type TSwitchDirection = (direction: string) => void;
 
+type TMonthType = "prev" | "current" | "next";
+
 export interface TDayObject {
 	day: number,
-	month: string,
+	month:TMonthType,
 	isToday: boolean,
 	timestamp: number,
 	weekday: number,
