@@ -4,7 +4,9 @@
   "description": "A simple organizer built with React and css-grid",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve --mode development --config conf/webpack.config.dev.js"
+    "start": "webpack serve --mode development --config conf/webpack.config.dev.js",
+	"test": "jest",
+	"test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
