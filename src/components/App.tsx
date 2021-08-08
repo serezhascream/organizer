@@ -3,15 +3,7 @@ import { TAppProps, TDayObject } from '../data/types';
 
 import Calendar from './calendar';
 
-const ReactGridCalendar = ({
-	//	decadeView = false,
-	firstDayIsMonday = true,
-	//markers = [],
-	//onDayClickHandler = () => {},
-	//onMonthSelect = () => {},
-	//onYearSelect = () => {},
-	//showPrevNextDates = true,
-}: TAppProps) => {
+const Organizer = ({ firstDayIsMonday = true }: TAppProps) => {
 	const [selected, setSelected] = React.useState(null);
 
 	const handlerSelectDay = React.useCallback((day: TDayObject) => {
@@ -27,4 +19,4 @@ const ReactGridCalendar = ({
 	);
 };
 
-export default React.memo(ReactGridCalendar); 
+export default React.memo(Organizer);
