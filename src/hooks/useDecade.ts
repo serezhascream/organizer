@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { TUseDecadeReturn } from '../data/types';
 
-const getDecade = (year: number): number[] => {
+export const getDecade = (year: number): number[] => {
 	const decade = [];
 	const firstYear = year - (year % 10);
 	const lastYear = firstYear + 9;
@@ -14,7 +14,7 @@ const getDecade = (year: number): number[] => {
 	return decade;
 };
 
-const useDecade = (currentYear: number): TUseDecadeReturn => {
+export const useDecade = (currentYear: number): TUseDecadeReturn => {
 	const [decade, setDecade] = React.useState(() => getDecade(currentYear));
 	
 	const handlerSwitchDecade = React.useCallback((direction: string): void => {
