@@ -6,12 +6,14 @@ import Day from './day';
 
 const MonthView = ({
 	data = [],
-	onClick,
 	activeView,
+	firstDayIsMonday,
+	onClick,
 }: {
 	data: TCalendarData,
-	onClick: TDaySelectFunc
 	activeView: string,
+	firstDayIsMonday: boolean,
+	onClick: TDaySelectFunc
 }) => {
 	const handlerClick = React.useCallback((day: TDayObject) => onClick(day), [onClick]);
 	
@@ -21,7 +23,7 @@ const MonthView = ({
 	
 	return (
 		<React.Fragment>
-			<WeekdayTitles />
+			<WeekdayTitles firstDayIsMonday={firstDayIsMonday} />
 			<div className="org-calendar__month">
 				{
 					data.map(day => (

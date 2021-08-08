@@ -75,6 +75,7 @@ const Calendar = ({
 			<MonthView
 				data={data}
 				activeView={activeView}
+				firstDayIsMonday={firstDayIsMonday}
 				onClick={handlerSelectDay}
 			/>
 			<YearView
