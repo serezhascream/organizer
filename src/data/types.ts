@@ -59,7 +59,8 @@ export type TUseCalendarReturn = [
 	},
 	{
 		setActive(YearAndMonth): void,
-		switchMonth: TSwitchDirection
+		switchMonth: TSwitchDirection,
+		setSelected(day:TDayObject): void,
 	}
 ];
 

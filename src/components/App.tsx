@@ -7,8 +7,13 @@ const Organizer = ({ firstDayIsMonday = true }: TAppProps) => {
 	const [selected, setSelected] = React.useState(null);
 
 	const handlerSelectDay = React.useCallback((day: TDayObject) => {
+		if(selected && selected.timestamp === day.timestamp) {
+			setSelected(null);
+			return;
+		}
+		
 		setSelected(day);
-	}, []);
+	}, [selected]);
 	
 	return (
 		<Calendar

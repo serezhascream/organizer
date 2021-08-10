@@ -165,9 +165,10 @@ const useCalendarData = (
 };
 
 // returns calendar object and utilities
-const useCalendar = (selected: TDayObject = null, firstDayIsMonday = true): TUseCalendarReturn => {
+const useCalendar = (selectedDay: TDayObject = null, firstDayIsMonday = true): TUseCalendarReturn => {
 	const activeYearMonth = getYearAndMonth();
 	const [active, setActive] = React.useState(activeYearMonth);
+	const [selected, setSelected] = React.useState(selectedDay);
 
 	const calendarData = useCalendarData(active, selected, firstDayIsMonday);
 
@@ -191,6 +192,7 @@ const useCalendar = (selected: TDayObject = null, firstDayIsMonday = true): TUse
 		}
 	}, [active]);
 	
+	const handlerSetSelected = React.useCallback((day:TDayObject) => setSelected(day), [setSelected]);
 	// RETURNS
 	
 	const Calendar = {
@@ -201,6 +203,7 @@ const useCalendar = (selected: TDayObject = null, firstDayIsMonday = true): TUse
 	const CalendarUtils = {
 		setActive,
 		switchMonth,
+		setSelected: handlerSetSelected,
 	};
 	
 	return [Calendar, CalendarUtils];

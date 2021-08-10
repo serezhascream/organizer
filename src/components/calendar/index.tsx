@@ -16,7 +16,14 @@ const Calendar = ({
 	selected,
 	onSelectDay,
 }: TCalendarProps) => {
-	const [calendar, { setActive, switchMonth }] = useCalendar(selected, firstDayIsMonday);
+	const [
+		calendar,
+		{
+			setActive,
+			switchMonth,
+			setSelected
+		},
+	] = useCalendar(selected, firstDayIsMonday);
 	const { data, active } = calendar;
 	
 	const [activeView, setActiveView] = React.useState('month');
@@ -63,6 +70,10 @@ const Calendar = ({
 	React.useEffect(() => {
 		setCurrent(active);
 	}, [active]);
+
+	React.useEffect(() => {
+		setSelected(selected);
+	}, [selected]);
 	
 	return (
 		<div className="org-calendar">
