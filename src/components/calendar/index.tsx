@@ -16,15 +16,14 @@ const Calendar = ({
 	selected,
 	onSelectDay,
 }: TCalendarProps) => {
-	const [
-		calendar,
-		{
-			setActive,
-			switchMonth,
-			setSelected
-		},
-	] = useCalendar(selected, firstDayIsMonday);
-	const { data, active } = calendar;
+	
+	const {
+		data,
+		active,
+		setActive,
+		switchMonth,
+		setSelected,
+	} = useCalendar(selected, firstDayIsMonday);
 	
 	const [activeView, setActiveView] = React.useState('month');
 	const [current, setCurrent] = React.useState(active);

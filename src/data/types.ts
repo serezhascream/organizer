@@ -52,17 +52,13 @@ export interface TDecadeViewProps {
 export type TCalendarData = TDayObject[];
 
 
-export type TUseCalendarReturn = [
-	{
-		active: TYearAndMonth,
-		data: TCalendarData,
-	},
-	{
-		setActive(YearAndMonth): void,
-		switchMonth: TSwitchDirection,
-		setSelected(day:TDayObject): void,
-	}
-];
+export type TUseCalendarReturn = {
+	active: TYearAndMonth,
+	data: TCalendarData,
+	setActive(YearAndMonth): void,
+	switchMonth: TSwitchDirection,
+	setSelected(day:TDayObject): void,
+};
 
 export type TUseDecadeReturn = [
 	number[],
