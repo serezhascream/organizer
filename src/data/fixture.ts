@@ -12,3 +12,13 @@ export const day:TDayObject = {
 	isWeekend: false,
 	isSelected: false,
 };
+
+export const firstOfMay2021:TDayObject = {
+	"day": 1,
+	"month": "current",
+	"timestamp": 1619816400000,
+	"isToday": false,
+	"isWeekend": true,
+	"weekday": 5,
+	"isSelected": null
+};
