@@ -66,5 +66,8 @@ describe('hooks > useCalendar', () => {
 		
 		act(() => result.current.switchMonth('prev'));
 		expect(result.current.active.month).toEqual(1);
+		
+		act(() => result.current.switchMonth('next'));
+		expect(result.current.active.month).toEqual(2);
 	});
 });
