@@ -60,9 +60,9 @@ export type TUseCalendarReturn = {
 	setSelected(day:TDayObject): void,
 };
 
-export type TUseDecadeReturn = [
-	number[],
-	TSwitchDirection
-];
+export type TUseDecadeReturn = {
+	decade: number[],
+	switchDecade: TSwitchDirection
+};
 
 export type TDaySelectFunc = (day: TDayObject) => void;

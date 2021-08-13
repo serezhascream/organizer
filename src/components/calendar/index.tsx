@@ -27,7 +27,7 @@ const Calendar = ({
 	
 	const [activeView, setActiveView] = React.useState('month');
 	const [current, setCurrent] = React.useState(active);
-	const [decade, switchDecade] = useDecade(current.year);
+	const { decade, switchDecade } = useDecade(current.year);
 	
 	const handleSwitchDirection = React.useCallback((direction: string): void => {
 		if (activeView === 'month') {

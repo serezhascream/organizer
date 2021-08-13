@@ -26,7 +26,7 @@ export const useDecade = (currentYear: number): TUseDecadeReturn => {
 		setDecade(getDecade(decade[0] + 10));
 	}, [decade]);
 	
-	return [ decade, handlerSwitchDecade ];
+	return { decade, switchDecade: handlerSwitchDecade };
 };
 
 export default useDecade;
