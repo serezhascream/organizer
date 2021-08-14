@@ -38,12 +38,14 @@ const Controls = ({
 			>{'<'}</span>
 			<span
 				className="org-calendar__controls-month"
+				data-testid={testIds.controlsMonthTitle}
 				onClick={handlerClickOnMonth}
 			>
 				{ monthTitle }
 			</span>
 			<span
 				className="org-calendar__controls-year"
+				data-testid={testIds.controlsYearTitle}
 				onClick={handlerClickOnYear}
 			>
 				{active.year}

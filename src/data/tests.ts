@@ -3,6 +3,8 @@ export const testIds = {
 	controls: 'component-calendar-controls',
 	controlsPrevBtn: 'component-calendar-controls-prev-btn',
 	controlsNextBtn: 'component-calendar-controls-next-btn',
+	controlsMonthTitle: 'components-calendar-controls-month-title',
+	controlsYearTitle: 'components-calendar-controls-year-title',
 	day: 'component-calendar-day',
 	decadeView: 'component-calendar-decade-view',
 	monthItem: 'component-calendar-month-item',
