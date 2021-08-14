@@ -10,7 +10,7 @@ import MonthView from './monthView';
 import YearView from './yearView';
 import DecadeView from './decadeView';
 
-import '../../styles/calendar';
+import '../../styles/calendar.scss';
 
 const Calendar = ({
 	firstDayIsMonday = true,
