@@ -1,6 +1,4 @@
-import { describe, expect, it } from '@jest/globals';
 import { day } from '../../data/fixture';
-
 import { getDayClasses } from '../common';
 
 describe('utils > common', () => {

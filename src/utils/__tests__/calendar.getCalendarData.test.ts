@@ -1,5 +1,3 @@
-import { describe, expect, it } from '@jest/globals';
-
 import { getCalendarData } from '../calendar';
 import { may2021, firstOfMay2021 } from '../../data/fixture';
 

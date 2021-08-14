@@ -1,5 +1,3 @@
-import { describe, expect, it } from '@jest/globals';
-
 import { getDaysArray } from '../calendar';
 import { firstOfMay2021, jan2021, feb2021, may2021 } from '../../data/fixture';
 
