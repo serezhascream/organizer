@@ -1,5 +1,4 @@
-import { describe, expect, it, afterEach } from '@jest/globals';
-import { renderHook, act, cleanup  } from '@testing-library/react-hooks';
+const { renderHook, act, cleanup  } = require('@testing-library/react-hooks');
 
 import useCalendar from '../useCalendar';
 import { TDayObject } from '../../data/types';
@@ -7,6 +6,7 @@ import { TDayObject } from '../../data/types';
 describe('hooks > useCalendar', () => {
 	afterEach(cleanup);
 	const today = new Date(Date.now());
+	
 	it('returns actual month and year as active', () => {
 		const { result } = renderHook(() => useCalendar());
 		const expected = { month: today.getMonth(), year: today.getFullYear()}

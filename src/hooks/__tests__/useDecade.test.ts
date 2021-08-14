@@ -1,4 +1,3 @@
-import { describe, expect, it, afterEach } from '@jest/globals';
 import { renderHook, act, cleanup } from '@testing-library/react-hooks';
 
 import { getDecade, useDecade } from '../useDecade';
