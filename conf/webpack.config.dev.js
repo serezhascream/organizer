@@ -20,7 +20,7 @@ module.exports = {
 		alias: {},
 	},
 	devServer: {
-		port: 4200,
+		port: 6660,
 		hot: true,
 	},
 	plugins: [

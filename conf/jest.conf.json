@@ -1,0 +1,14 @@
+{
+	"preset": "ts-jest",
+	"testEnvironment": "jsdom",
+	"rootDir": "../",
+	"setupFilesAfterEnv": ["<rootDir>/conf/jest.setup.ts"],
+	"transform": {
+		"node_modules/variables/.+\\.(j|t)sx?$": "ts-jest",
+		".+\\.(css|styl|less|sass|scss)$": "jest-css-modules-transform"
+	},
+	"transformIgnorePatterns": [
+		"<rootDir>/node_modules/"
+	],
+	"verbose": true
+}

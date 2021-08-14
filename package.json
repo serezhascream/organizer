@@ -4,7 +4,9 @@
   "description": "A simple organizer built with React and css-grid",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve --mode development --config conf/webpack.config.dev.js"
+    "dev": "webpack serve --mode development --config conf/webpack.config.dev.js",
+    "test": "jest --config conf/jest.conf.json",
+    "test:watch": "jest --config conf/jest.conf.json --watch"
   },
   "repository": {
     "type": "git",
@@ -12,7 +14,7 @@
   },
   "keywords": [
     "react",
-	"organizer",
+    "organizer",
     "calendar",
     "react-calendar"
   ],
@@ -29,11 +31,17 @@
     "@babel/preset-env": "^7.14.1",
     "@babel/preset-react": "^7.13.13",
     "@babel/preset-typescript": "^7.13.0",
+    "@testing-library/dom": "^8.1.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/react-hooks": "^7.0.1",
+    "@testing-library/user-event": "^13.2.1",
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^4.22.1",
     "@typescript-eslint/parser": "^4.22.1",
     "babel": "^6.23.0",
+    "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "cross-env": "^7.0.3",
@@ -42,11 +50,14 @@
     "eslint-loader": "^4.0.2",
     "eslint-plugin-react": "^7.23.2",
     "html-webpack-plugin": "^5.3.1",
+    "jest": "^27.0.6",
+    "jest-css-modules-transform": "^4.3.0",
     "mini-css-extract-plugin": "^1.6.0",
     "node-sass": "^5.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "sass-loader": "^11.0.1",
+    "ts-jest": "^27.0.4",
     "typescript": "^4.2.4",
     "webpack": "^5.36.2",
     "webpack-cli": "^4.7.0",
