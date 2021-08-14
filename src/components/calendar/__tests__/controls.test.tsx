@@ -14,7 +14,7 @@ const {
 	controlsMonthTitle
 } = testIds;
 
-describe('components > calendar > controls', () => {
+describe('components > calendar > Controls', () => {
 	it('renders correctly', () => {
 		render(
 			<Controls

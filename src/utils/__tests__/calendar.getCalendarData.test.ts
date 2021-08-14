@@ -1,7 +1,7 @@
 import { getCalendarData } from '../calendar';
 import { may2021, firstOfMay2021 } from '../../data/fixture';
 
-describe('utils > calendar > getDaysArray', () => {
+describe('utils > calendar > getCalendarData', () => {
 	it('returns correct data when week starts on monday', () => {
 		const data = getCalendarData(may2021, null, true);
 		

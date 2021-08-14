@@ -6,7 +6,7 @@ import Day from '../day';
 import { firstOfMay2021 } from '../../../data/fixture';
 import { testIds } from '../../../data/tests';
 
-describe('components > calendar > day', () => {
+describe('components > calendar > Day', () => {
 	it('renders', () => {
 		render(<Day day={firstOfMay2021} onClick={() => {}} />);
 		const day = screen.getByTestId(testIds.day);
