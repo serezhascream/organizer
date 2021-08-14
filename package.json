@@ -5,22 +5,12 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve --mode development --config conf/webpack.config.dev.js",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "jest --config conf/jest.conf.json",
+    "test:watch": "jest --config conf/jest.conf.json --watch"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/serezhascream/organizer.git"
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "jsdom",
-    "transform": {
-      "node_modules/variables/.+\\.(j|t)sx?$": "ts-jest"
-    },
-    "transformIgnorePatterns": [
-      "node_modules/"
-    ]
   },
   "keywords": [
     "react",
