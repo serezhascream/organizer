@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { MONTHS_TITLES } from '../../data/constants';
+import { testIds } from '../../data/tests';
 import MonthItem from './monthItem';
 
 const YearView = ({ onClick, activeView }: { onClick(index: number): void, activeView: string }) => {
@@ -14,7 +15,7 @@ const YearView = ({ onClick, activeView }: { onClick(index: number): void, activ
 	}
 	
 	return (
-		<div className="org-calendar__year">
+		<div className="org-calendar__year" data-testid={testIds.yearView}>
 			{
 				MONTHS_TITLES.map((title, i) => (
 					<MonthItem

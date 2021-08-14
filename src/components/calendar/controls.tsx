@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { MONTHS_TITLES } from '../../data/constants';
 import { TControlsProps } from '../../data/types';
+import { testIds } from '../../data/tests';
 
 const Controls = ({
 	active,
@@ -29,9 +30,10 @@ const Controls = ({
 	);
 	
 	return (
-		<div className="org-calendar__controls">
+		<div className="org-calendar__controls" data-testid={testIds.controls}>
 			<span
 				className={`org-calendar__btn org-calendar__btn-prev${blockedArrowsClass}`}
+				data-testid={testIds.controlsPrevBtn}
 				onClick={handlerClickPrev}
 			>{'<'}</span>
 			<span
@@ -48,6 +50,7 @@ const Controls = ({
 			</span>
 			<span
 				className={`org-calendar__btn org-calendar__btn-next${blockedArrowsClass}`}
+				data-testid={testIds.controlsNextBtn}
 				onClick={handlerClickNext}
 			>{'>'}</span>
 		</div>

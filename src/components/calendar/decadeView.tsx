@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { TDecadeViewProps } from '../../data/types';
+import { testIds } from '../../data/tests';
 import YearItem from './yearItem';
 
 const DecadeView = ({ decade, activeView, onClick, }: TDecadeViewProps) => {
@@ -14,7 +15,10 @@ const DecadeView = ({ decade, activeView, onClick, }: TDecadeViewProps) => {
 	}
 	
 	return (
-		<div className="org-calendar__decade">
+		<div
+			className="org-calendar__decade"
+			data-testid={testIds.decadeView}
+		>
 			{
 				decade.map(year => (
 					<YearItem key={year} year={year} onClick={handlerClick} />

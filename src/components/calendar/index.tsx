@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { TCalendarProps } from '../../data/types';
+import { testIds } from '../../data/tests';
 import useCalendar from '../../hooks/useCalendar';
 import useDecade from '../../hooks/useDecade';
 
@@ -75,7 +76,7 @@ const Calendar = ({
 	}, [selected]);
 	
 	return (
-		<div className="org-calendar">
+		<div className="org-calendar" data-testid={testIds.calendar}>
 			<Controls
 				active={current}
 				activeView={activeView}

@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { WEEKDAY_TITLES } from '../../data/constants';
+import { testIds } from '../../data/tests';
 
 const WeekdayTitles = ({ firstDayIsMonday }: { firstDayIsMonday: boolean }) => {
 	const titles = React.useMemo(() => {
@@ -17,7 +18,7 @@ const WeekdayTitles = ({ firstDayIsMonday }: { firstDayIsMonday: boolean }) => {
 	
 	return (
 		
-		<div className="org-calendar__weekday-titles">
+		<div className="org-calendar__weekday-titles" data-testid={testIds.weekdayTitles}>
 			{
 				titles.map((day, i) => {
 					const weekendClass = weekend_days.includes(i) ? ' org-calendar__weekday-day--weekend' : '';
