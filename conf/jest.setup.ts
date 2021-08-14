@@ -1,1 +1,1 @@
-const { describe, it, expect } = require('@jest/globals');
+const { describe, it, expect, afterEach } = require('@jest/globals');
