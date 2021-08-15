@@ -7,6 +7,7 @@ const Button = ({
 	children,
 	name = '',
 	extraClass = '',
+	disabled = false,
 	onClick = () => {},
 }: TButtonProps) => {
 	const buttonClasses = React.useMemo(() => {
@@ -31,6 +32,7 @@ const Button = ({
 			className={buttonClasses}
 			onClick={handlerClick}
 			data-testid={testIds.button}
+			disabled={disabled}
 		>
 			{ children }
 		</button>

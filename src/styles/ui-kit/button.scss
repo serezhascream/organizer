@@ -16,4 +16,12 @@
 		color: var(--accent-color);
 		border-color: var(--accent-color);
 	}
+	
+	&:disabled,
+	&:disabled:hover {
+		color: var(--text-color);
+		border-color: var(--text-color);
+		opacity: .5;
+		cursor: default;
+	}
 }

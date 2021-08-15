@@ -34,6 +34,20 @@ describe('components > ui-kit > Button', () => {
 		expect(screen.getByText(buttonText)).toBeInTheDocument();
 	});
 	
+	it('is disabled', () => {
+		render(
+			<Button
+				name="testButton"
+				disabled
+				onClick={() => {}}
+			>
+				test button
+			</Button>
+		);
+
+		expect(screen.getByTestId(testIds.button).hasAttribute('disabled')).toEqual(true);
+	});
+	
 	it('has an extra class', () => {
 		const extraClass = 'save-button';
 		

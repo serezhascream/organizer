@@ -59,7 +59,8 @@ export interface TSwitcherProps {
 export interface TButtonProps {
 	children: string,
 	name: string,
-	extraClass: string,
+	disabled?: boolean,
+	extraClass?: string,
 	onClick(name:string): void
 }
 
