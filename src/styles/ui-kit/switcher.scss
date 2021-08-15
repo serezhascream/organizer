@@ -1,0 +1,53 @@
+.org-switcher {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	cursor: pointer;
+	user-select: none;
+	margin-bottom: 12px;
+	
+	&__checkbox {
+		display: flex;
+		position: relative;
+		width: 32px;
+		height: 20px;
+		background-color: var(--text-color);
+		opacity: .3;
+		border-radius: 9px;
+		transition: all .2s ease-in-out;
+		
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			width: 12px;
+			height: 12px;
+			left: 4px;
+			right: auto;
+			top: 4px;
+			bottom: 4px;
+			border-radius: 50%;
+			background-color: var(--app-bg);
+			transition: all .2s ease-in-out;
+		}
+		
+		&:hover {
+			opacity: .8;
+		}
+		
+		&--checked {
+			opacity: 1;
+			
+			&:before {
+				background-color: var(--accent-color);
+				left: auto;
+				right: 4px;
+			}
+		}
+	}
+	&__label {
+		margin-left: 18px;
+		color: var(--text-color);
+	}
+}

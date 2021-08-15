@@ -1,0 +1,20 @@
+.org-input {
+	
+	&__label {
+		margin-bottom: 6px;
+		color: var(--text-color);
+	}
+	
+	&__input {
+		border: 2px solid var(--text-color);
+		color: var(--text-color);
+		background-color: transparent;
+		font-size: 14px;
+		width: 100%;
+		
+		padding: 12px 18px;
+		
+		-webkit-appearance: none;
+		outline: none;
+	}
+}
