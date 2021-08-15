@@ -56,6 +56,13 @@ export interface TSwitcherProps {
 	onChange(checked: boolean, name:string): void
 }
 
+export interface TButtonProps {
+	children: string,
+	name: string,
+	extraClass: string,
+	onClick(name:string): void
+}
+
 export type TCalendarData = TDayObject[];
 
 
