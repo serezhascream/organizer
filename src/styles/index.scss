@@ -1,0 +1,82 @@
+@import './config';
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	display: block;
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	height:100%;
+	background-color: grey;
+}
+
+.org-container {
+	display: flex;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+}
+
+.org-wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 848px;
+	padding: 12px;
+}
+
+.org-header {
+	display: flex;
+	flex-direction: row;
+	border-radius: 6px;
+	background-color: white;
+	padding: 18px;
+	margin-bottom: 12px;
+	
+	&__title {
+		margin: 0;
+		color: $dark;
+		font-size: 28px;
+	}
+}
+
+.org-content {
+	display: flex;
+	border-radius: 6px;
+	background-color: white;
+	padding: 18px;
+	flex-direction: row;
+	
+	&__calendar {
+		min-height: 351px;
+	}
+	&__event-list {
+		display: flex;
+		max-width: 420px;
+		width: 100%;
+		min-height: 351px;
+		
+		background-color: lightgrey;
+		margin-left: 18px;
+	}
+}
+
+@media screen and (max-width: 848px) {
+	.org-wrapper {
+		width: auto;
+	}
+	.org-content {
+		flex-direction: column;
+		
+		&__event-list {
+			max-width: 350px;
+			margin-left: 0;
+			margin-top: 18px;
+		}
+	}
+}

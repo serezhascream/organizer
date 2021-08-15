@@ -2,6 +2,7 @@ import * as React from 'react';
 import { TAppProps, TDayObject } from '../data/types';
 
 import Calendar from './calendar';
+import '../styles/index.scss';
 
 const Organizer = ({ firstDayIsMonday = true }: TAppProps) => {
 	const [selected, setSelected] = React.useState(null);
@@ -16,11 +17,21 @@ const Organizer = ({ firstDayIsMonday = true }: TAppProps) => {
 	}, [selected]);
 	
 	return (
-		<Calendar
-			firstDayIsMonday={firstDayIsMonday}
-			selected={selected}
-			onSelectDay={handlerSelectDay}
-		/>
+		<div className="org-wrapper">
+			<div className="org-header">
+				<h1 className="org-header__title">Organizer</h1>
+			</div>
+			<div className="org-content">
+				<div className="org-content__calendar">
+					<Calendar
+						firstDayIsMonday={firstDayIsMonday}
+						selected={selected}
+						onSelectDay={handlerSelectDay}
+					/>
+				</div>
+				<div className="org-content__event-list" />
+			</div>
+		</div>
 	);
 };
 
