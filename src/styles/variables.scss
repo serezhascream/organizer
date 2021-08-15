@@ -1,12 +1,12 @@
 html {
 	--app-bg: #FDFAF9;
 	--content-bg: #FDFAF9;
-	--text-color: #263238;
+	--text-color: #111614;
 	--accent-color: #BD2C2C;
 	
 	&[data-theme="dark"] {
-		--app-bg: #263238;
-		--content-bg: #263238;
+		--app-bg: #111614;
+		--content-bg: #111614;
 		--text-color: #FDFAF9;
 		
 		.org-calendar {
