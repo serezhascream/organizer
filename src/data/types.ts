@@ -73,6 +73,14 @@ export interface TInputProps {
 	onChange(value:string | number | null, name: string): void
 }
 
+export interface TTextareaProps {
+	name: string,
+	value: string,
+	label?: string,
+	extraClass?: string,
+	onChange(value: string, name: string): void
+}
+
 export type TCalendarData = TDayObject[];
 
 

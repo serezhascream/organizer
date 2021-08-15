@@ -20,4 +20,6 @@ export const testIds = {
 	button: 'component-ui-kit-button',
 	input: 'component-ui-kit-input',
 	inputWrapper: 'component-ui-kit-input-wrapper',
+	textarea: 'component-ui-kit-textarea',
+	textareaWrapper: 'component-ui-kit-textarea-wrapper',
 };
