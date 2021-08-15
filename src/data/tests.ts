@@ -18,4 +18,6 @@ export const testIds = {
 	switcher: 'component-ui-kit-switcher',
 	switcherCheckbox: 'component-ui-kit-switcher-checkbox',
 	button: 'component-ui-kit-button',
+	input: 'component-ui-kit-input',
+	inputWrapper: 'component-ui-kit-input-wrapper',
 };

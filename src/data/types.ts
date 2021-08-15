@@ -63,6 +63,15 @@ export interface TButtonProps {
 	onClick(name:string): void
 }
 
+export interface TInputProps {
+	name: string,
+	label?: string,
+	inputType?: string,
+	value: string | number | null,
+	extraClass?: string,
+	onChange(value:string | number | null, name: string): void
+}
+
 export type TCalendarData = TDayObject[];
 
 
