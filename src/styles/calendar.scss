@@ -1,6 +1,7 @@
-@import './config';
-
 .org-calendar {
+	--calendar-text-color: #263238;
+	--calendar-accent-color: #BD2C2C;
+	
 	width: 350px;
 	
 	&__controls {
@@ -17,9 +18,10 @@
 		width: 50px;
 		height: 50px;
 		cursor: pointer;
+		color: var(--calendar-text-color);
 		
 		&:hover {
-			color: $accent;
+			color: var(--calendar-accent-color);
 			font-weight: bold;
 		}
 		
@@ -29,21 +31,22 @@
 		}
 		
 		&--blocked:hover {
-			color: $dark;
+			color: var(--calendar-text-color);
 			font-weight: normal;
 		}
 	}
 	&__controls-year, 
 	&__controls-month {
 		cursor: pointer;
+		color: var(--calendar-text-color);
 		
 		&:hover {
-			color: $accent;
+			color: var(--calendar-accent-color);
 		}
 	}
 	&__month, &__year, &__decade {
 		display: grid;
-		color: $dark;
+		color: var(--calendar-text-color);
 	}
 	
 	&__month {
@@ -64,7 +67,7 @@
 		cursor: pointer;
 		
 		&:hover {
-			color: $accent;
+			color: var(--calendar-accent-color);
 		}
 	}
 	
@@ -83,7 +86,7 @@
 			opacity: .3;
 		}
 		&--weekend {
-			color: $accent;
+			color: var(--calendar-accent-color);
 		}
 		
 		&:before {
@@ -104,13 +107,13 @@
 		
 		&:hover:before,
 		&--selected:before {
-			border-color: $dark;
+			border-color: var(--calendar-accent-color);
 			opacity: .3;
 		}
 		
 		&--selected:before,
 		&--selected:hover:before {
-			border-color: $accent;
+			border-color: var(--calendar-accent-color);
 			opacity: 1;
 		}
 	}
@@ -123,9 +126,10 @@
 		padding: 12px;
 		font-size: 14px;
 		text-align: center;
+		color: var(--calendar-text-color);
 		
 		&--weekend {
-			color: $accent;
+			color: var(--calendar-accent-color);
 		}
 	}
 }
