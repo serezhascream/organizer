@@ -49,6 +49,13 @@ export interface TDecadeViewProps {
 	onClick(year: number): void,
 }
 
+export interface TSwitcherProps {
+	name: string,
+	checked: boolean,
+	label: string,
+	onChange(checked: boolean, name:string): void
+}
+
 export type TCalendarData = TDayObject[];
 
 

@@ -1,4 +1,5 @@
 export const testIds = {
+	/* calendar */
 	calendar: 'component-calendar',
 	controls: 'component-calendar-controls',
 	controlsPrevBtn: 'component-calendar-controls-prev-btn',
@@ -12,4 +13,8 @@ export const testIds = {
 	weekdayTitles: 'component-calendar-weekday-titles',
 	yearItem: 'component-calendar-year-item',
 	yearView: 'component-calendar-year-view',
+	
+	/* ui-kit */
+	switcher: 'component-ui-kit-switcher',
+	switcherCheckbox: 'component-ui-kit-switcher-checkbox',
 };
