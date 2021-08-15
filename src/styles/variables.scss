@@ -1,0 +1,16 @@
+html {
+	--app-bg: #FDFAF9;
+	--content-bg: #FDFAF9;
+	--text-color: #263238;
+	--accent-color: #BD2C2C;
+	
+	&[data-theme="dark"] {
+		--app-bg: #263238;
+		--content-bg: #263238;
+		--text-color: #FDFAF9;
+		
+		.org-calendar {
+			--calendar-text-color: #FDFAF9;
+		}
+	}
+}
