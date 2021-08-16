@@ -17,15 +17,18 @@ const Organizer = () => {
 	const handlerSelectDay = React.useCallback((day: TDayObject) => {
 		if(selected && selected.timestamp === day.timestamp) {
 			setSelected(null);
+			setActiveContentView(null);
 			return;
 		}
 		
 		setSelected(day);
+		setActiveContentView('list');
 	}, [selected]);
 
 	const handlerOpenSettings = React.useCallback(() => {
 		const newView = activeContentView === 'settings' ? null : 'settings';
 
+		setSelected(null);
 		setActiveContentView(newView)
 	}, [activeContentView, setActiveContentView]);
 
@@ -75,6 +78,7 @@ const Organizer = () => {
 					firstDayIsMonday={firstDayIsMonday}
 					onChangeTheme={handlerChangeTheme}
 					onChangeFirstDay={handlerChangeFirstDay}
+					selected={selected}
 				/>
 			</section>
 		</div>

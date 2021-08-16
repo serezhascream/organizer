@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { TContentProps } from '../data/types';
 import Settings from './settings';
+import List from './list';
 
 const Content = ({
 	activeView,
@@ -9,6 +10,7 @@ const Content = ({
 	firstDayIsMonday,
 	onChangeTheme,
 	onChangeFirstDay,
+	selected,
 }: TContentProps) => {
 
 	const handlerChangeTheme = React.useCallback(
@@ -34,6 +36,10 @@ const Content = ({
 					onChangeTheme={handlerChangeTheme}
 					onChangeFirstDay={handlerChangeFirstDay}
 				/>
+			}
+			{
+				activeView === 'list' &&
+				<List selected={selected} />
 			}
 		</React.Fragment>
 	);

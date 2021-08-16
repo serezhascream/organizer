@@ -111,6 +111,7 @@ export interface TContentProps {
 	firstDayIsMonday: boolean,
 	onChangeTheme(checked: boolean): void,
 	onChangeFirstDay(checked: boolean): void,
+	selected: TDayObject,
 }
 
 export interface TSettingsProps {
@@ -120,3 +121,19 @@ export interface TSettingsProps {
 	onChangeFirstDay(checked: boolean): void,
 }
 
+export type TEventObj = {
+	title: string,
+	description: string | null,
+}
+
+export interface TEventsListProps {
+	events: TEventObj[],
+}
+
+export interface TEventProps {
+	event: TEventObj,
+}
+
+export interface TListProps {
+	selected: TDayObject,
+}
