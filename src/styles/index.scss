@@ -20,7 +20,6 @@ body {
 .org-main {
 	display: flex;
 	height: 100%;
-	align-items: center;
 	justify-content: center;
 }
 
@@ -29,12 +28,13 @@ body {
 	flex-direction: column;
 	width: 100%;
 	max-width: 848px;
-	padding: 12px;
+	padding: 0 12px;
 }
 
 .org-header {
 	display: flex;
 	flex-direction: row;
+	justify-content: space-between;
 	border-radius: 6px;
 	background-color: var(--content-bg);
 	padding: 18px 0;
