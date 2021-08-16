@@ -1,3 +1,5 @@
+import { TSettingsObj } from '../data/types';
+
 export const MONTHS_TITLES = [
 	'January',
 	'Febrary',
@@ -14,3 +16,8 @@ export const MONTHS_TITLES = [
 ];
 
 export const WEEKDAY_TITLES = ['mon', 'tue', 'wed', 'thr', 'fri', 'sat', 'sun'];
+
+export const DEFAULT_SETTINGS:TSettingsObj = {
+	theme: 'dark',
+	firstDayIsMonday: true,
+};

@@ -1,34 +1,21 @@
 import * as React from 'react';
 
+import { TSettingsProps } from '../data/types';
 import Switcher from './ui-kit/switcher';
 
-interface TSettingsProps {
-	settings: {
-		theme: string,
-		setTheme(theme: string): void,
-		weekStartsOnMonday: boolean,
-		setWeekStartsOnMonday(value: boolean): void
-	}
-}
-
-const Settings = ({settings}: TSettingsProps) => {
-	const {
-		theme,
-		setTheme,
-		weekStartsOnMonday,
-		setWeekStartsOnMonday,
-	} = React.useMemo(() => settings, [settings]);
-
+const Settings = ({
+	theme,
+	firstDayIsMonday,
+	onChangeTheme,
+	onChangeFirstDay,
+}: TSettingsProps) => {
+	const isDarkTheme = React.useMemo(() => (theme === 'dark'), [theme]);
 	
-	const handlerChangeTheme = React.useCallback(checked => {
-		const newTheme = checked ? 'dark': 'light';
-		setTheme(newTheme);
-		document.querySelector('html').setAttribute('data-theme', newTheme);
-	}, [setTheme]);
+	const handlerChangeTheme = React.useCallback(
+		(checked: boolean): void => onChangeTheme(checked), [onChangeTheme]);
 
-	const handlerChangeFirstDay = React.useCallback((checked) => {
-		setWeekStartsOnMonday(checked);
-	}, [setWeekStartsOnMonday]);
+	const handlerChangeFirstDay = React.useCallback(
+		(checked: boolean): void => onChangeFirstDay(checked), [onChangeFirstDay]);
 
 	return (
 		<div className="org-settings">
@@ -37,13 +24,13 @@ const Settings = ({settings}: TSettingsProps) => {
 			</div>
 			<Switcher
 				name="darkTheme"
-				checked={theme === 'dark'}
+				checked={isDarkTheme}
 				label="Use dark theme"
 				onChange={handlerChangeTheme}
 			/>
 			<Switcher
 				name="firstDayIsMonday"
-				checked={weekStartsOnMonday}
+				checked={firstDayIsMonday}
 				label="Week starts on Monday"
 				onChange={handlerChangeFirstDay}
 			/>

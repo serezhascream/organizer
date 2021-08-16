@@ -1,18 +1,23 @@
 import * as React from 'react';
 
+import { TContentProps } from '../data/types';
 import Settings from './settings';
 
-interface TContentProps {
-	activeView: string | null,
-	settings: {
-		theme: string,
-		setTheme(theme: string): void,
-		weekStartsOnMonday: boolean,
-		setWeekStartsOnMonday(value: boolean): void
-	}
-}
+const Content = ({
+	activeView,
+	theme,
+	firstDayIsMonday,
+	onChangeTheme,
+	onChangeFirstDay,
+}: TContentProps) => {
 
-const Content = ({ activeView, settings }: TContentProps) => {
+	const handlerChangeTheme = React.useCallback(
+		(checked: boolean): void => onChangeTheme(checked), [onChangeTheme]
+	);
+
+	const handlerChangeFirstDay = React.useCallback(
+		(checked: boolean): void => onChangeFirstDay(checked), [onChangeTheme]
+	);
 
 	if (! activeView) {
 		return null;
@@ -23,7 +28,12 @@ const Content = ({ activeView, settings }: TContentProps) => {
 			<div className="org-container__divider" />
 			{
 				activeView === 'settings' &&
-				<Settings settings={settings} />
+				<Settings
+					theme={theme}
+					firstDayIsMonday={firstDayIsMonday}
+					onChangeTheme={handlerChangeTheme}
+					onChangeFirstDay={handlerChangeFirstDay}
+				/>
 			}
 		</React.Fragment>
 	);

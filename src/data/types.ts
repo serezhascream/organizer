@@ -98,3 +98,25 @@ export type TUseDecadeReturn = {
 };
 
 export type TDaySelectFunc = (day: TDayObject) => void;
+export type TTheme = 'dark' | 'light';
+
+export interface TSettingsObj {
+	theme: TTheme,
+	firstDayIsMonday: boolean,
+}
+
+export interface TContentProps {
+	activeView: string | null,
+	theme: TTheme,
+	firstDayIsMonday: boolean,
+	onChangeTheme(checked: boolean): void,
+	onChangeFirstDay(checked: boolean): void,
+}
+
+export interface TSettingsProps {
+	theme: TTheme,
+	firstDayIsMonday: boolean,
+	onChangeTheme(checked: boolean): void,
+	onChangeFirstDay(checked: boolean): void,
+}
+
