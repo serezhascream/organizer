@@ -134,6 +134,13 @@ export interface TEventProps {
 	event: TEventObj,
 }
 
+export interface TEventPopupProps {
+	event: TEventObj,
+	show: boolean,
+	onSave(event: TEventObj): void,
+	onClose(): void,
+}
+
 export interface TListProps {
 	selected: TDayObject,
 }

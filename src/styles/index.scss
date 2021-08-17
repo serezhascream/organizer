@@ -1,5 +1,6 @@
 @import './variables';
 @import './ui-kit';
+@import './event-popup';
 
 * {
 	box-sizing: border-box;
@@ -94,6 +95,7 @@ body {
 
 .org-list {
 	display: flex;
+	position: relative;
 	flex: 1;
 	flex-direction: column;
 	
@@ -143,6 +145,9 @@ body {
 	.org-wrapper {
 		width: auto;
 		height: 100%;
+	}
+	.org-list {
+		position: initial;
 	}
 	.org-container {
 		flex-direction: column;
