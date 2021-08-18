@@ -107,10 +107,6 @@ export interface TSettingsObj {
 
 export interface TContentProps {
 	activeView: string | null,
-	theme: TTheme,
-	firstDayIsMonday: boolean,
-	onChangeTheme(checked: boolean): void,
-	onChangeFirstDay(checked: boolean): void,
 	selected: TDayObject,
 }
 

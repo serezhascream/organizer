@@ -1,21 +1,25 @@
 import * as React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { TSettingsProps } from '../data/types';
+import { switchTheme, switchFirstDay } from '../features/settingsSlice';
 import Switcher from './ui-kit/switcher';
 
-const Settings = ({
-	theme,
-	firstDayIsMonday,
-	onChangeTheme,
-	onChangeFirstDay,
-}: TSettingsProps) => {
+const Settings = () => {
+	const dispatch = useDispatch();
+	const theme = useSelector(state => state.settings.theme);
+	const firstDayIsMonday = useSelector(state => state.settings.firstDayIsMonday);
 	const isDarkTheme = React.useMemo(() => (theme === 'dark'), [theme]);
 	
 	const handlerChangeTheme = React.useCallback(
-		(checked: boolean): void => onChangeTheme(checked), [onChangeTheme]);
+		() => {
+			dispatch(switchTheme(theme === 'dark' ? 'light' : 'dark'));
+		},
+		[dispatch, theme]
+	);
 
 	const handlerChangeFirstDay = React.useCallback(
-		(checked: boolean): void => onChangeFirstDay(checked), [onChangeFirstDay]);
+		(checked: boolean) => dispatch(switchFirstDay(checked)), [dispatch]
+	);
 
 	return (
 		<div className="org-settings">
