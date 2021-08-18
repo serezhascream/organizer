@@ -1,15 +1,13 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 
-import { TContentProps } from '../data/types';
 import Settings from './settings';
 import List from './list';
 
-const Content = ({
-	activeView,
-	selected,
-}: TContentProps) => {
+const Content = () => {
+	const activeContentView = useSelector(state => state.main.activeContentView);
 
-	if (! activeView) {
+	if (! activeContentView) {
 		return null;
 	}
 	
@@ -17,12 +15,12 @@ const Content = ({
 		<React.Fragment>
 			<div className="org-container__divider" />
 			{
-				activeView === 'settings' &&
+				activeContentView === 'settings' &&
 				<Settings />
 			}
 			{
-				activeView === 'list' &&
-				<List selected={selected} />
+				activeContentView === 'list' &&
+				<List />
 			}
 		</React.Fragment>
 	);

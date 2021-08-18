@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { TDayObject } from '../data/types';
+
+import { setSelectedDay, setActiveContentView } from '../features/mainSlice';
 
 import Calendar from './calendar';
 import Content from './content';
@@ -8,28 +10,28 @@ import Button from './ui-kit/button';
 import '../styles/index.scss';
 
 const Organizer = () => {
+	const dispatch = useDispatch();
 	const theme = useSelector(state => state.settings.theme);
 	const firstDayIsMonday = useSelector(state => state.settings.firstDayIsMonday);
-	
-	const [selected, setSelected] = React.useState(null);
-	const [activeContentView, setActiveContentView] = React.useState(null);
+	const selectedDay = useSelector(state => state.main.selectedDay);
+	const activeContentView = useSelector(state => state.main.activeContentView);
 
 	const handlerSelectDay = React.useCallback((day: TDayObject) => {
-		if(selected && selected.timestamp === day.timestamp) {
-			setSelected(null);
-			setActiveContentView(null);
+		if(selectedDay && selectedDay.timestamp === day.timestamp) {
+			dispatch(setSelectedDay(null));
+			dispatch(setActiveContentView(null));
 			return;
 		}
 		
-		setSelected(day);
-		setActiveContentView('list');
-	}, [selected]);
+		dispatch(setSelectedDay(day));
+		dispatch(setActiveContentView('list'));
+	}, [selectedDay]);
 
 	const handlerOpenSettings = React.useCallback(() => {
 		const newView = activeContentView === 'settings' ? null : 'settings';
 
-		setSelected(null);
-		setActiveContentView(newView)
+		dispatch(setSelectedDay(null));
+		dispatch(setActiveContentView(newView));
 	}, [activeContentView, setActiveContentView]);
 
 	React.useEffect(() => {
@@ -50,14 +52,11 @@ const Organizer = () => {
 				<div className="org-container__calendar">
 					<Calendar
 						firstDayIsMonday={firstDayIsMonday}
-						selected={selected}
+						selected={selectedDay}
 						onSelectDay={handlerSelectDay}
 					/>
 				</div>
-				<Content
-					activeView={activeContentView}
-					selected={selected}
-				/>
+				<Content />
 			</section>
 		</div>
 	);
