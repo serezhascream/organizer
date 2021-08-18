@@ -120,6 +120,7 @@ export interface TSettingsProps {
 export type TEventObj = {
 	title: string,
 	description: string | null,
+	timestamp: number,
 }
 
 export interface TEventsListProps {
@@ -131,9 +132,7 @@ export interface TEventProps {
 }
 
 export interface TEventPopupProps {
-	event: TEventObj,
 	show: boolean,
-	onSave(event: TEventObj): void,
 	onClose(): void,
 }
 
