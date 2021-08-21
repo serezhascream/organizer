@@ -14,13 +14,16 @@ import {
 	TCalendarData
 } from '../data/types';
 
-export const useCalendar = (selectedDay: TDayObject = null, firstDayIsMonday = true): TUseCalendarReturn => {
+export const useCalendar = (
+	selectedDay: TDayObject = null,
+	markers: number[],
+	firstDayIsMonday = true): TUseCalendarReturn => {
 	const activeYearMonth = getYearAndMonth();
 	const [active, setActive] = React.useState(activeYearMonth);
 	const [selected, setSelected] = React.useState(selectedDay);
 	
 	const data = React.useMemo(
-		(): TCalendarData => getCalendarData(active, selected, firstDayIsMonday),
+		(): TCalendarData => getCalendarData(active, selected, markers, firstDayIsMonday),
 		[active, selected, firstDayIsMonday]
 	);
 	

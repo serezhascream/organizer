@@ -10,6 +10,7 @@ export interface TDayObject {
 	weekday: number,
 	isWeekend: boolean,
 	isSelected: boolean,
+	hasMarker: boolean,
 }
 
 export interface TYearAndMonth {
@@ -30,6 +31,7 @@ export interface TAppProps {
 export interface TCalendarProps {
 	firstDayIsMonday: boolean;
 	selected: TDayObject;
+	markers: number[],
 	onSelectDay(TDayObject): void;
 }
 
