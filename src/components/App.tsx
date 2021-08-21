@@ -1,58 +1,44 @@
 import * as React from 'react';
-import { TDayObject, TSettingsObj } from '../data/types';
+import { useSelector, useDispatch } from 'react-redux';
+import { TDayObject, TRootState } from '../data/types';
+
+import { setSelectedDay, setActiveContentView } from '../features/mainSlice';
+import { getEventMarkers } from '../selectors/events';
 
 import Calendar from './calendar';
 import Content from './content';
 import Button from './ui-kit/button';
-import { getSettings, saveSettings } from '../utils/settings';
 import '../styles/index.scss';
 
 const Organizer = () => {
-	const [settings, setSettings] = React.useState(() => getSettings());
-	const [theme, setTheme] = React.useState(settings.theme);
-	const [firstDayIsMonday, setFirstDayIsMonday] = React.useState(settings.firstDayIsMonday);
-	const [selected, setSelected] = React.useState(null);
-	const [activeContentView, setActiveContentView] = React.useState(null);
+	const dispatch = useDispatch();
+	const theme = useSelector((state: TRootState) => state.settings.theme);
+	const firstDayIsMonday = useSelector((state: TRootState) => state.settings.firstDayIsMonday);
+	const selectedDay = useSelector((state: TRootState) => state.main.selectedDay);
+	const activeContentView = useSelector((state: TRootState) => state.main.activeContentView);
+	const markers = useSelector((state: TRootState) => getEventMarkers(state));
 
 	const handlerSelectDay = React.useCallback((day: TDayObject) => {
-		if(selected && selected.timestamp === day.timestamp) {
-			setSelected(null);
-			setActiveContentView(null);
+		if(selectedDay && selectedDay.timestamp === day.timestamp) {
+			dispatch(setSelectedDay(null));
+			dispatch(setActiveContentView(null));
 			return;
 		}
 		
-		setSelected(day);
-		setActiveContentView('list');
-	}, [selected]);
+		dispatch(setSelectedDay(day));
+		dispatch(setActiveContentView('list'));
+	}, [selectedDay]);
 
 	const handlerOpenSettings = React.useCallback(() => {
 		const newView = activeContentView === 'settings' ? null : 'settings';
 
-		setSelected(null);
-		setActiveContentView(newView)
+		dispatch(setSelectedDay(null));
+		dispatch(setActiveContentView(newView));
 	}, [activeContentView, setActiveContentView]);
 
-	const handlerChangeTheme = React.useCallback((checked: boolean): void => {
-		const newTheme = checked ? 'dark': 'light';
-		
-		document.querySelector('html').setAttribute('data-theme', newTheme);
-		setTheme(newTheme);
-	}, [settings, saveSettings]);
-
-	const handlerChangeFirstDay = React.useCallback((checked: boolean): void => {
-		setFirstDayIsMonday(checked);
-	}, [setFirstDayIsMonday]);
-
-	const handlerSaveSettings = React.useCallback((settings: TSettingsObj): void => {
-		saveSettings(settings);
-		setSettings(settings);
-	}, []);
-	
 	React.useEffect(() => {
-		document.querySelector('html').setAttribute('data-theme', settings.theme);
-	}, []);
-	
-	React.useEffect(() => handlerSaveSettings({ theme, firstDayIsMonday }), [theme, firstDayIsMonday]);
+		document.querySelector('html').setAttribute('data-theme', theme);
+	}, [theme]);
 	
 	return (
 		<div className="org-wrapper">
@@ -68,18 +54,12 @@ const Organizer = () => {
 				<div className="org-container__calendar">
 					<Calendar
 						firstDayIsMonday={firstDayIsMonday}
-						selected={selected}
+						selected={selectedDay}
+						markers={markers}
 						onSelectDay={handlerSelectDay}
 					/>
 				</div>
-				<Content
-					activeView={activeContentView}
-					theme={theme}
-					firstDayIsMonday={firstDayIsMonday}
-					onChangeTheme={handlerChangeTheme}
-					onChangeFirstDay={handlerChangeFirstDay}
-					selected={selected}
-				/>
+				<Content />
 			</section>
 		</div>
 	);

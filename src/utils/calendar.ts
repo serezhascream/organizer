@@ -103,6 +103,7 @@ export const getDaysArray = (
 	{year, month}: TYearAndMonth,
 	{year: activeYear, month: activeMonth}: TYearAndMonth,
 	selected: TDayObject,
+	markers: number[],
 	start = 1,
 	end = null,
 	firstDayIsMonday = true,
@@ -115,15 +116,18 @@ export const getDaysArray = (
 			const weekday = getWeekday(year, month, i, firstDayIsMonday);
 			const monthType = getMonthType(year, month, activeYear, activeMonth);
 			const isSelected = monthType && selected && getIsSelected(year, month, i, selected)
+			const timestamp = date.getTime();
+			const hasMarker = markers.includes(timestamp);
 			
 			days.push({
 				day: i,
 				month: monthType,
-				timestamp: date.getTime(),
+				timestamp,
 				isToday: isToday(year, month, i),
 				isWeekend: isWeekend(weekday, firstDayIsMonday),
 				weekday,
 				isSelected,
+				hasMarker,
 			});
 		}
 		
@@ -133,6 +137,7 @@ export const getDaysArray = (
 export const getCalendarData = (
 	active: TYearAndMonth,
 	selected: TDayObject,
+	markers: number[],
 	firstDayIsMonday: boolean
 ): TCalendarData => {
 	const data = [];
@@ -149,17 +154,17 @@ export const getCalendarData = (
 	if (firstWeekday > 0) {
 		const prev = getPrev(year, month);
 		const start = getStart(prev, firstWeekday);
-		const prevDaysArray = getDaysArray(prev, active, selected, start, null, firstDayIsMonday);
+		const prevDaysArray = getDaysArray(prev, active, selected, markers, start, null, firstDayIsMonday);
 		
 		data.push(...prevDaysArray);
 	}
 	
-	data.push(...getDaysArray({year, month}, active, selected, 1, null, firstDayIsMonday));
+	data.push(...getDaysArray({year, month}, active, selected, markers, 1, null, firstDayIsMonday));
 	
 	if (lastWeekday < 6) {
 		const next = getNext(year, month);
 		const end = getEnd(lastWeekday);
-		const nextDaysArray = getDaysArray(next, active, selected, 1, end, firstDayIsMonday);
+		const nextDaysArray = getDaysArray(next, active, selected, markers, 1, end, firstDayIsMonday);
 		
 		data.push(...nextDaysArray);
 	}

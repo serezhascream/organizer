@@ -1,12 +1,17 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import ReactFlexCalendar from './components/App';
+import { Provider } from 'react-redux';
+
+import store from './store';
 
 const root = document.getElementById('app-root');
 
 ReactDOM.render(
-	<React.StrictMode>
-		<ReactFlexCalendar />
-	</React.StrictMode>,
+	<Provider store={store}>
+		<React.StrictMode>
+			<ReactFlexCalendar />
+		</React.StrictMode>
+	</Provider>,
 	root,
 );

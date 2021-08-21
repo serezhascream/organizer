@@ -15,6 +15,7 @@ import '../../styles/calendar.scss';
 const Calendar = ({
 	firstDayIsMonday = true,
 	selected,
+	markers = [],
 	onSelectDay,
 }: TCalendarProps) => {
 	
@@ -24,7 +25,7 @@ const Calendar = ({
 		setActive,
 		switchMonth,
 		setSelected,
-	} = useCalendar(selected, firstDayIsMonday);
+	} = useCalendar(selected, markers, firstDayIsMonday);
 	
 	const [activeView, setActiveView] = React.useState('month');
 	const [current, setCurrent] = React.useState(active);

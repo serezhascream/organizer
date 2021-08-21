@@ -10,6 +10,7 @@ export interface TDayObject {
 	weekday: number,
 	isWeekend: boolean,
 	isSelected: boolean,
+	hasMarker: boolean,
 }
 
 export interface TYearAndMonth {
@@ -30,6 +31,7 @@ export interface TAppProps {
 export interface TCalendarProps {
 	firstDayIsMonday: boolean;
 	selected: TDayObject;
+	markers: number[],
 	onSelectDay(TDayObject): void;
 }
 
@@ -107,10 +109,6 @@ export interface TSettingsObj {
 
 export interface TContentProps {
 	activeView: string | null,
-	theme: TTheme,
-	firstDayIsMonday: boolean,
-	onChangeTheme(checked: boolean): void,
-	onChangeFirstDay(checked: boolean): void,
 	selected: TDayObject,
 }
 
@@ -124,6 +122,7 @@ export interface TSettingsProps {
 export type TEventObj = {
 	title: string,
 	description: string | null,
+	day: number,
 }
 
 export interface TEventsListProps {
@@ -135,12 +134,26 @@ export interface TEventProps {
 }
 
 export interface TEventPopupProps {
-	event: TEventObj,
 	show: boolean,
-	onSave(event: TEventObj): void,
 	onClose(): void,
 }
 
 export interface TListProps {
 	selected: TDayObject,
 }
+
+export interface TRootState {
+	events: {
+		items: TEventObj[],
+		selectedEvent: TEventObj,
+	},
+	main: {
+		selectedDay: TDayObject,
+		activeContentView: string,
+	},
+	settings: {
+		theme: TTheme,
+		firstDayIsMonday: boolean,
+	}
+}
+

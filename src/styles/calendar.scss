@@ -116,6 +116,18 @@
 			border-color: var(--calendar-accent-color);
 			opacity: 1;
 		}
+		&--has-marker:after {
+			content: '';
+			position: absolute;
+			display: block;
+			bottom: 6px;
+			right: 0;
+			left: 0;
+			width: 3px;
+			height: 3px;
+			margin: 0 auto;
+			background-color: var(--calendar-text-color);
+		}
 	}
 	&__weekday-titles {
 		display: grid;

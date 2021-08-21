@@ -19,5 +19,9 @@ export const getDayClasses = (day: TDayObject): string[] => {
 		classes.push('org-calendar__day--selected')
 	}
 	
+	if (day.hasMarker) {
+		classes.push('org-calendar__day--has-marker');
+	}
+	
 	return classes;
 }
