@@ -2,14 +2,14 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 
 import { MONTHS_TITLES } from '../../data/constants';
+import { TRootState } from '../../data/types';
 
 import Button from '../ui-kit/button';
 import EventsList from './eventsList';
 import EventPopup from './eventPopup';
 
 const List = () => {
-	const selectedDay = useSelector(state => state.main.selectedDay);
-	const events = useSelector(state => state.events.items);
+	const selectedDay = useSelector((state: TRootState) => state.main.selectedDay);
 	
 	const [showEventPopup, setShowEventPopup] = React.useState(false);
 	
@@ -44,12 +44,7 @@ const List = () => {
 				>+</Button>
 			</div>
 			<div className="org-list__content">
-				{
-					events.length ? 
-					<EventsList events={events} />
-					:
-					<div className="org-list__placeholder">No events yet.</div>
-				}
+				<EventsList />
 			</div>
 		</div>
 	);

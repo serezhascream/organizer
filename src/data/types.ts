@@ -120,7 +120,7 @@ export interface TSettingsProps {
 export type TEventObj = {
 	title: string,
 	description: string | null,
-	timestamp: number,
+	day: number,
 }
 
 export interface TEventsListProps {
@@ -139,3 +139,19 @@ export interface TEventPopupProps {
 export interface TListProps {
 	selected: TDayObject,
 }
+
+export interface TRootState {
+	events: {
+		items: TEventObj[],
+		selectedEvent: TEventObj,
+	},
+	main: {
+		selectedDay: TDayObject,
+		activeContentView: string,
+	},
+	settings: {
+		theme: TTheme,
+		firstDayIsMonday: boolean,
+	}
+}
+

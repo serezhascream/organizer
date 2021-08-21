@@ -3,7 +3,7 @@ import { loadEvents } from '../utils/events';
 
 const items = loadEvents();
 const defaultActiveEvent = {
-	timestamp: null,
+	day: null,
 	title: '',
 	description: '',
 };

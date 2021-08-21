@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addEvent } from '../../features/eventsSlice';
 
-import { TEventPopupProps } from '../../data/types';
+import { TEventPopupProps, TRootState } from '../../data/types';
 import Button from '../ui-kit/button';
 import Input from '../ui-kit/input';
 import Textarea from '../ui-kit/textarea';
@@ -12,25 +12,25 @@ const EventPopup = ({
 	onClose = () => {},
 }: TEventPopupProps) => {
 	const dispatch = useDispatch();
-	const selectedEvent = useSelector(state => state.events.selectedEvent);
-	const selectedDay = useSelector(state => state.main.selectedDay);
+	const selectedEvent = useSelector((state: TRootState) => state.events.selectedEvent);
+	const selectedDay = useSelector((state: TRootState) => state.main.selectedDay);
 	
 	const [ title, setTitle ] = React.useState(selectedEvent.title);
 	const [ description, setDescription ] = React.useState(selectedEvent.description);
-	const [ timestamp, setTimestamp ] = React.useState(selectedEvent.timestamp || selectedDay.timestamp);
+	const day = React.useMemo(() => (selectedEvent.day || selectedDay.timestamp), [selectedEvent, selectedDay]);
 	const saveButtonIsDisabled = React.useMemo(() => (! title.length), [title]);
 
 	const clearFields = () => {
 		setTitle('');
 		setDescription('');
-		setTimestamp(null);
 	};
 	
 	const handlerSave = React.useCallback(() => {
-		dispatch(addEvent({ title, description, timestamp }));
+		dispatch(addEvent({ title, description, day }));
+		
 		clearFields();
 		onClose();
-	}, [title, description]);
+	}, [title, description, day]);
 
 	const handlerClose = React.useCallback(() => {
 		onClose();
