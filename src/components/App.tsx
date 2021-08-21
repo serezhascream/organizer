@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { TDayObject } from '../data/types';
+import { TDayObject, TRootState } from '../data/types';
 
 import { setSelectedDay, setActiveContentView } from '../features/mainSlice';
+import { getEventMarkers } from '../selectors/events';
 
 import Calendar from './calendar';
 import Content from './content';
@@ -11,10 +12,11 @@ import '../styles/index.scss';
 
 const Organizer = () => {
 	const dispatch = useDispatch();
-	const theme = useSelector(state => state.settings.theme);
-	const firstDayIsMonday = useSelector(state => state.settings.firstDayIsMonday);
-	const selectedDay = useSelector(state => state.main.selectedDay);
-	const activeContentView = useSelector(state => state.main.activeContentView);
+	const theme = useSelector((state: TRootState) => state.settings.theme);
+	const firstDayIsMonday = useSelector((state: TRootState) => state.settings.firstDayIsMonday);
+	const selectedDay = useSelector((state: TRootState) => state.main.selectedDay);
+	const activeContentView = useSelector((state: TRootState) => state.main.activeContentView);
+	const markers = useSelector((state: TRootState) => getEventMarkers(state));
 
 	const handlerSelectDay = React.useCallback((day: TDayObject) => {
 		if(selectedDay && selectedDay.timestamp === day.timestamp) {
@@ -53,6 +55,7 @@ const Organizer = () => {
 					<Calendar
 						firstDayIsMonday={firstDayIsMonday}
 						selected={selectedDay}
+						markers={markers}
 						onSelectDay={handlerSelectDay}
 					/>
 				</div>
