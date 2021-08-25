@@ -15,8 +15,6 @@ export const MONTHS_TITLES = [
 	'December',
 ];
 
-export const WEEKDAY_TITLES = ['mon', 'tue', 'wed', 'thr', 'fri', 'sat', 'sun'];
-
 export const DEFAULT_SETTINGS:TSettingsObj = {
 	theme: 'dark',
 	firstDayIsMonday: true,
