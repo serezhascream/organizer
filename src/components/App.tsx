@@ -5,7 +5,7 @@ import { TDayObject, TRootState } from '../data/types';
 import { setSelectedDay, setActiveContentView } from '../features/mainSlice';
 import { getEventMarkers } from '../selectors/events';
 
-import Calendar from './calendar';
+import Calendar from 'react-grid-calendar';
 import Content from './content';
 import Button from './ui-kit/button';
 import '../styles/index.scss';
