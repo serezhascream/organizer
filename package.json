@@ -67,6 +67,7 @@
     "@babel/polyfill": "^7.12.1",
     "@reduxjs/toolkit": "^1.6.1",
     "@types/react-redux": "^7.1.18",
+    "react-grid-calendar": "git+ssh://git@github.com/serezhascream/react-grid-calendar.git",
     "react-redux": "^7.2.4"
   }
 }
