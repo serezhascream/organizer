@@ -1,15 +1,24 @@
 import * as React from 'react';
 
 import { testIds } from '../../data/tests';
-import { TButtonProps } from '../../data/types';
 
-const Button = ({
-	children,
-	name = '',
-	extraClass = '',
-	disabled = false,
-	onClick = () => {},
-}: TButtonProps) => {
+interface Props {
+	children: string,
+	name: string,
+	disabled?: boolean,
+	extraClass?: string,
+	onClick(name:string): void
+}
+
+const Button: React.VFC<Props> = (props: Props) => {
+	const {
+		children,
+		name = '',
+		extraClass = '',
+		disabled = false,
+		onClick = () => {},
+	} = props;
+	
 	const buttonClasses = React.useMemo(() => {
 		const classes = ['org-button']
 
@@ -21,7 +30,7 @@ const Button = ({
 	
 	}, [extraClass]);
 	
-	const handlerClick = React.useCallback((e) => {
+	const handlerClick = React.useCallback((e: React.SyntheticEvent) => {
 		e.preventDefault();
 		
 		onClick(name);
