@@ -1,17 +1,31 @@
 import * as React from 'react';
 
-import { TInputProps } from '../../data/types';
 import { testIds } from '../../data/tests';
 
-const Input = ({
-	name = '',
-	label = '',
-	inputType = 'text',
-	value = '',
-	extraClass = '',
-	onChange = () => {},
-}: TInputProps) => {
-	const [inputValue, setInputValue] = React.useState(value);
+interface Props {
+	name: string;
+	label?: string;
+	inputType?: string;
+	value: string | number | null;
+	extraClass?: string;
+	onChange(value:string | number | null, name: string): void;
+}
+
+const Input: React.VFC<Props> = (props: Props) => {
+	const {
+		name = '',
+		label = '',
+		inputType = 'text',
+		value = '',
+		extraClass = '',
+		onChange = () => {},
+	} = props;
+	
+	const [
+		inputValue,
+		setInputValue
+	] = React.useState<string | number | null>(value);
+	
 	const inputClasses = React.useMemo(() => {
 		const classes = ['org-input'];
 
@@ -22,12 +36,14 @@ const Input = ({
 		return classes.join(' ');
 	}, [extraClass]);
 
-	const handlerChange = React.useCallback(e => {
-		const { value } = e.target;
-		
-		setInputValue(value);
-		onChange(value, name);
-	}, [onChange, name]);
+	const handlerChange = React.useCallback(
+		(e: React.ChangeEvent<HTMLInputElement>): void => {
+			const { value } = e.target;
+			
+			setInputValue(value);
+			onChange(value, name);
+		}, [onChange, name]
+	);
 	
 	return (
 		<div className={inputClasses} data-testid={testIds.inputWrapper}>

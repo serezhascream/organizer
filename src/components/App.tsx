@@ -11,16 +11,27 @@ import Button from './ui-kit/button';
 import 'react-grid-calendar/lib/styles/index.scss';
 import '../styles/index.scss';
 
-const Organizer = () => {
+const Organizer: React.VFC = () => {
 	const dispatch = useDispatch();
-	const theme = useSelector((state: TRootState) => state.settings.theme);
-	const firstDayIsMonday = useSelector((state: TRootState) => state.settings.firstDayIsMonday);
-	const selectedDay = useSelector((state: TRootState) => state.main.selectedDay);
-	const activeContentView = useSelector((state: TRootState) => state.main.activeContentView);
-	const markers = useSelector((state: TRootState) => getEventMarkers(state));
-	const calendarMarkers = markers.map(marker => new Date(marker));
+	const theme = useSelector(
+		(state: TRootState): string => state.settings.theme
+	);
+	const firstDayIsMonday = useSelector(
+		(state: TRootState): boolean => state.settings.firstDayIsMonday
+	);
+	const selectedDay = useSelector(
+		(state: TRootState): number => state.main.selectedDay
+	);
+	const activeContentView = useSelector(
+		(state: TRootState): string | null => state.main.activeContentView
+	);
+	const markers = useSelector(
+		(state: TRootState): number[] => getEventMarkers(state)
+	);
+	
+	const calendarMarkers = markers.map((marker: number): Date => new Date(marker));
 
-	const handlerSelectDay = React.useCallback((day: Date) => {
+	const handlerSelectDay = React.useCallback((day: Date): void => {
 		if (!day) {
 			dispatch(setSelectedDay(null));
 			dispatch(setActiveContentView(null));
@@ -32,7 +43,7 @@ const Organizer = () => {
 		dispatch(setActiveContentView('list'));
 	}, [selectedDay]);
 
-	const handlerOpenSettings = React.useCallback(() => {
+	const handlerOpenSettings = React.useCallback((): void => {
 		const newView = activeContentView === 'settings' ? null : 'settings';
 
 		dispatch(setSelectedDay(null));

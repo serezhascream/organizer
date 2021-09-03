@@ -1,10 +1,14 @@
 import * as React from 'react';
 
-import { TEventProps } from '../../data/types';
+import { TEventObj } from '../../data/types';
 
-const Event = ({ event }: TEventProps) => {
+interface Props {
+	event: TEventObj,
+}
+
+const Event: React.VFC<Props> = ({ event }: Props) => {
 	const descriptionText = React.useMemo(
-		() => (event.description ? event.description : 'Empty description'),
+		(): string => (event.description ? event.description : 'Empty description'),
 		[event]
 	);
 	

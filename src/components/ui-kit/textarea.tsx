@@ -1,16 +1,25 @@
 import * as React from 'react';
 
-import { TTextareaProps } from '../../data/types';
 import { testIds } from '../../data/tests';
 
-const Textarea = ({
-	name,
-	value,
-	label = '',
-	extraClass = '',
-	onChange = () => {},
-}: TTextareaProps) => {
-	const [text, setText] = React.useState(value);
+interface Props {
+	name: string,
+	value: string,
+	label?: string,
+	extraClass?: string,
+	onChange(value: string, name: string): void
+}
+
+const Textarea: React.VFC<Props> = (props: Props) => {
+	const {
+		name,
+		value,
+		label = '',
+		extraClass = '',
+		onChange = () => {},
+	} = props;
+	
+	const [text, setText] = React.useState<string>(value);
 	const wrapperClasses = React.useMemo(() => {
 		const classes = ['org-textarea'];
 
@@ -21,12 +30,14 @@ const Textarea = ({
 		return classes.join(' ');
 	}, [extraClass]);
 	
-	const handlerChange = React.useCallback(e => {
-		const { value } = e.target;
-		
-		setText(value);
-		onChange(value, name);
-	}, [onChange]);
+	const handlerChange = React.useCallback(
+		(e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+			const { value } = e.target;
+			
+			setText(value);
+			onChange(value, name);
+		}, [onChange]
+	);
 	
 	return (
 		<div className={wrapperClasses} data-testid={testIds.textareaWrapper}>

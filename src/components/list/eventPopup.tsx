@@ -2,42 +2,53 @@ import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addEvent } from '../../features/eventsSlice';
 
-import { TEventPopupProps, TRootState } from '../../data/types';
+import { TRootState, TEventObj } from '../../data/types';
 import Button from '../ui-kit/button';
 import Input from '../ui-kit/input';
 import Textarea from '../ui-kit/textarea';
 
-const EventPopup = ({
-	show = false,
-	onClose = () => {},
-}: TEventPopupProps) => {
-	const dispatch = useDispatch();
-	const selectedEvent = useSelector((state: TRootState) => state.events.selectedEvent);
-	const selectedDay = useSelector((state: TRootState) => state.main.selectedDay);
-	
-	const [ title, setTitle ] = React.useState(selectedEvent.title);
-	const [ description, setDescription ] = React.useState(selectedEvent.description);
-	const day = React.useMemo(() => (selectedEvent.day || selectedDay), [selectedEvent, selectedDay]);
-	const saveButtonIsDisabled = React.useMemo(() => (! title.length), [title]);
+interface Props {
+	show: boolean,
+	onClose(): void,
+}
 
-	const clearFields = () => {
+const EventPopup: React.VFC<Props> = (props: Props) => {
+	const {show = false, onClose = () => {}} = props;
+	
+	const dispatch = useDispatch();
+	const selectedEvent = useSelector(
+		(state: TRootState): TEventObj => state.events.selectedEvent
+	);
+	const selectedDay = useSelector(
+		(state: TRootState): number => state.main.selectedDay
+	);
+	
+	const [ title, setTitle ] = React.useState<string>(selectedEvent.title);
+	const [ description, setDescription ] = React.useState<string>(selectedEvent.description);
+	const day = React.useMemo(
+		(): number => (selectedEvent.day || selectedDay),
+		[selectedEvent, selectedDay]
+	);
+	const saveButtonIsDisabled = React.useMemo((): boolean => (! title.length), [title]);
+
+	const clearFields = (): void => {
 		setTitle('');
 		setDescription('');
 	};
 	
-	const handlerSave = React.useCallback(() => {
+	const handlerSave = React.useCallback((): void => {
 		dispatch(addEvent({ title, description, day }));
 		
 		clearFields();
 		onClose();
 	}, [title, description, day]);
 
-	const handlerClose = React.useCallback(() => {
+	const handlerClose = React.useCallback((): void => {
 		onClose();
 		clearFields();
 	}, [onClose]);
 
-	const handlerChange = React.useCallback((value: string, name: string) => {
+	const handlerChange = React.useCallback((value: string, name: string): void => {
 		if (name === 'title') {
 			setTitle(value);
 		}

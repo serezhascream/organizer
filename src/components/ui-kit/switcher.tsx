@@ -1,16 +1,28 @@
 import * as React from 'react';
 
-import { TSwitcherProps } from '../../data/types';
 import { testIds } from '../../data/tests';
 
-const Switcher = ({
-	name = '',
-	checked = false,
-	label = '',
-	onChange = () => {}
-}:TSwitcherProps) => {
+interface Props {
+	name: string,
+	checked: boolean,
+	label: string,
+	onChange(checked: boolean, name:string): void
+}
+
+const Switcher: React.VFC<Props> = (props: Props) => {
+	const {
+		name = '',
+		checked = false,
+		label = '',
+		onChange = () => {}
+	} = props;
+	
 	const classChecked = React.useMemo(() => (checked ? ' org-switcher__checkbox--checked' : ''), [checked]);
-	const handleChange = React.useCallback(() => onChange(!checked, name), [checked, name]);
+	
+	const handleChange = React.useCallback(
+		(): void => onChange(!checked, name),
+		[checked, name]
+	);
 	
 	return (
 		<div
