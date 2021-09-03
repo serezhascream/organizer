@@ -1,11 +1,14 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
+import { TRootState } from '../data/types';
 
 import Settings from './settings';
 import List from './list';
 
-const Content = () => {
-	const activeContentView = useSelector(state => state.main.activeContentView);
+const Content: React.VFC = () => {
+	const activeContentView = useSelector(
+		(state: TRootState): string | null => state.main.activeContentView
+	);
 
 	if (! activeContentView) {
 		return null;

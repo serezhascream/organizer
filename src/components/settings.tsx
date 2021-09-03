@@ -1,24 +1,27 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { TRootState } from '../data/types';
 
 import { switchTheme, switchFirstDay } from '../features/settingsSlice';
 import Switcher from './ui-kit/switcher';
 
-const Settings = () => {
+const Settings: React.VFC = () => {
 	const dispatch = useDispatch();
-	const theme = useSelector(state => state.settings.theme);
-	const firstDayIsMonday = useSelector(state => state.settings.firstDayIsMonday);
-	const isDarkTheme = React.useMemo(() => (theme === 'dark'), [theme]);
+	const theme = useSelector((state: TRootState): string => state.settings.theme);
+	const firstDayIsMonday = useSelector(
+		(state: TRootState): boolean => state.settings.firstDayIsMonday
+	);
+	const isDarkTheme = React.useMemo((): boolean => (theme === 'dark'), [theme]);
 	
-	const handlerChangeTheme = React.useCallback(
-		() => {
+	const handlerChangeTheme = React.useCallback( (): void => {
 			dispatch(switchTheme(theme === 'dark' ? 'light' : 'dark'));
-		},
-		[dispatch, theme]
+		}, [dispatch, theme]
 	);
 
 	const handlerChangeFirstDay = React.useCallback(
-		(checked: boolean) => dispatch(switchFirstDay(checked)), [dispatch]
+		(checked: boolean): void => {
+			dispatch(switchFirstDay(checked))
+		}, [dispatch]
 	);
 
 	return (
