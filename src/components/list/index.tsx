@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 
-import { MONTHS_TITLES } from '../../data/constants';
 import { TRootState } from '../../data/types';
 
 import Button from '../ui-kit/button';
@@ -14,10 +13,16 @@ const List = () => {
 	const [showEventPopup, setShowEventPopup] = React.useState(false);
 	
 	const title = React.useMemo(() => {
-		const date = new Date(selectedDay.timestamp);
-		const month = MONTHS_TITLES[date.getMonth()];
+		const date = new Date(selectedDay);
 		
-		return `${date.getDate()} ${month} ${date.getFullYear()}`;
+		return date.toLocaleDateString(
+			'en-US',
+			{
+				day: 'numeric',
+				month: 'long',
+				year: 'numeric',
+			},
+		);
 	}, [selectedDay]);
 	
 	const handlerCreateEvent = React.useCallback(() => {

@@ -7,7 +7,7 @@ import { TEventObj, TRootState } from '../../data/types';
 
 const EventsList = () => {
 	const selectedDay = useSelector((state: TRootState) => state.main.selectedDay);
-	const events = useSelector((state: TRootState) => getEvents(state, selectedDay.timestamp));
+	const events = useSelector((state: TRootState) => getEvents(state, selectedDay));
 	
 	if (! events.length) {
 		return (

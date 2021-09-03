@@ -1,16 +1,3 @@
-type TMonthType = "prev" | "current" | "next";
-
-export interface TDayObject {
-	day: number,
-	month: TMonthType,
-	isToday: boolean,
-	timestamp: number,
-	weekday: number,
-	isWeekend: boolean,
-	isSelected: boolean,
-	hasMarker: boolean,
-}
-
 export interface TSwitcherProps {
 	name: string,
 	checked: boolean,
@@ -52,7 +39,7 @@ export interface TSettingsObj {
 
 export interface TContentProps {
 	activeView: string | null,
-	selected: TDayObject,
+	selected: number | null,
 }
 
 export interface TSettingsProps {
@@ -82,7 +69,7 @@ export interface TEventPopupProps {
 }
 
 export interface TListProps {
-	selected: TDayObject,
+	selected: number | null,
 }
 
 export interface TRootState {
@@ -91,7 +78,7 @@ export interface TRootState {
 		selectedEvent: TEventObj,
 	},
 	main: {
-		selectedDay: TDayObject,
+		selectedDay: number | null,
 		activeContentView: string,
 	},
 	settings: {

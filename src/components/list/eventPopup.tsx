@@ -17,7 +17,7 @@ const EventPopup = ({
 	
 	const [ title, setTitle ] = React.useState(selectedEvent.title);
 	const [ description, setDescription ] = React.useState(selectedEvent.description);
-	const day = React.useMemo(() => (selectedEvent.day || selectedDay.timestamp), [selectedEvent, selectedDay]);
+	const day = React.useMemo(() => (selectedEvent.day || selectedDay), [selectedEvent, selectedDay]);
 	const saveButtonIsDisabled = React.useMemo(() => (! title.length), [title]);
 
 	const clearFields = () => {

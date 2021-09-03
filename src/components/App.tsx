@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { TDayObject, TRootState } from '../data/types';
+import { TRootState } from '../data/types';
 
 import { setSelectedDay, setActiveContentView } from '../features/mainSlice';
 import { getEventMarkers } from '../selectors/events';
@@ -8,6 +8,7 @@ import { getEventMarkers } from '../selectors/events';
 import Calendar from 'react-grid-calendar';
 import Content from './content';
 import Button from './ui-kit/button';
+import 'react-grid-calendar/lib/styles/index.scss';
 import '../styles/index.scss';
 
 const Organizer = () => {
@@ -17,15 +18,17 @@ const Organizer = () => {
 	const selectedDay = useSelector((state: TRootState) => state.main.selectedDay);
 	const activeContentView = useSelector((state: TRootState) => state.main.activeContentView);
 	const markers = useSelector((state: TRootState) => getEventMarkers(state));
+	const calendarMarkers = markers.map(marker => new Date(marker));
 
-	const handlerSelectDay = React.useCallback((day: TDayObject) => {
-		if(selectedDay && selectedDay.timestamp === day.timestamp) {
+	const handlerSelectDay = React.useCallback((day: Date) => {
+		if (!day) {
 			dispatch(setSelectedDay(null));
 			dispatch(setActiveContentView(null));
+			
 			return;
 		}
 		
-		dispatch(setSelectedDay(day));
+		dispatch(setSelectedDay(day.getTime()));
 		dispatch(setActiveContentView('list'));
 	}, [selectedDay]);
 
@@ -54,8 +57,7 @@ const Organizer = () => {
 				<div className="org-container__calendar">
 					<Calendar
 						firstDayIsMonday={firstDayIsMonday}
-						selected={selectedDay}
-						markers={markers}
+						markers={calendarMarkers}
 						onSelectDay={handlerSelectDay}
 					/>
 				</div>
