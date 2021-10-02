@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addEvent } from '../../features/eventsSlice';
+import { updateSelectedEvent, saveEvent } from '../../features/eventsSlice';
 
 import { TRootState, TEventObj } from '../../data/types';
 import Button from '../ui-kit/button';
@@ -8,27 +8,19 @@ import Input from '../ui-kit/input';
 import Textarea from '../ui-kit/textarea';
 
 interface Props {
-	show: boolean,
 	onClose(): void,
 }
 
 const EventPopup: React.VFC<Props> = (props: Props) => {
-	const {show = false, onClose = () => {}} = props;
+	const { onClose = () => {} } = props;
 	
 	const dispatch = useDispatch();
 	const selectedEvent = useSelector(
 		(state: TRootState): TEventObj => state.events.selectedEvent
 	);
-	const selectedDay = useSelector(
-		(state: TRootState): number => state.main.selectedDay
-	);
 	
 	const [ title, setTitle ] = React.useState<string>(selectedEvent.title);
 	const [ description, setDescription ] = React.useState<string>(selectedEvent.description);
-	const day = React.useMemo(
-		(): number => (selectedEvent.day || selectedDay),
-		[selectedEvent, selectedDay]
-	);
 	const saveButtonIsDisabled = React.useMemo((): boolean => (! title.length), [title]);
 
 	const clearFields = (): void => {
@@ -37,32 +29,26 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 	};
 	
 	const handlerSave = React.useCallback((): void => {
-		dispatch(addEvent({ title, description, day }));
+		dispatch(updateSelectedEvent({ title, description }));
 		
+		dispatch(saveEvent());
 		clearFields();
 		onClose();
-	}, [title, description, day]);
+	}, [title, description]);
 
 	const handlerClose = React.useCallback((): void => {
 		onClose();
 		clearFields();
 	}, [onClose]);
 
-	const handlerChange = React.useCallback((value: string, name: string): void => {
-		if (name === 'title') {
-			setTitle(value);
-		}
-
-		if (name === 'description') {
-			setDescription(value);
-		}
-		
+	const handlerChangeTitle = React.useCallback((value: string): void => {
+		setTitle(value);
 	}, []);
 	
-	if (! show) {
-		return null;
-	}
-	
+	const handlerChangeDescription = React.useCallback((value: string): void => {
+			setDescription(value);
+	}, []);
+
 	return (
 		<div className="org-popup">
 			<div className="org-popup__overlay" />
@@ -80,14 +66,14 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 						value={title}
 						extraClass="org-popup__content-title"
 						label="Title"
-						onChange={handlerChange}
+						onChange={handlerChangeTitle}
 					/>
 					<Textarea
 						name="description"
 						value={description}
 						extraClass="org-popup__content-description"
 						label="Description"
-						onChange={handlerChange}
+						onChange={handlerChangeDescription}
 					/>
 					<div className="org-popup__buttons">
 						<Button

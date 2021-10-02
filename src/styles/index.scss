@@ -120,6 +120,7 @@ body {
 }
 
 .org-event {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	border-bottom: 1px solid var(--text-color);
@@ -135,6 +136,18 @@ body {
 		color: var(--text-color);
 		margin-top: 6px;
 		line-height: 12px;
+	}
+	&__edit-button {
+		position: absolute;
+		display: block;
+		color: var(--text-color);
+		font-size: 18px;
+		padding: 12px;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		margin: auto 0;
+		cursor: pointer;
 	}
 }
 
