@@ -1,0 +1,35 @@
+.org-list {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 9px;
+	}
+	&__add-button {
+		width: 28px;
+		height: 28px;
+		cursor: pointer;
+		transition: all .15s ease-in-out;
+		
+		&:hover {
+			color: var(--accent-color);
+		}
+	}
+	&__content {
+		display: flex;
+		flex: 1;
+		overflow: auto;
+		flex-direction: column;
+	}
+	&__placeholder {
+		display: flex;
+		flex: 1;
+		align-items: center;
+		justify-content: center;
+		color: var(--text-color);
+	}
+}
