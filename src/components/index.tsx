@@ -8,11 +8,14 @@ import { getEventMarkers } from '../selectors/events';
 import Calendar from 'react-grid-calendar';
 import Header from './header';
 import Content from './content';
+import SettingsPopup from './settings';
 import 'react-grid-calendar/lib/styles/index.scss';
 import '../styles/index.scss';
 
 const Organizer: React.VFC = () => {
 	const dispatch = useDispatch();
+	const [settingsPopupIsActive, setSettingsPopupIsActive] = React.useState(false);
+	
 	const theme = useSelector(
 		(state: TRootState): string => state.settings.theme
 	);
@@ -21,9 +24,6 @@ const Organizer: React.VFC = () => {
 	);
 	const selectedDay = useSelector(
 		(state: TRootState): number => state.main.selectedDay
-	);
-	const activeContentView = useSelector(
-		(state: TRootState): string | null => state.main.activeContentView
 	);
 	const markers = useSelector(
 		(state: TRootState): number[] => getEventMarkers(state)
@@ -43,12 +43,12 @@ const Organizer: React.VFC = () => {
 		dispatch(setActiveContentView('list'));
 	}, [selectedDay]);
 
-	const handlerOpenSettings = React.useCallback((): void => {
-		const newView = activeContentView === 'settings' ? null : 'settings';
-
-		dispatch(setSelectedDay(null));
-		dispatch(setActiveContentView(newView));
-	}, [activeContentView, setActiveContentView]);
+	const handlerOpenSettings = React.useCallback(
+		(): void => setSettingsPopupIsActive(true), [setSettingsPopupIsActive]
+	);
+	const handlerCloseSettings = React.useCallback(
+		(): void => setSettingsPopupIsActive(false), [setSettingsPopupIsActive]
+	);
 
 	React.useEffect(() => {
 		document.querySelector('html').setAttribute('data-theme', theme);
@@ -57,7 +57,7 @@ const Organizer: React.VFC = () => {
 	return (
 		<div className="org-wrapper">
 			<Header
-				activeContentView={activeContentView}
+				settingsPopupIsActive={settingsPopupIsActive}
 				onOpenSettings={handlerOpenSettings}
 			/>
 			<div className="org-divider" />
@@ -71,6 +71,11 @@ const Organizer: React.VFC = () => {
 				</div>
 				<Content />
 			</section>
+		
+		{
+			settingsPopupIsActive &&
+			<SettingsPopup onClose={handlerCloseSettings} />
+		}
 		</div>
 	);
 };

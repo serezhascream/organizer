@@ -3,22 +3,25 @@ import * as React from 'react';
 import Icon from './ui-kit/icon';
 
 interface Props {
-	activeContentView: string | null;
+	settingsPopupIsActive: boolean;
 	onOpenSettings(): void;
 }
 
 const Header: React.VFC<Props> = (props: Props) => {
-	const { activeContentView, onOpenSettings } = props;
+	const {
+		settingsPopupIsActive,
+		onOpenSettings
+	} = props;
 
 	const iconClasses = React.useMemo(() => {
 		const classes = ['org-settings-button'];
 		
-		if (activeContentView === 'settings') {
+		if (settingsPopupIsActive) {
 			classes.push('org-settings-button--active');
 		}
 
 		return classes.join(' ');
-	}, [activeContentView]);
+	}, [settingsPopupIsActive]);
 	
 	return (
 		<section className="org-header">
