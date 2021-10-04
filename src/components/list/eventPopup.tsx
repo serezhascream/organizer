@@ -6,6 +6,7 @@ import { TRootState, TEventObj } from '../../data/types';
 import Button from '../ui-kit/button';
 import Input from '../ui-kit/input';
 import Textarea from '../ui-kit/textarea';
+import Icon from '../ui-kit/icon';
 
 interface Props {
 	onClose(): void,
@@ -55,7 +56,8 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 			<div className="org-popup__container">
 				<div className="org-popup__header">
 					<div className="org-popup__header-title">Edit event</div>
-					<div
+					<Icon
+						name="close"
 						className="org-popup__header-close"
 						onClick={handlerClose}
 					/>
