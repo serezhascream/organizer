@@ -14,7 +14,7 @@
 		position: absolute;
 		width: 100%;
 		height: 100%;
-		background-color: rgba(0,0,0,.5);
+		background-color: rgba(0,0,0,.2);
 	}
 	
 	&__container {
@@ -22,11 +22,10 @@
 		display: flex;
 		flex-direction: column;
 		background-color: var(--content-bg);
-		padding: 18px 24px 32px;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
+		border-radius: 6px;
+		box-shadow: 0 0 24px var(--shadow-color);
+		padding: 24px;
+		width: 420px;
 	}
 	
 	&__header {
@@ -96,10 +95,6 @@
 	.org-popup {
 		&__container {
 			width: 320px;
-			top: auto;
-			left: auto;
-			right: auto;
-			bottom: auto;
 		}
 		&__content {
 			&-description .org-textarea__input {

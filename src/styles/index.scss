@@ -12,7 +12,6 @@ html {
 }
 
 body {
-	
 	margin: 0;
 	height:100%;
 	background-color: var(--app-bg);
@@ -22,6 +21,7 @@ body {
 	display: flex;
 	height: 100%;
 	justify-content: center;
+	align-items: center;
 }
 
 .org-wrapper {
@@ -29,13 +29,17 @@ body {
 	flex-direction: column;
 	width: 100%;
 	max-width: 848px;
-	padding: 0 12px;
+	padding: 0 24px;
+	border-radius: 6px;
+	background-color: var(--content-bg);
+	box-shadow: 0 0 42px var(--shadow-color);
 }
 
 .org-header {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	align-items: center;
 	border-radius: 6px;
 	background-color: var(--content-bg);
 	padding: 18px 0;
@@ -44,6 +48,22 @@ body {
 		margin: 0;
 		color: var(--text-color);
 		font-size: 28px;
+	}
+}
+
+.org-settings-button {
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+	opacity: .5;
+	transition: all .15s ease-in-out;
+	
+	&:hover {
+		opacity: 1;
+	}
+	&--active {
+		color: var(--accent-color);
+		opacity: 1;
 	}
 }
 
@@ -95,14 +115,24 @@ body {
 
 .org-list {
 	display: flex;
-	position: relative;
 	flex: 1;
 	flex-direction: column;
 	
 	&__header {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 		margin-bottom: 18px;
+	}
+	&__add-button {
+		width: 28px;
+		height: 28px;
+		cursor: pointer;
+		transition: all .15s ease-in-out;
+		
+		&:hover {
+			color: var(--accent-color);
+		}
 	}
 	&__content {
 		display: flex;
@@ -140,14 +170,18 @@ body {
 	&__edit-button {
 		position: absolute;
 		display: block;
-		color: var(--text-color);
-		font-size: 18px;
-		padding: 12px;
+		width: 18px;
+		height: 18px;
 		top: 0;
 		right: 0;
 		bottom: 0;
 		margin: auto 0;
 		cursor: pointer;
+		transition: all .15s ease-in-out;
+		
+		&:hover {
+			color: var(--accent-color);
+		}
 	}
 }
 
@@ -158,9 +192,6 @@ body {
 	.org-wrapper {
 		width: auto;
 		height: 100%;
-	}
-	.org-list {
-		position: initial;
 	}
 	.org-container {
 		flex-direction: column;

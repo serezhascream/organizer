@@ -6,8 +6,8 @@ import { setSelectedDay, setActiveContentView } from '../features/mainSlice';
 import { getEventMarkers } from '../selectors/events';
 
 import Calendar from 'react-grid-calendar';
+import Header from './header';
 import Content from './content';
-import Button from './ui-kit/button';
 import 'react-grid-calendar/lib/styles/index.scss';
 import '../styles/index.scss';
 
@@ -56,13 +56,10 @@ const Organizer: React.VFC = () => {
 	
 	return (
 		<div className="org-wrapper">
-			<section className="org-header">
-				<h1 className="org-header__title">Organizer</h1>
-				<Button
-					name="settings"
-					onClick={handlerOpenSettings}
-				>S</Button>
-			</section>
+			<Header
+				activeContentView={activeContentView}
+				onOpenSettings={handlerOpenSettings}
+			/>
 			<div className="org-divider" />
 			<section className="org-container">
 				<div className="org-container__calendar">

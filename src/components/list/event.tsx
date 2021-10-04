@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import Icon from '../ui-kit/icon';
+
 import { TEventObj } from '../../data/types';
 
 interface Props extends TEventObj {
@@ -20,10 +22,11 @@ const Event: React.VFC<Props> = (props: Props) => {
 			<div className="org-event__title">{ title }</div>
 			<div className="org-event__description">{ descriptionText }</div>
 
-			<div
-				className={'org-event__edit-button'}
+			<Icon
+				name="edit"
+				className="org-event__edit-button"
 				onClick={handlerEditEvent}
-			>E</div>
+			/>
 		</div>
 	);
 };

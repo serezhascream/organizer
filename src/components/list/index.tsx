@@ -6,7 +6,7 @@ import { getListTitle } from '../../utils';
 import { getEvents } from '../../selectors/events';
 import { updateSelectedEvent, resetSelectedEvent } from '../../features/eventsSlice';
 
-import Button from '../ui-kit/button';
+import Icon from '../ui-kit/icon';
 import EventsList from './eventsList';
 import EventPopup from './eventPopup';
 
@@ -54,10 +54,11 @@ const List: React.VFC = () => {
 				<div className="org-container__content-title">
 					{ eventListTitle }
 				</div>
-				<Button
-					name="addEvent"
+				<Icon
+					name="add"
+					className="org-list__add-button"
 					onClick={handlerCreateEvent}
-				>+</Button>
+				/>
 			</div>
 			<div className="org-list__content">
 				<EventsList events={events} onEditEvent={handleEditEvent} />
