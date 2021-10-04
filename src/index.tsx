@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import ReactFlexCalendar from './components/App';
+import ReactFlexCalendar from './components/';
 import { Provider } from 'react-redux';
 
 import store from './store';
