@@ -55,28 +55,30 @@ const Organizer: React.VFC = () => {
 	}, [theme]);
 	
 	return (
-		<div className="org-wrapper">
-			<Header
-				settingsPopupIsActive={settingsPopupIsActive}
-				onOpenSettings={handlerOpenSettings}
-			/>
-			<div className="org-divider" />
-			<section className="org-container">
-				<div className="org-container__calendar">
-					<Calendar
-						firstDayIsMonday={firstDayIsMonday}
-						markers={calendarMarkers}
-						onSelectDay={handlerSelectDay}
-					/>
-				</div>
-				<Content />
-			</section>
-		
-		{
-			settingsPopupIsActive &&
-			<SettingsPopup onClose={handlerCloseSettings} />
-		}
-		</div>
+		<>
+			<div className="org-wrapper">
+				<Header
+					settingsPopupIsActive={settingsPopupIsActive}
+					onOpenSettings={handlerOpenSettings}
+				/>
+				<div className="org-divider" />
+				<section className="org-container">
+					<div className="org-container__calendar">
+						<Calendar
+							firstDayIsMonday={firstDayIsMonday}
+							markers={calendarMarkers}
+							onSelectDay={handlerSelectDay}
+						/>
+					</div>
+					<Content />
+				</section>
+				
+				{
+					settingsPopupIsActive &&
+					<SettingsPopup onClose={handlerCloseSettings} />
+				}
+			</div>
+		</>
 	);
 };
 

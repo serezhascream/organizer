@@ -45,25 +45,28 @@ const List: React.VFC = () => {
 	}, []);
 	
 	return (
-		<div className="org-list">
-			{
-				showEventPopup &&
-				<EventPopup onClose={handlerCloseEventPopup} />
-			}
-			<div className="org-list__header">
-				<div className="org-container__content-title">
-					{ eventListTitle }
+		<>
+			<div className="org-container__divider" />
+			<div className="org-list">
+				{
+					showEventPopup &&
+					<EventPopup onClose={handlerCloseEventPopup} />
+				}
+				<div className="org-list__header">
+					<div className="org-container__content-title">
+						{ eventListTitle }
+					</div>
+					<Icon
+						name="add"
+						className="org-list__add-button"
+						onClick={handlerCreateEvent}
+					/>
 				</div>
-				<Icon
-					name="add"
-					className="org-list__add-button"
-					onClick={handlerCreateEvent}
-				/>
+				<div className="org-list__content">
+					<EventsList events={events} onEditEvent={handleEditEvent} />
+				</div>
 			</div>
-			<div className="org-list__content">
-				<EventsList events={events} onEditEvent={handleEditEvent} />
-			</div>
-		</div>
+		</>
 	);
 };
 
