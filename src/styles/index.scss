@@ -1,5 +1,6 @@
 @import './variables';
 @import './ui-kit';
+@import './event';
 @import './event-popup';
 
 * {
@@ -146,42 +147,6 @@ body {
 		align-items: center;
 		justify-content: center;
 		color: var(--text-color);
-	}
-}
-
-.org-event {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	border-bottom: 1px solid var(--text-color);
-	margin-bottom: 12px;
-	padding: 6px 0;
-	
-	&__title {
-		font-weight: 600;
-		color: var(--text-color);
-	}
-	&__description {
-		font-size: 12px;
-		color: var(--text-color);
-		margin-top: 6px;
-		line-height: 12px;
-	}
-	&__edit-button {
-		position: absolute;
-		display: block;
-		width: 18px;
-		height: 18px;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		margin: auto 0;
-		cursor: pointer;
-		transition: all .15s ease-in-out;
-		
-		&:hover {
-			color: var(--accent-color);
-		}
 	}
 }
 
