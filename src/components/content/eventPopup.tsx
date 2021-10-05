@@ -1,42 +1,37 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateSelectedEvent, saveEvent } from '../../features/eventsSlice';
+import { saveEvent } from '../../features/eventsSlice';
 
-import { TRootState, TEventObj } from '../../data/types';
+import { getEvent } from '../../selectors/events';
+import { TRootState } from '../../data/types';
 import Popup from '../ui-kit/popup';
 import Button from '../ui-kit/button';
 import Input from '../ui-kit/input';
 import Textarea from '../ui-kit/textarea';
 
 interface Props {
-	onClose(): void,
+	eventId: string | null;
+	selectedDay: number;
+	onClose(): void;
 }
 
 const EventPopup: React.VFC<Props> = (props: Props) => {
-	const { onClose = () => {} } = props;
+	const { eventId, selectedDay, onClose = () => {} } = props;
 	
 	const dispatch = useDispatch();
-	const selectedEvent = useSelector(
-		(state: TRootState): TEventObj => state.events.selectedEvent
-	);
 	
+	const selectedEvent = useSelector((state: TRootState) => getEvent(state, eventId, selectedDay));
 	const [ title, setTitle ] = React.useState<string>(selectedEvent.title);
 	const [ description, setDescription ] = React.useState<string>(selectedEvent.description);
+	const [ timestamp, setTimestamp ] = React.useState<number | null>(selectedEvent.timestamp);
 	const saveButtonIsDisabled = React.useMemo((): boolean => (! title.length), [title]);
 
 	const clearFields = (): void => {
 		setTitle('');
 		setDescription('');
+		setTimestamp(null);
 	};
 	
-	const handlerSave = React.useCallback((): void => {
-		dispatch(updateSelectedEvent({ title, description }));
-		
-		dispatch(saveEvent());
-		clearFields();
-		onClose();
-	}, [title, description]);
-
 	const handlerClose = React.useCallback((): void => {
 		onClose();
 		clearFields();
@@ -49,6 +44,18 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 	const handlerChangeDescription = React.useCallback((value: string): void => {
 			setDescription(value);
 	}, []);
+
+	const handlerSave = React.useCallback((): void => {
+		dispatch(saveEvent({
+			...selectedEvent,
+			title,
+			description,
+			timestamp,
+		}));
+		
+		clearFields();
+		onClose();
+	}, [title, description]);
 
 	return (
 		<Popup

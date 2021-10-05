@@ -6,7 +6,7 @@ export interface TSettingsObj {
 }
 
 export type TEventObj = {
-	id: number,
+	id: string,
 	day: number,
 	title: string,
 	description: string | null,
@@ -14,14 +14,11 @@ export type TEventObj = {
 }
 
 export interface TRootState {
-	events: {
-		items: TEventObj[],
-		selectedEvent: TEventObj,
-	},
 	main: {
 		selectedDay: number | null,
 		activeContentView: string,
 	},
+	events: TEventObj[],
 	settings: {
 		theme: TTheme,
 		firstDayIsMonday: boolean,

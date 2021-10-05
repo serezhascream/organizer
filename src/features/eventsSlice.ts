@@ -1,42 +1,42 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { loadEvents } from '../utils/events';
+import { TEventObj } from '../data/types';
 
 const items = loadEvents();
-const defaultActiveEvent = {
-	id: null,
-	day: null,
-	title: '',
-	description: '',
-	timestamp: null,
-};
 
 export const eventsSlice = createSlice({
 	name: 'events',
-	initialState: {
-		items,
-		selectedEvent: defaultActiveEvent,
-	},
+	initialState: items as TEventObj[],
 	reducers: {
-		updateSelectedEvent: (state, { payload }) => {
-			state.selectedEvent = {...state.selectedEvent, ...payload};
-		},
-		
-		resetSelectedEvent: (state) => {
-			state.selectedEvent = defaultActiveEvent;
-		},
-		
-		saveEvent: ({ items, selectedEvent }) => {
-			if (! selectedEvent.id) {
-				items.push(selectedEvent);
+		saveEvent: (state, action: PayloadAction<TEventObj>) => {
+			const { payload } = action;
+			const event = state.find(event => event.id === payload.id);
+			
+			if (event) {
 				
+				event.title = payload.title;
+				event.description = payload.description;
+			
 				return;
 			}
 			
-			items[selectedEvent.id] = {...selectedEvent}
+			state.push(payload);
+		},
+		deleteEvent: (state, { payload }) => {
+			const index = state.findIndex(event => event.id === payload);
+			
+			if (index < 0) {
+				return;
+			}
+			
+			state.splice(index, 1);
 		},
 	}
 });
 
-export const { updateSelectedEvent, resetSelectedEvent, saveEvent } = eventsSlice.actions;
+export const {
+	saveEvent,
+	deleteEvent,
+} = eventsSlice.actions;
 
 export default eventsSlice.reducer;

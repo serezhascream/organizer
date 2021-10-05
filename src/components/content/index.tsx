@@ -1,18 +1,17 @@
 import * as React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { TRootState } from '../../data/types';
 import { getListTitle } from '../../utils';
 import { getEvents } from '../../selectors/events';
-import { updateSelectedEvent, resetSelectedEvent } from '../../features/eventsSlice';
 
 import Icon from '../ui-kit/icon';
 import EventsList from './eventsList';
 import EventPopup from './eventPopup';
 
 const List: React.VFC = () => {
-	const dispatch = useDispatch();
 	const [showEventPopup, setShowEventPopup] = React.useState<boolean>(false);
+	const [selectedEventId, setSelectedEventId] = React.useState(null);
 	
 	const selectedDay = useSelector((state: TRootState): number => state.main.selectedDay);
 	const events = useSelector((state: TRootState) => getEvents(state, selectedDay));
@@ -22,26 +21,18 @@ const List: React.VFC = () => {
 	);
 	
 	const handlerCreateEvent = React.useCallback((): void => {
-		dispatch(updateSelectedEvent({
-			id: selectedDay + events.length + 1,
-			day: selectedDay,
-			timestamp: selectedDay,
-		}));
-		
+		setSelectedEventId(null);
 		setShowEventPopup(true);
-	}, []);
+	}, [selectedDay]);
 
 	const handleEditEvent = React.useCallback((eventId: number) => {
-		const newSelectedEvent = events.find(event => event.id === eventId);
-		dispatch(updateSelectedEvent({...newSelectedEvent}));
-		
+		setSelectedEventId(eventId);
 		setShowEventPopup(true);
-	}, []);
+	}, [events]);
 
 	const handlerCloseEventPopup = React.useCallback(():void => {
 		setShowEventPopup(false);
-		
-		dispatch(resetSelectedEvent());
+		setSelectedEventId(null);
 	}, []);
 	
 	return (
@@ -50,7 +41,11 @@ const List: React.VFC = () => {
 			<div className="org-list">
 				{
 					showEventPopup &&
-					<EventPopup onClose={handlerCloseEventPopup} />
+					<EventPopup
+						eventId={selectedEventId}
+						selectedDay={selectedDay}
+						onClose={handlerCloseEventPopup}
+					/>
 				}
 				<div className="org-list__header">
 					<div className="org-container__content-title">
@@ -63,7 +58,10 @@ const List: React.VFC = () => {
 					/>
 				</div>
 				<div className="org-list__content">
-					<EventsList events={events} onEditEvent={handleEditEvent} />
+					<EventsList
+						events={events}
+						onEditEvent={handleEditEvent}
+					/>
 				</div>
 			</div>
 		</>

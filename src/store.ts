@@ -14,7 +14,7 @@ const store = configureStore({
 });
 
 let oldSettings = store.getState().settings;
-let oldEvents = store.getState().events.items;
+let oldEvents = store.getState().events;
 
 const handleChangeSettings = () => {
 	const newSettings = store.getState().settings;
@@ -26,7 +26,7 @@ const handleChangeSettings = () => {
 };
 
 const handleChangeEvents = () => {
-	const newEvents = store.getState().events.items;
+	const newEvents = store.getState().events;
 	
 	if (newEvents !== oldEvents) {
 		oldEvents = newEvents;
