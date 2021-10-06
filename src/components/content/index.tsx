@@ -8,10 +8,13 @@ import { getEvents } from '../../selectors/events';
 import Icon from '../ui-kit/icon';
 import EventsList from './eventsList';
 import EventPopup from './eventPopup';
+import DeleteEventAlert from './deleteEventAlert';
 
 const List: React.VFC = () => {
 	const [showEventPopup, setShowEventPopup] = React.useState<boolean>(false);
 	const [selectedEventId, setSelectedEventId] = React.useState(null);
+	const [eventIdToDelete, setEventIdToDelete] = React.useState(null);
+	const [showDeletingAlert, setShowDeletingAlert] = React.useState(false);
 	
 	const selectedDay = useSelector((state: TRootState): number => state.main.selectedDay);
 	const events = useSelector((state: TRootState) => getEvents(state, selectedDay));
@@ -25,28 +28,30 @@ const List: React.VFC = () => {
 		setShowEventPopup(true);
 	}, [selectedDay]);
 
-	const handleEditEvent = React.useCallback((eventId: number) => {
+	const handlerEditEvent = React.useCallback((eventId: string) => {
 		setSelectedEventId(eventId);
 		setShowEventPopup(true);
 	}, [events]);
 
+	const handlerDeleteEvent = React.useCallback((eventId: string) => {
+		setEventIdToDelete(eventId);
+		setShowDeletingAlert(true);
+	}, []);
+	
 	const handlerCloseEventPopup = React.useCallback(():void => {
 		setShowEventPopup(false);
 		setSelectedEventId(null);
+	}, []);
+
+	const handlerCloseDeleteAlert = React.useCallback((): void => {
+		setShowDeletingAlert(false);
+		setEventIdToDelete(null);
 	}, []);
 	
 	return (
 		<>
 			<div className="org-container__divider" />
 			<div className="org-list">
-				{
-					showEventPopup &&
-					<EventPopup
-						eventId={selectedEventId}
-						selectedDay={selectedDay}
-						onClose={handlerCloseEventPopup}
-					/>
-				}
 				<div className="org-list__header">
 					<div className="org-container__content-title">
 						{ eventListTitle }
@@ -60,10 +65,26 @@ const List: React.VFC = () => {
 				<div className="org-list__content">
 					<EventsList
 						events={events}
-						onEditEvent={handleEditEvent}
+						onEditEvent={handlerEditEvent}
+						onDeleteEvent={handlerDeleteEvent}
 					/>
 				</div>
 			</div>
+			{
+				showEventPopup &&
+				<EventPopup
+					eventId={selectedEventId}
+					selectedDay={selectedDay}
+					onClose={handlerCloseEventPopup}
+				/>
+			}
+			{
+				showDeletingAlert &&
+				<DeleteEventAlert
+					eventId={eventIdToDelete}
+					onClose={handlerCloseDeleteAlert}
+				/>
+			}
 		</>
 	);
 };

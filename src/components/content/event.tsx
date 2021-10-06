@@ -5,8 +5,8 @@ import Icon from '../ui-kit/icon';
 import { TEventObj } from '../../data/types';
 
 interface Props extends TEventObj {
-	onEditEvent(eventId: number): void;
-	onDeleteEvent(eventId: number): void
+	onEditEvent(eventId: string): void;
+	onDeleteEvent(eventId: string): void;
 }
 
 const Event: React.VFC<Props> = (props: Props) => {
@@ -14,16 +14,16 @@ const Event: React.VFC<Props> = (props: Props) => {
 		id,
 		title,
 		description,
-		onEditEvent = () => {},
-		onDeleteEvent = () => {},
+		onEditEvent,
+		onDeleteEvent,
 	} = props;
+	
 	const descriptionText = React.useMemo(
-		(): string => (description || 'Empty description'),
-		[event]
+		(): string => (description || 'Empty description'), [event]
 	);
 
 	const handlerEditEvent = React.useCallback(() => onEditEvent(id), [id, onEditEvent]);
-	const handlerDeleteEvent = React.useCallback(() => onDeleteEvent(id), [id, onDeleteEvent]);
+	const handlerDeleteEvent = React.useCallback(() => onDeleteEvent(id), [id]);
 	
 	return (
 		<div className="org-event">

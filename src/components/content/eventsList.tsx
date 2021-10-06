@@ -5,13 +5,20 @@ import { TEventObj } from '../../data/types';
 
 interface Props {
 	events: TEventObj[];
-	onEditEvent(eventId: number): void,
+	onEditEvent(eventId: string): void,
+	onDeleteEvent(eventId: string): void,
 }
 
 const EventsList: React.VFC<Props> = (props: Props) => {
-	const { events, onEditEvent } = props;
+	const { events, onEditEvent, onDeleteEvent } = props;
 	
-	const handlerEditEvent = React.useCallback((eventId: number) => onEditEvent(eventId), [onEditEvent]);
+	const handlerEditEvent = React.useCallback(
+		(eventId: string) => onEditEvent(eventId), [onEditEvent]
+	);
+	
+	const handlerDeleteEvent = React.useCallback(
+		(eventId: string) => onDeleteEvent(eventId), [onDeleteEvent]
+	);
 	
 	if (! events.length) {
 		return (
@@ -20,17 +27,18 @@ const EventsList: React.VFC<Props> = (props: Props) => {
 	}
 	
 	return (
-		<React.Fragment>
+		<>
 			{
 				events.map((event: TEventObj) => (
 					<Event
 						key={event.id}
 						{...event}
 						onEditEvent={handlerEditEvent}
+						onDeleteEvent={handlerDeleteEvent}
 					/>
 				))
 			}
-		</React.Fragment>
+		</>
 	);
 };
 
