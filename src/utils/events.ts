@@ -9,3 +9,7 @@ export const loadEvents = (): TEventObj[] => {
 export const saveEvents = (events: TEventObj[]): void => {
 	window.localStorage.setItem('orgCalendarEvents', JSON.stringify(events));
 };
+
+export const deleteAllEvents = (): void => {
+	window.localStorage.removeItem('orgCalendarEvents');
+}

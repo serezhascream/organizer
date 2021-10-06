@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { TRootState } from '../data/types';
+import { removeSettings } from '../utils/settings';
+import { deleteAllEvents } from '../utils/events';
 
 import { switchTheme, switchFirstDay } from '../features/settingsSlice';
 import Popup from './ui-kit/popup';
 import Switcher from './ui-kit/switcher';
+import Button from './ui-kit/button';
 
 interface Props {
 	onClose(): void;
@@ -31,6 +34,16 @@ const SettingsPopup: React.VFC<Props> = (props: Props) => {
 		}, [dispatch]
 	);
 
+	const handlerRemoveSettings = React.useCallback(() => {
+		removeSettings();
+		window.location.reload();
+	}, []);
+
+	const handlerDeleteAllEvents = React.useCallback(() => {
+		deleteAllEvents();
+		window.location.reload();
+	}, []);
+
 	return (
 		<Popup
 			title="Settings"
@@ -49,6 +62,22 @@ const SettingsPopup: React.VFC<Props> = (props: Props) => {
 					label="Week starts on Monday"
 					onChange={handlerChangeFirstDay}
 				/>
+				<div className="org-settings__subtitle">Data management</div>
+				<div className="org-settings__buttons">
+					<Button
+						name="remove_settings"
+						extraClass="org-settings__button-remove-settings"
+						onClick={handlerRemoveSettings}
+					>
+						Restore settings
+					</Button>
+					<Button
+						name="delete_events"
+						onClick={handlerDeleteAllEvents}
+					>
+						Delete all events
+					</Button>
+				</div>
 			</>
 		</Popup>
 	);

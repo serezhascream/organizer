@@ -9,3 +9,7 @@ export const getSettings = (): TSettingsObj => {
 export const saveSettings = (settings:TSettingsObj): void => {
 	window.localStorage.setItem('orgCalendarSettings', JSON.stringify(settings));
 };
+
+export const removeSettings = (): void => {
+	window.localStorage.removeItem('orgCalendarSettings');
+};
