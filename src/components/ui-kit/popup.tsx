@@ -6,12 +6,23 @@ import { portalId } from '../../data/constants';
 
 interface Props {
 	title: string;
+	className?: string;
 	children: React.ReactNode;
 	onClose(): void;
 }
 
 const Popup: React.VFC<Props> = (props: Props) => {
-	const { title, children, onClose = () => {} } = props;
+	const { title, className = null, children, onClose = () => {} } = props;
+	
+	const containerClasses = React.useMemo(() => {
+		const classes = ['org-popup__container'];
+
+		if (className) {
+			classes.push(className);
+		}
+
+		return classes.join(' ');
+	}, [className]);
 	
 	const handlerClose = React.useCallback(
 		(): void => onClose(), [onClose]
@@ -23,7 +34,7 @@ const Popup: React.VFC<Props> = (props: Props) => {
 				className="org-popup__overlay"
 				onClick={handlerClose}
 			/>
-			<div className="org-popup__container">
+			<div className={containerClasses}>
 				<div className="org-popup__header">
 					<div className="org-popup__header-title">{ title }</div>
 					<Icon
