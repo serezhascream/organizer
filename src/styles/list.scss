@@ -2,6 +2,8 @@
 	display: flex;
 	flex: 1;
 	flex-direction: column;
+	overflow: auto;
+	max-height: 351px;
 	
 	&__header {
 		display: flex;
@@ -31,5 +33,11 @@
 		align-items: center;
 		justify-content: center;
 		color: var(--text-color);
+	}
+}
+
+@media screen and (max-width: 848px) {
+	.org-list {
+		max-height: none;
 	}
 }
