@@ -2,14 +2,13 @@
 	display: flex;
 	flex: 1;
 	flex-direction: column;
-	overflow: auto;
+	overflow: hidden;
 	max-height: 351px;
 	
 	&__header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		margin-bottom: 9px;
 	}
 	&__add-button {
 		width: 26px;
@@ -21,11 +20,40 @@
 			color: var(--accent-color);
 		}
 	}
+	&__wrapper {
+		position: relative;
+		display: flex;
+		overflow: hidden;
+		margin-right: -18px;
+		
+		&:before,
+		&:after {
+			content: '';
+			position: absolute;
+			left: 0;
+			right: 0;
+			height: 24px;
+			z-index: 1;
+		}
+		
+		&:before {
+			top: 0;
+			background: linear-gradient(0deg, rgba(0,0,0,0) 0%, var(--content-bg) 50%);
+		}
+		
+		&:after {
+			bottom: 0;
+			background: linear-gradient(180deg, rgba(0,0,0,0) 0%, var(--content-bg) 50%);
+		}
+	}
 	&__content {
 		display: flex;
 		flex: 1;
 		overflow: auto;
 		flex-direction: column;
+		width: 100%;
+		padding: 24px 18px 24px 0;
+		box-sizing: content-box;
 	}
 	&__placeholder {
 		display: flex;

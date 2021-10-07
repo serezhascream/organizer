@@ -32,7 +32,7 @@ body {
 	flex-direction: column;
 	width: 100%;
 	max-width: 848px;
-	padding: 0 24px;
+	padding: 0 18px;
 	border-radius: 6px;
 	background-color: var(--content-bg);
 	box-shadow: 0 0 42px var(--shadow-color);
@@ -122,7 +122,7 @@ body {
 		&-title {
 			font-size: 20px;
 			font-weight: 600;
-			padding: 9px 0;
+			padding: 9px 0 0;
 			color: var(--text-color);
 		}
 		
@@ -174,7 +174,7 @@ body {
 		padding: 9px 0 0;
 		
 		&__content-title {
-			padding: 0 0 6px;
+			padding: 0;
 		}
 		&__calendar .org-calendar {
 			width: 320px;

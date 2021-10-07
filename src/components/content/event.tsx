@@ -1,47 +1,40 @@
 import * as React from 'react';
 
-import Icon from '../ui-kit/icon';
-
 import { TEventObj } from '../../data/types';
 
 interface Props extends TEventObj {
 	onEditEvent(eventId: string): void;
-	onDeleteEvent(eventId: string): void;
 }
 
 const Event: React.VFC<Props> = (props: Props) => {
 	const {
 		id,
 		title,
+		timestamp,
 		description,
 		onEditEvent,
-		onDeleteEvent,
 	} = props;
 	
 	const descriptionText = React.useMemo(
 		(): string => (description || 'Empty description'), [event]
 	);
 
+	const dateTime = React.useMemo((): string => {
+		const date = new Date(timestamp);
+
+		return date.toLocaleDateString('en-US', { hour12: false });
+	}, [timestamp]);
+
 	const handlerEditEvent = React.useCallback(() => onEditEvent(id), [id, onEditEvent]);
-	const handlerDeleteEvent = React.useCallback(() => onDeleteEvent(id), [id]);
+
 	
 	return (
-		<div className="org-event">
-			<div className="org-event__title">{ title }</div>
-			<div className="org-event__description">{ descriptionText }</div>
-
-			<div className="org-event__buttons">
-				<Icon
-					name="edit"
-					className="org-event__button"
-					onClick={handlerEditEvent}
-				/>
-				<Icon
-					name="delete"
-					className="org-event__button"
-					onClick={handlerDeleteEvent}
-				/>
+		<div className="org-event" onClick={handlerEditEvent}>
+			<div className="org-event__headline">
+				<span className="org-event__title">{ title }</span>
+				<span className="org-event__date-time">{ dateTime }</span>
 			</div>
+			<div className="org-event__description">{ descriptionText }</div>
 		</div>
 	);
 };

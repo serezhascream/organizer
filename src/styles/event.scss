@@ -6,9 +6,21 @@
 	margin-bottom: 12px;
 	padding: 6px 0;
 	
+	&__headline {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
 	&__title {
+		display: flex;
+		flex: 1;
 		font-weight: 600;
 		color: var(--text-color);
+	}
+	
+	&__date-time {
+		font-size: 10px;
+		color: var(--accent-color);
 	}
 	&__description {
 		font-size: 12px;

@@ -62,12 +62,14 @@ const List: React.VFC = () => {
 						onClick={handlerCreateEvent}
 					/>
 				</div>
-				<div className="org-list__content">
-					<EventsList
-						events={events}
-						onEditEvent={handlerEditEvent}
-						onDeleteEvent={handlerDeleteEvent}
-					/>
+				<div className="org-list__wrapper">
+					<div className="org-list__content">
+						<EventsList
+							events={events}
+							onEditEvent={handlerEditEvent}
+							onDeleteEvent={handlerDeleteEvent}
+						/>
+					</div>
 				</div>
 			</div>
 			{
