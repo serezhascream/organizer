@@ -1,7 +1,7 @@
 export const getListTitle = (selectedDay: number | null): string => {
 	
 	if (! selectedDay) {
-		return 'Events';
+		return 'Upcoming events';
 	}
 	
 	const date = new Date(selectedDay);
