@@ -5,7 +5,7 @@ import { TRootState } from '../../data/types';
 import { getListTitle } from '../../utils';
 import { getEvents } from '../../selectors/events';
 
-import Icon from '../ui-kit/icon';
+import { Icon } from '../ui-kit';
 import EventsList from './eventsList';
 import EventPopup from './eventPopup';
 import DeleteEventAlert from './deleteEventAlert';

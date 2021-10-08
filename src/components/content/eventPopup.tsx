@@ -4,11 +4,7 @@ import { saveEvent } from '../../features/eventsSlice';
 
 import { getEvent } from '../../selectors/events';
 import { TRootState } from '../../data/types';
-import Popup from '../ui-kit/popup';
-import Button from '../ui-kit/button';
-import Input from '../ui-kit/input';
-import Textarea from '../ui-kit/textarea';
-import Icon from '../ui-kit/icon';
+import { Popup, Button, Input, Textarea, Icon } from '../ui-kit';
 
 interface Props {
 	eventId: string | null;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Icon from './ui-kit/icon';
+import { Icon } from './ui-kit';
 
 interface Props {
 	settingsPopupIsActive: boolean;

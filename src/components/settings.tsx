@@ -5,9 +5,7 @@ import { removeSettings } from '../utils/settings';
 import { deleteAllEvents } from '../utils/events';
 
 import { switchTheme, switchFirstDay } from '../features/settingsSlice';
-import Popup from './ui-kit/popup';
-import Switcher from './ui-kit/switcher';
-import Button from './ui-kit/button';
+import { Popup, Switcher, Button } from './ui-kit';
 
 interface Props {
 	onClose(): void;

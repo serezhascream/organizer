@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 
-import Popup from '../../components/ui-kit/popup';
-import Button from '../../components/ui-kit/button';
-
+import { Popup, Button } from '../ui-kit';
 import { deleteEvent } from '../../features/eventsSlice';
 
 interface Props {
