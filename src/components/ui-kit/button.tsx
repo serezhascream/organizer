@@ -3,11 +3,11 @@ import * as React from 'react';
 import { testIds } from '../../data/tests';
 
 interface Props {
-	children: string,
-	name: string,
-	disabled?: boolean,
-	extraClass?: string,
-	onClick(name:string): void
+	children: React.ReactNode;
+	name: string;
+	disabled?: boolean;
+	extraClass?: string;
+	onClick(name:string): void;
 }
 
 const Button: React.VFC<Props> = (props: Props) => {
