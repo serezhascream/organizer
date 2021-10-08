@@ -8,15 +8,26 @@ import Popup from '../ui-kit/popup';
 import Button from '../ui-kit/button';
 import Input from '../ui-kit/input';
 import Textarea from '../ui-kit/textarea';
+import Icon from '../ui-kit/icon';
 
 interface Props {
 	eventId: string | null;
 	selectedDay: number;
+	popupView: 'show' | 'edit';
 	onClose(): void;
+	onSwitchView(view: 'show' | 'edit'): void;
+	onDeleteEvent(eventId: string): void;
 }
 
 const EventPopup: React.VFC<Props> = (props: Props) => {
-	const { eventId, selectedDay, onClose = () => {} } = props;
+	const {
+		eventId,
+		selectedDay,
+		popupView,
+		onClose,
+		onSwitchView,
+		onDeleteEvent,
+	} = props;
 	
 	const dispatch = useDispatch();
 	
@@ -25,6 +36,17 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 	const [ description, setDescription ] = React.useState<string>(selectedEvent.description);
 	const [ timestamp, setTimestamp ] = React.useState<number | null>(selectedEvent.timestamp);
 	const saveButtonIsDisabled = React.useMemo((): boolean => (! title.length), [title]);
+	const popupTitle = React.useMemo((): string => {
+		if (! eventId) {
+			return 'Create event';
+		}
+
+		if (popupView === 'edit') {
+			return 'Edit event';
+		}
+
+		return 'Event';
+	}, [eventId, popupView, title]);
 
 	const clearFields = (): void => {
 		setTitle('');
@@ -53,44 +75,78 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 			timestamp,
 		}));
 		
-		clearFields();
+		onSwitchView('show')
+	}, [title, description, onSwitchView]);
+
+	const handlerOpenEditor = React.useCallback(() => onSwitchView('edit'), [onSwitchView]);
+	const handlerDeleteEvent = React.useCallback(() => {
+		if (! eventId) {
+			return;
+		}
+	
+		onDeleteEvent(eventId);
 		onClose();
-	}, [title, description]);
+		clearFields();
+	}, [eventId, onDeleteEvent, onClose, clearFields]);
 
 	return (
 		<Popup
-			title="Edit event"
+			title={popupTitle}
 			onClose={handlerClose}
 		>
-			<>
-				<Input
-					name="title"
-					value={title}
-					extraClass="org-event-popup__title"
-					label="Title"
-					onChange={handlerChangeTitle}
-				/>
-				<Textarea
-					name="description"
-					value={description}
-					extraClass="org-event-popup__description"
-					label="Description"
-					onChange={handlerChangeDescription}
-				/>
-				<div className="org-event-popup__buttons">
-					<Button
-						name="cancel"
-						extraClass="org-event-popup__cancel"
-						onClick={handlerClose}
-					>Cancel</Button>
-					<Button
-						name="save"
-						disabled={saveButtonIsDisabled}
-						extraClass="org-event-popup__save"
-						onClick={handlerSave}
-					>Save</Button>
-				</div>
-			</>
+			{
+				popupView === 'edit' &&
+				<>
+					<Input
+						name="title"
+						value={title}
+						extraClass="org-event-popup__title"
+						label="Title"
+						onChange={handlerChangeTitle}
+					/>
+					<Textarea
+						name="description"
+						value={description}
+						extraClass="org-event-popup__description"
+						label="Description"
+						onChange={handlerChangeDescription}
+					/>
+					<div className="org-event-popup__edit-buttons">
+						<Button
+							name="cancel"
+							extraClass="org-event-popup__cancel"
+							onClick={handlerClose}
+						>
+							{ 'Cancel' }
+						</Button>
+						<Button
+							name="save"
+							disabled={saveButtonIsDisabled}
+							extraClass="org-event-popup__save"
+							onClick={handlerSave}
+						>
+							{ 'Save' }
+						</Button>
+					</div>
+				</>
+			}
+			{
+				popupView === 'show' &&
+				<>
+					<h3 className="org-event-popup__show-title">{title}</h3>
+					<p className="org-event-popup__show-description">{description}</p>
+					<div className="org-event-popup__show-controls">
+						<Icon
+							name="delete"
+							className="org-event-popup__button-delete"
+							onClick={handlerDeleteEvent}
+						/>
+						<Button name="edit" onClick={handlerOpenEditor}>
+							{ 'Edit' }
+						</Button>
+					</div>
+				</>
+			}
 		</Popup>
 	);
 };

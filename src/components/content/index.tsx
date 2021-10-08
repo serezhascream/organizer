@@ -12,9 +12,10 @@ import DeleteEventAlert from './deleteEventAlert';
 
 const List: React.VFC = () => {
 	const [showEventPopup, setShowEventPopup] = React.useState<boolean>(false);
-	const [selectedEventId, setSelectedEventId] = React.useState(null);
-	const [eventIdToDelete, setEventIdToDelete] = React.useState(null);
-	const [showDeletingAlert, setShowDeletingAlert] = React.useState(false);
+	const [selectedEventId, setSelectedEventId] = React.useState<string | null>(null);
+	const [eventIdToDelete, setEventIdToDelete] = React.useState<string | null>(null);
+	const [showDeletingAlert, setShowDeletingAlert] = React.useState<boolean>(false);
+	const [eventPopupView, setEventPopupView] = React.useState<'show' | 'edit'>('show');
 	
 	const selectedDay = useSelector((state: TRootState): number => state.main.selectedDay);
 	const events = useSelector((state: TRootState) => getEvents(state, selectedDay));
@@ -25,11 +26,13 @@ const List: React.VFC = () => {
 	
 	const handlerCreateEvent = React.useCallback((): void => {
 		setSelectedEventId(null);
+		setEventPopupView('edit');
 		setShowEventPopup(true);
 	}, [selectedDay]);
 
-	const handlerEditEvent = React.useCallback((eventId: string) => {
+	const handlerOpenEvent = React.useCallback((eventId: string) => {
 		setSelectedEventId(eventId);
+		setEventPopupView('show');
 		setShowEventPopup(true);
 	}, [events]);
 
@@ -47,6 +50,10 @@ const List: React.VFC = () => {
 		setShowDeletingAlert(false);
 		setEventIdToDelete(null);
 	}, []);
+	
+	const handlerSwitchPopupView = React.useCallback(
+		(view: 'show' | 'edit') => setEventPopupView(view), [setEventPopupView]
+	);
 	
 	return (
 		<>
@@ -66,8 +73,7 @@ const List: React.VFC = () => {
 					<div className="org-list__content">
 						<EventsList
 							events={events}
-							onEditEvent={handlerEditEvent}
-							onDeleteEvent={handlerDeleteEvent}
+							onOpenEvent={handlerOpenEvent}
 						/>
 					</div>
 				</div>
@@ -77,7 +83,10 @@ const List: React.VFC = () => {
 				<EventPopup
 					eventId={selectedEventId}
 					selectedDay={selectedDay}
+					popupView={eventPopupView}
 					onClose={handlerCloseEventPopup}
+					onSwitchView={handlerSwitchPopupView}
+					onDeleteEvent={handlerDeleteEvent}
 				/>
 			}
 			{

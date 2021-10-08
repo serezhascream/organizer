@@ -11,12 +11,30 @@
 		margin-right: 12px;
 	}
 	
-	&__buttons {
+	&__edit-buttons {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: flex-end;
 		margin-top: 12px;
+	}
+	
+	&__show-controls {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		margin-top: 12px;
+	}
+	&__button-delete {
+		color: var(--accent-color);
+		opacity: .8;
+		width: 20px;
+		height: 22px;
+		
+		&:hover {
+			opacity: 1;
+		}
 	}
 }
 

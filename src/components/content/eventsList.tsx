@@ -5,19 +5,14 @@ import { TEventObj } from '../../data/types';
 
 interface Props {
 	events: TEventObj[];
-	onEditEvent(eventId: string): void,
-	onDeleteEvent(eventId: string): void,
+	onOpenEvent(eventId: string): void;
 }
 
 const EventsList: React.VFC<Props> = (props: Props) => {
-	const { events, onEditEvent, onDeleteEvent } = props;
+	const { events, onOpenEvent } = props;
 	
-	const handlerEditEvent = React.useCallback(
-		(eventId: string) => onEditEvent(eventId), [onEditEvent]
-	);
-	
-	const handlerDeleteEvent = React.useCallback(
-		(eventId: string) => onDeleteEvent(eventId), [onDeleteEvent]
+	const handlerOpenEvent = React.useCallback(
+		(eventId: string) => onOpenEvent(eventId), [onOpenEvent]
 	);
 	
 	if (! events.length) {
@@ -33,8 +28,7 @@ const EventsList: React.VFC<Props> = (props: Props) => {
 					<Event
 						key={event.id}
 						{...event}
-						onEditEvent={handlerEditEvent}
-						onDeleteEvent={handlerDeleteEvent}
+						onOpenEvent={handlerOpenEvent}
 					/>
 				))
 			}

@@ -3,7 +3,7 @@ import * as React from 'react';
 import { TEventObj } from '../../data/types';
 
 interface Props extends TEventObj {
-	onEditEvent(eventId: string): void;
+	onOpenEvent(eventId: string): void;
 }
 
 const Event: React.VFC<Props> = (props: Props) => {
@@ -12,7 +12,7 @@ const Event: React.VFC<Props> = (props: Props) => {
 		title,
 		timestamp,
 		description,
-		onEditEvent,
+		onOpenEvent,
 	} = props;
 	
 	const descriptionText = React.useMemo(
@@ -25,7 +25,7 @@ const Event: React.VFC<Props> = (props: Props) => {
 		return date.toLocaleDateString('en-US', { hour12: false });
 	}, [timestamp]);
 
-	const handlerEditEvent = React.useCallback(() => onEditEvent(id), [id, onEditEvent]);
+	const handlerEditEvent = React.useCallback(() => onOpenEvent(id), [id, onOpenEvent]);
 
 	
 	return (
