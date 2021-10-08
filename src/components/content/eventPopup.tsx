@@ -4,7 +4,14 @@ import { saveEvent } from '../../features/eventsSlice';
 
 import { getEvent } from '../../selectors/events';
 import { TRootState } from '../../data/types';
-import { Popup, Button, Input, Textarea, Icon } from '../ui-kit';
+import {
+	Popup,
+	Button,
+	Input,
+	Textarea,
+	Icon,
+	DateInput,
+} from '../ui-kit';
 
 interface Props {
 	eventId: string | null;
@@ -31,6 +38,7 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 	const [ title, setTitle ] = React.useState<string>(selectedEvent.title);
 	const [ description, setDescription ] = React.useState<string>(selectedEvent.description);
 	const [ timestamp, setTimestamp ] = React.useState<number | null>(selectedEvent.timestamp);
+	const [ day, setDay ] = React.useState<number>(selectedEvent.day);
 	const saveButtonIsDisabled = React.useMemo((): boolean => (! title.length), [title]);
 	const popupTitle = React.useMemo((): string => {
 		if (! eventId) {
@@ -43,6 +51,7 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 
 		return 'Event';
 	}, [eventId, popupView, title]);
+
 
 	const clearFields = (): void => {
 		setTitle('');
@@ -58,6 +67,11 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 	const handlerChangeTitle = React.useCallback((value: string): void => {
 		setTitle(value);
 	}, []);
+
+	const handlerChangeDate = React.useCallback((value: number): void => {
+		setTimestamp(value);
+		setDay(value);
+	}, [setTimestamp, setDay]);
 	
 	const handlerChangeDescription = React.useCallback((value: string): void => {
 			setDescription(value);
@@ -69,10 +83,11 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 			title,
 			description,
 			timestamp,
+			day,
 		}));
 		
 		onSwitchView('show')
-	}, [title, description, onSwitchView]);
+	}, [title, description, timestamp, day, onSwitchView]);
 
 	const handlerOpenEditor = React.useCallback(() => onSwitchView('edit'), [onSwitchView]);
 	const handlerDeleteEvent = React.useCallback(() => {
@@ -100,6 +115,12 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 						label="Title"
 						onChange={handlerChangeTitle}
 					/>
+					<div className="org-event-popup__date-and-time">
+						<DateInput
+							value={timestamp}
+							onChange={handlerChangeDate}
+						/>
+					</div>
 					<Textarea
 						name="description"
 						value={description}

@@ -16,6 +16,8 @@ export const eventsSlice = createSlice({
 				
 				event.title = payload.title;
 				event.description = payload.description;
+				event.timestamp = payload.timestamp;
+				event.day = payload.day;
 			
 				return;
 			}
