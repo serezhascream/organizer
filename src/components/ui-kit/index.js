@@ -4,5 +4,14 @@ import Input from './input';
 import Textarea from './textarea';
 import Popup from './popup';
 import Switcher from './switcher';
+import DateInput from './date';
 
-export { Button, Icon, Input, Textarea, Popup, Switcher};
+export {
+	Button,
+	Icon,
+	Input,
+	Textarea,
+	Popup,
+	Switcher,
+	DateInput
+};

@@ -5,6 +5,7 @@ html {
 	--accent-color: #BD2C2C;
 	--shadow-color: #B5B5B5;
 	--divider-color: #d1d1d1;
+	--input-icon-filter: none;
 	
 	&[data-theme="dark"] {
 		--app-bg: #111614;
@@ -12,7 +13,7 @@ html {
 		--text-color: #FDFAF9;
 		--shadow-color: #0c0c0c;
 		--divider-color: #353535;
-	
 		--calendar-text-color: #FDFAF9;
+		--input-icon-filter: invert(1);
 	}
 }
