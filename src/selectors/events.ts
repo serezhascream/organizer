@@ -1,19 +1,7 @@
 import { TEventObj, TRootState } from '../data/types';
 import { nanoid } from '@reduxjs/toolkit';
-
-const blankEvent = {
-	title: '',
-	description: '',
-};
-
-export const getUniqueValues = (arr: number[]): number[] => {
-	const set = new Set(arr);
-	return [...set];
-}
-
-export const sortEventsByTimestamp = (arr: TEventObj[]): TEventObj[] => {
-	return arr.sort((a: TEventObj, b: TEventObj) => (a.timestamp - b.timestamp));
-};
+import { getDateNumber, getUniqueValues } from '../utils';
+import { sortEventsByTimestamp, getMarkerNumber } from '../utils/events';
 
 export const getEvent = (state: TRootState, id: string | null, day: number | null): TEventObj => {
 	if (! id) {
@@ -21,7 +9,8 @@ export const getEvent = (state: TRootState, id: string | null, day: number | nul
 			id: nanoid(),
 			day,
 			timestamp: day,
-			...blankEvent,
+			title: '',
+			description: '',
 		};
 	}
 	
@@ -30,20 +19,23 @@ export const getEvent = (state: TRootState, id: string | null, day: number | nul
 
 export const getEvents = (state: TRootState, timestamp: number): TEventObj[] => {
 	if (timestamp) {
-		const dayEvents = state.events.filter(event => event.day === timestamp);
+		const date = getDateNumber(timestamp);
+		const dayEvents = state.events.filter(event => getDateNumber(event.timestamp) === date);
 		
 		return sortEventsByTimestamp(dayEvents);
 	}
 	
-	const today = new Date();
-	const todayStamp = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
-	const upcomingEvents = state.events.filter(event => event.timestamp >= todayStamp);
+	const today = getDateNumber(new Date().getTime());
+	
+	const upcomingEvents = state.events.filter(
+		event => getDateNumber(event.timestamp) >= today
+	);
 	
 	return sortEventsByTimestamp(upcomingEvents);
 };
 
 export const getEventMarkers = (state: TRootState): number[] => {
-	const events = state.events.map(event => event.day);
+	const events = state.events.map(event => getMarkerNumber(event.timestamp));
 	
 	return getUniqueValues(events);
 };
