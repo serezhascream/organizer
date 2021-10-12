@@ -1,16 +1,16 @@
 import * as React from 'react';
 
-import { getDayTimestamp, getDayDateString } from '../../utils';
+import { getUpdatedDate, getDayDateString } from '../../utils';
 
 interface Props {
-	value: number;
+	timestamp: number;
 	className?: string;
 	onChange(value: number): void;
 }
 
 const DateInput: React.VFC<Props> = (props: Props) => {
-	const { value, className = null, onChange } = props;
-	const [dateValue, setDateValue] = React.useState<string>(() => getDayDateString(value));
+	const { timestamp, className = null, onChange } = props;
+	const [dateValue, setDateValue] = React.useState<string>(() => getDayDateString(timestamp));
 
 	const wrapperClasses = React.useMemo(() => {
 		const classes = ['org-date-input'];
@@ -24,7 +24,9 @@ const DateInput: React.VFC<Props> = (props: Props) => {
 
 	const handlerChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		setDateValue(e.target.value);
-		onChange(getDayTimestamp(e.target.valueAsNumber));
+		const updatedDate = getUpdatedDate(timestamp, e.target.value);
+		
+		onChange(updatedDate);
 	}, [onChange, setDateValue]);
 	
 	return (
