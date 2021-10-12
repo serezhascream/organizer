@@ -5,6 +5,7 @@ import Textarea from './textarea';
 import Popup from './popup';
 import Switcher from './switcher';
 import DateInput from './date';
+import TimeInput from './time';
 
 export {
 	Button,
@@ -13,5 +14,6 @@ export {
 	Textarea,
 	Popup,
 	Switcher,
-	DateInput
+	DateInput,
+	TimeInput,
 };
