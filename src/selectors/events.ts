@@ -7,7 +7,6 @@ export const getEvent = (state: TRootState, id: string | null, day: number | nul
 	if (! id) {
 		return {
 			id: nanoid(),
-			day,
 			timestamp: day,
 			title: '',
 			description: '',

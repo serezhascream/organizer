@@ -7,7 +7,6 @@ export interface TSettingsObj {
 
 export type TEventObj = {
 	id: string,
-	day: number,
 	title: string,
 	description: string | null,
 	timestamp: number,
