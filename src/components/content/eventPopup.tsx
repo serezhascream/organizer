@@ -11,6 +11,7 @@ import {
 	Textarea,
 	Icon,
 	DateInput,
+	TimeInput,
 } from '../ui-kit';
 
 interface Props {
@@ -33,12 +34,12 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 	} = props;
 	
 	const dispatch = useDispatch();
+	const defaultTimestamp = new Date().getTime();
 	
 	const selectedEvent = useSelector((state: TRootState) => getEvent(state, eventId, selectedDay));
 	const [ title, setTitle ] = React.useState<string>(selectedEvent.title);
 	const [ description, setDescription ] = React.useState<string>(selectedEvent.description);
-	const [ timestamp, setTimestamp ] = React.useState<number | null>(selectedEvent.timestamp);
-	const [ day, setDay ] = React.useState<number>(selectedEvent.day);
+	const [ timestamp, setTimestamp ] = React.useState<number | null>(selectedEvent.timestamp || defaultTimestamp);
 	const saveButtonIsDisabled = React.useMemo((): boolean => (! title.length), [title]);
 	const popupTitle = React.useMemo((): string => {
 		if (! eventId) {
@@ -68,10 +69,9 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 		setTitle(value);
 	}, []);
 
-	const handlerChangeDate = React.useCallback((value: number): void => {
+	const handlerChangeTimestamp = React.useCallback((value: number): void => {
 		setTimestamp(value);
-		setDay(value);
-	}, [setTimestamp, setDay]);
+	}, [setTimestamp]);
 	
 	const handlerChangeDescription = React.useCallback((value: string): void => {
 			setDescription(value);
@@ -83,11 +83,10 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 			title,
 			description,
 			timestamp,
-			day,
 		}));
 		
 		onSwitchView('show')
-	}, [title, description, timestamp, day, onSwitchView]);
+	}, [title, description, timestamp, onSwitchView]);
 
 	const handlerOpenEditor = React.useCallback(() => onSwitchView('edit'), [onSwitchView]);
 	const handlerDeleteEvent = React.useCallback(() => {
@@ -116,10 +115,8 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 						onChange={handlerChangeTitle}
 					/>
 					<div className="org-event-popup__date-and-time">
-						<DateInput
-							value={timestamp}
-							onChange={handlerChangeDate}
-						/>
+						<DateInput timestamp={timestamp} onChange={handlerChangeTimestamp} />
+						<TimeInput timestamp={timestamp} onChange={handlerChangeTimestamp} />
 					</div>
 					<Textarea
 						name="description"
