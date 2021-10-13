@@ -7,7 +7,7 @@ import { getEvents } from '../../selectors/events';
 
 import { Icon } from '../ui-kit';
 import EventsList from './eventsList';
-import EventPopup from './eventPopup';
+import EventPopup from '../eventPopup';
 import DeleteEventAlert from './deleteEventAlert';
 
 const List: React.VFC = () => {
