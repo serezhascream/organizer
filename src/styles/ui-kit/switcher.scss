@@ -50,4 +50,13 @@
 		margin-left: 18px;
 		color: var(--text-color);
 	}
+	
+	&--opposite {
+		flex-direction: row-reverse;
+		justify-content: space-between;
+		
+		.org-switcher__label {
+			margin-left: 0;
+		}
+	}
 }

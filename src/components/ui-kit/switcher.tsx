@@ -3,10 +3,12 @@ import * as React from 'react';
 import { testIds } from '../../data/tests';
 
 interface Props {
-	name: string,
-	checked: boolean,
-	label: string,
-	onChange(checked: boolean, name:string): void
+	name: string;
+	checked: boolean;
+	label: string;
+	opposite?: boolean;
+	className?: string;
+	onChange(checked: boolean, name:string): void;
 }
 
 const Switcher: React.VFC<Props> = (props: Props) => {
@@ -14,8 +16,24 @@ const Switcher: React.VFC<Props> = (props: Props) => {
 		name = '',
 		checked = false,
 		label = '',
+		opposite = false,
+		className = null,
 		onChange = () => {}
 	} = props;
+	
+	const switcherWrapperClasses = React.useMemo(() => {
+		const classes = ['org-switcher'];
+
+		if (opposite) {
+			classes.push('org-switcher--opposite');
+		}
+
+		if (className) {
+			classes.push(className);
+		}
+
+		return classes.join(' ');
+	}, [opposite]);
 	
 	const classChecked = React.useMemo(() => (checked ? ' org-switcher__checkbox--checked' : ''), [checked]);
 	
@@ -26,7 +44,7 @@ const Switcher: React.VFC<Props> = (props: Props) => {
 	
 	return (
 		<div
-			className="org-switcher"
+			className={switcherWrapperClasses}
 			onClick={handleChange}
 			data-testid={testIds.switcher}
 		>
