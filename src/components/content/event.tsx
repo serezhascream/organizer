@@ -1,6 +1,7 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 
-import { TEventObj } from '../../data/types';
+import { TEventObj, TRootState } from '../../data/types';
 
 interface Props extends TEventObj {
 	onOpenEvent(eventId: string): void;
@@ -11,9 +12,12 @@ const Event: React.VFC<Props> = (props: Props) => {
 		id,
 		title,
 		timestamp,
+		hasTime,
 		description,
 		onOpenEvent,
 	} = props;
+	
+	const selectedDay = useSelector((state: TRootState): number => state.main.selectedDay);
 	
 	const descriptionText = React.useMemo(
 		(): string => (description || 'Empty description'), [event]
@@ -22,8 +26,17 @@ const Event: React.VFC<Props> = (props: Props) => {
 	const dateTime = React.useMemo((): string => {
 		const date = new Date(timestamp);
 
-		return date.toLocaleDateString('en-US', { hour12: false });
-	}, [timestamp]);
+		if (!selectedDay) {
+			return date.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
+		}
+
+		if (selectedDay && hasTime) {
+			const time = date.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false});
+			return time === '24:00' ? '00:00' : time;
+		}
+
+		return '';
+	}, [timestamp, hasTime, selectedDay]);
 
 	const handlerEditEvent = React.useCallback(() => onOpenEvent(id), [id, onOpenEvent]);
 

@@ -15,6 +15,7 @@ export const eventsSlice = createSlice({
 			if (event) {
 				
 				event.title = payload.title;
+				event.hasTime = payload.hasTime;
 				event.description = payload.description;
 				event.timestamp = payload.timestamp;
 			

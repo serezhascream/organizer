@@ -40,6 +40,7 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 	const [ title, setTitle ] = React.useState<string>(selectedEvent.title);
 	const [ description, setDescription ] = React.useState<string>(selectedEvent.description);
 	const [ timestamp, setTimestamp ] = React.useState<number | null>(selectedEvent.timestamp || defaultTimestamp);
+	const [ hasTime, setHasTime ] = React.useState<boolean>(selectedEvent.hasTime);
 	const saveButtonIsDisabled = React.useMemo((): boolean => (! title.length), [title]);
 	const popupTitle = React.useMemo((): string => {
 		if (! eventId) {
@@ -77,16 +78,21 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 			setDescription(value);
 	}, []);
 
+	const handlerChangeHasTime = React.useCallback(
+		(value: boolean): void => setHasTime(value), [setHasTime]
+	);
+
 	const handlerSave = React.useCallback((): void => {
 		dispatch(saveEvent({
 			...selectedEvent,
 			title,
 			description,
 			timestamp,
+			hasTime,
 		}));
 		
 		onSwitchView('show')
-	}, [title, description, timestamp, onSwitchView]);
+	}, [title, description, timestamp, hasTime, onSwitchView]);
 
 	const handlerOpenEditor = React.useCallback(() => onSwitchView('edit'), [onSwitchView]);
 	const handlerDeleteEvent = React.useCallback(() => {
@@ -115,8 +121,18 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 						onChange={handlerChangeTitle}
 					/>
 					<div className="org-event-popup__date-and-time">
-						<DateInput timestamp={timestamp} onChange={handlerChangeTimestamp} />
-						<TimeInput timestamp={timestamp} onChange={handlerChangeTimestamp} />
+						<DateInput
+							timestamp={timestamp}
+							className="org-event-popup__date-input"
+							onChange={handlerChangeTimestamp}
+						/>
+						<TimeInput
+							timestamp={timestamp}
+							className="org-event-popup__time-input"
+							timeIsEnabled={hasTime}
+							setTimeIsEnabled={handlerChangeHasTime}
+							onChange={handlerChangeTimestamp}
+						/>
 					</div>
 					<Textarea
 						name="description"

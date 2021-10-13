@@ -8,6 +8,7 @@ export interface TSettingsObj {
 export type TEventObj = {
 	id: string,
 	title: string,
+	hasTime: boolean,
 	description: string | null,
 	timestamp: number,
 }
