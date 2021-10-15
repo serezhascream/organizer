@@ -38,7 +38,9 @@ const TimeInput: React.VFC<Props> = (props: Props) => {
 	const handlerChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		setTimeValue(e.target.value);
 		onChange(getUpdatedTime(timestamp, e.target.value));
-	}, [setTimeValue, onChange]);
+	}, [setTimeValue, timestamp, onChange]);
+
+	React.useEffect(() => setTimeValue(getTimeString(timestamp)), [timestamp]);
 	
 	return (
 		<div className={wrapperClasses}>

@@ -27,7 +27,9 @@ const DateInput: React.VFC<Props> = (props: Props) => {
 		const updatedDate = getUpdatedDate(timestamp, e.target.value);
 		
 		onChange(updatedDate);
-	}, [onChange, setDateValue]);
+	}, [onChange, timestamp, setDateValue]);
+
+	React.useEffect(() => setDateValue(getDayDateString(timestamp)), [timestamp]);
 	
 	return (
 		<div className={wrapperClasses}>
