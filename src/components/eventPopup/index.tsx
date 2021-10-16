@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { TEventObj } from '../../data/types';
-import { getDateString } from '../../utils';
+import { getDateString, getEventPopupTitle } from '../../utils';
 import { Popup } from '../ui-kit';
 import Content from './content';
 
@@ -23,19 +23,13 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 	} = props;
 	
 	const [popupView, setPopupView] = React.useState<'show' | 'edit'>(() => (eventId ? 'show' : 'edit'));
-	const dateString = React.useMemo(() => getDateString(selectedEvent), [selectedEvent]);
 	
-	const popupTitle = React.useMemo((): string => {
-		if (! eventId) {
-			return 'Create event';
-		}
-
-		if (popupView === 'edit') {
-			return 'Edit event';
-		}
-
-		return 'Event';
-	}, [eventId, popupView]);
+	const dateString = React.useMemo(
+		() => getDateString(selectedEvent), [selectedEvent]
+	);
+	const popupTitle = React.useMemo(
+		(): string => getEventPopupTitle(eventId, popupView), [eventId, popupView]
+	);
 	
 	const handlerClose = React.useCallback((): void => {
 		onClose();

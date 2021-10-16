@@ -88,3 +88,15 @@ export const getDateString = (event: TEventObj): string => {
 
 	return date.toLocaleString('en-US', {...dateConfig, ...timeConfig});
 };
+
+export const getEventPopupTitle = (eventId: string | null, popupView: 'show' | 'edit'): string => {
+	if (! eventId) {
+		return 'Create event';
+	}
+	
+	if (popupView === 'edit') {
+		return 'Edit event';
+	}
+	
+	return 'Event';
+};
