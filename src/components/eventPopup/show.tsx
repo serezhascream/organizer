@@ -48,4 +48,4 @@ const EventPopupShow: React.VFC<Props> = (props: Props) => {
 	);
 };
 
-export default EventPopupShow;
+export default React.memo(EventPopupShow);
