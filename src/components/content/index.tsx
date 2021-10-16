@@ -7,9 +7,9 @@ import { getEvents, getEvent } from '../../selectors/events';
 import { saveEvent } from '../../features/eventsSlice';
 
 import { Icon } from '../ui-kit';
-import EventsList from './eventsList';
+import EventsList from './list';
 import EventPopup from '../eventPopup';
-import DeleteEventAlert from './deleteEventAlert';
+import DeleteEventAlert from '../deleteEventAlert';
 
 interface Props {
 	selectedDay: number | null;

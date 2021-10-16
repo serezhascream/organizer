@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { Popup, Button } from '../ui-kit';
-import { deleteEvent } from '../../features/eventsSlice';
+import { Popup, Button } from './ui-kit';
+import { deleteEvent } from '../features/eventsSlice';
 
 interface Props {
 	eventId: string;
