@@ -1,3 +1,4 @@
+import { TEventObj } from '../data/types';
 const get2DigitMonth = (value: number): string => ('0' + (value + 1)).slice(-2);
 const get2DigitDay = (value: number): string => ('0' + value).slice(-2);
 
@@ -67,3 +68,23 @@ export const getDateNumber = (timestamp: number): number => {
 	
 	return Number(`${year}${month}${day}`);
 }
+export const getDateString = (event: TEventObj): string => {
+	const date = new Date(event.timestamp);
+	
+	const dateConfig: Intl.DateTimeFormatOptions = {
+		year: 'numeric',
+		month: '2-digit',
+		day: '2-digit',
+	};
+	
+	const timeConfig: Intl.DateTimeFormatOptions = {
+		hour: '2-digit',
+		minute: '2-digit',
+	};
+
+	if (! event.hasTime) {
+		return date.toLocaleString('en-US', dateConfig);
+	}
+
+	return date.toLocaleString('en-US', {...dateConfig, ...timeConfig});
+};
