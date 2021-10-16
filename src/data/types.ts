@@ -25,3 +25,15 @@ export interface TRootState {
 	}
 }
 
+export interface TEditPopupShowProps {
+	dateString: string;
+	selectedEvent: TEventObj;
+	onOpenEditor(): void;
+	onDeleteEvent(): void;
+}
+
+export interface TEditPopupEditProps {
+	selectedEvent: TEventObj;
+	onSave(event: TEventObj): void;
+	onClose(): void;
+}

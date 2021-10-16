@@ -3,8 +3,7 @@ import * as React from 'react';
 import { TEventObj } from '../../data/types';
 import { getDateString } from '../../utils';
 import { Popup } from '../ui-kit';
-import Edit from './edit';
-import Show from './show';
+import Content from './content';
 
 interface Props {
 	eventId: string | null;
@@ -38,15 +37,6 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 		return 'Event';
 	}, [eventId, popupView]);
 	
-	const Content = React.useMemo(() => {
-		const ContentView = {
-			edit: Edit,
-			show: Show,
-		};
-
-		return ContentView[popupView]
-	}, [popupView]);
-	
 	const handlerClose = React.useCallback((): void => {
 		onClose();
 	}, [onClose]);
@@ -65,6 +55,7 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 	return (
 		<Popup title={popupTitle} onClose={handlerClose}>
 			<Content
+				view={popupView}
 				dateString={dateString}
 				selectedEvent={selectedEvent}
 				onSave={handlerSaveEvent}

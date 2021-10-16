@@ -1,14 +1,7 @@
 import * as React from 'react';
 
 import { Icon, Button} from '../ui-kit';
-import { TEventObj } from '../../data/types';
-
-interface Props {
-	dateString: string;
-	selectedEvent: TEventObj;
-	onOpenEditor(): void;
-	onDeleteEvent(): void;
-}
+import { TEditPopupShowProps as Props } from '../../data/types';
 
 const EventPopupShow: React.VFC<Props> = (props: Props) => {
 	const { dateString, selectedEvent, onOpenEditor, onDeleteEvent } = props;
