@@ -1,17 +1,18 @@
 import * as React from 'react';
 
+import SettingsPopup from './settings';
 import { Icon } from './ui-kit';
 
-interface Props {
-	settingsPopupIsActive: boolean;
-	onOpenSettings(): void;
-}
-
-const Header: React.VFC<Props> = (props: Props) => {
-	const {
-		settingsPopupIsActive,
-		onOpenSettings
-	} = props;
+const Header: React.VFC = () => {
+	const [settingsPopupIsActive, setSettingsPopupIsActive] = React.useState(false);
+	
+	const handlerOpenSettings = React.useCallback(
+		(): void => setSettingsPopupIsActive(true), [setSettingsPopupIsActive]
+	);
+	
+	const handlerCloseSettings = React.useCallback(
+		(): void => setSettingsPopupIsActive(false), [setSettingsPopupIsActive]
+	);
 
 	const iconClasses = React.useMemo(() => {
 		const classes = ['org-settings-button'];
@@ -24,14 +25,20 @@ const Header: React.VFC<Props> = (props: Props) => {
 	}, [settingsPopupIsActive]);
 	
 	return (
-		<section className="org-header">
-			<h1 className="org-header__title">Organizer</h1>
-			<Icon
-				name={'settings'}
-				className={iconClasses}
-				onClick={onOpenSettings}
-			/>
-		</section>
+		<>
+			<section className="org-header">
+				<h1 className="org-header__title">Organizer</h1>
+				<Icon
+					name={'settings'}
+					className={iconClasses}
+					onClick={handlerOpenSettings}
+				/>
+			</section>
+			{
+				settingsPopupIsActive &&
+				<SettingsPopup onClose={handlerCloseSettings} />
+			}
+		</>
 	);
 };
 

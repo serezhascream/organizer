@@ -64,7 +64,7 @@ const OrganizerContent: React.VFC<Props> = (props: Props) => {
 	return (
 		<>
 			<div className="org-container__divider" />
-			<div className="org-list">
+			<section className="org-list">
 				<div className="org-list__header">
 					<div className="org-container__content-title">
 						{ eventListTitle }
@@ -84,7 +84,7 @@ const OrganizerContent: React.VFC<Props> = (props: Props) => {
 						/>
 					</div>
 				</div>
-			</div>
+			</section>
 			{
 				showEventPopup &&
 				<EventPopup
