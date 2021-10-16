@@ -26,9 +26,18 @@
 	
 	&__show-title {
 		color: var(--text-color);
+		margin-top: 0;
+		margin-bottom: 6px;
+	}
+	&__show-date {
+		color: var(--accent-color);
+		font-size: 12px;
+		font-weight: 900;
+		margin-bottom: 18px;
 	}
 	&__show-description {
 		color: var(--text-color);
+		margin-top: 0;
 	}
 	&__show-controls {
 		display: flex;

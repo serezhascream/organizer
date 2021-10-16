@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { TEventObj } from '../../data/types';
+import { getDateString } from '../../utils';
 import { Popup } from '../ui-kit';
 import Edit from './edit';
 import Show from './show';
@@ -23,6 +24,7 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 	} = props;
 	
 	const [popupView, setPopupView] = React.useState<'show' | 'edit'>(() => (eventId ? 'show' : 'edit'));
+	const dateString = React.useMemo(() => getDateString(selectedEvent), [selectedEvent]);
 	
 	const popupTitle = React.useMemo((): string => {
 		if (! eventId) {
@@ -49,9 +51,11 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 		onClose();
 	}, [onClose]);
 
-	const handlerSwitchView = React.useCallback(
-		(view: 'show' | 'edit') => setPopupView(view), [setPopupView]
-	);
+	const handlerEditEvent = React.useCallback(() => setPopupView('edit'), [setPopupView]);
+	const handlerDeleteEvent = React.useCallback(() => {
+		onDeleteEvent(eventId);
+		onClose();
+	}, [eventId, onDeleteEvent, onClose]);
 
 	const handlerSaveEvent = React.useCallback((event: TEventObj) => {
 		onSave(event);
@@ -61,11 +65,11 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 	return (
 		<Popup title={popupTitle} onClose={handlerClose}>
 			<Content
-				eventId={eventId}
+				dateString={dateString}
 				selectedEvent={selectedEvent}
-				onSwitchView={handlerSwitchView}
 				onSave={handlerSaveEvent}
-				onDeleteEvent={onDeleteEvent}
+				onOpenEditor={handlerEditEvent}
+				onDeleteEvent={handlerDeleteEvent}
 				onClose={handlerClose}
 			/>
 		</Popup>
