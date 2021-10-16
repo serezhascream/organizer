@@ -1,33 +1,29 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
 
-import { getEvent } from '../../selectors/events';
-import { TRootState } from '../../data/types';
+import { TEventObj } from '../../data/types';
 import { Popup } from '../ui-kit';
 import Edit from './edit';
 import Show from './show';
 
-
 interface Props {
 	eventId: string | null;
-	selectedDay: number;
-	popupView: 'show' | 'edit';
+	selectedEvent: TEventObj;
+	onSave(event: TEventObj): void
 	onClose(): void;
-	onSwitchView(view: 'show' | 'edit'): void;
 	onDeleteEvent(eventId: string): void;
 }
 
 const EventPopup: React.VFC<Props> = (props: Props) => {
 	const {
 		eventId,
-		selectedDay,
-		popupView,
+		selectedEvent,
+		onSave,
 		onClose,
-		onSwitchView,
 		onDeleteEvent,
 	} = props;
 	
-	const selectedEvent = useSelector((state: TRootState) => getEvent(state, eventId, selectedDay));
+	const [popupView, setPopupView] = React.useState<'show' | 'edit'>(() => (eventId ? 'show' : 'edit'));
+	
 	const popupTitle = React.useMemo((): string => {
 		if (! eventId) {
 			return 'Create event';
@@ -53,12 +49,22 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 		onClose();
 	}, [onClose]);
 
+	const handlerSwitchView = React.useCallback(
+		(view: 'show' | 'edit') => setPopupView(view), [setPopupView]
+	);
+
+	const handlerSaveEvent = React.useCallback((event: TEventObj) => {
+		onSave(event);
+		setPopupView('show');
+	}, [onSave]);
+	
 	return (
 		<Popup title={popupTitle} onClose={handlerClose}>
 			<Content
 				eventId={eventId}
 				selectedEvent={selectedEvent}
-				onSwitchView={onSwitchView}
+				onSwitchView={handlerSwitchView}
+				onSave={handlerSaveEvent}
 				onDeleteEvent={onDeleteEvent}
 				onClose={handlerClose}
 			/>

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
 
-import { TEventObj, TRootState } from '../../data/types';
+import { TEventObj } from '../../data/types';
 
 interface Props extends TEventObj {
+	selectedDay: number | null;
 	onOpenEvent(eventId: string): void;
 }
 
@@ -14,10 +14,9 @@ const Event: React.VFC<Props> = (props: Props) => {
 		timestamp,
 		hasTime,
 		description,
+		selectedDay,
 		onOpenEvent,
 	} = props;
-	
-	const selectedDay = useSelector((state: TRootState): number => state.main.selectedDay);
 	
 	const descriptionText = React.useMemo(
 		(): string => (description || 'Empty description'), [event]

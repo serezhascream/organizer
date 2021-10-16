@@ -5,11 +5,12 @@ import { TEventObj } from '../../data/types';
 
 interface Props {
 	events: TEventObj[];
+	selectedDay: number | null;
 	onOpenEvent(eventId: string): void;
 }
 
 const EventsList: React.VFC<Props> = (props: Props) => {
-	const { events, onOpenEvent } = props;
+	const { events, selectedDay, onOpenEvent } = props;
 	
 	const handlerOpenEvent = React.useCallback(
 		(eventId: string) => onOpenEvent(eventId), [onOpenEvent]
@@ -28,6 +29,7 @@ const EventsList: React.VFC<Props> = (props: Props) => {
 					<Event
 						key={event.id}
 						{...event}
+						selectedDay={selectedDay}
 						onOpenEvent={handlerOpenEvent}
 					/>
 				))

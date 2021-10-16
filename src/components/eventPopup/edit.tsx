@@ -1,19 +1,16 @@
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
 
 import { Input, Textarea, DateInput, TimeInput, Button} from '../ui-kit';
 import { TEventObj } from '../../data/types';
-import { saveEvent } from '../../features/eventsSlice';
 
 interface Props {
 	selectedEvent: TEventObj;
-	onSwitchView(view: 'show' | 'edit'): void;
+	onSave(event: TEventObj): void;
 	onClose(): void;
 }
 
 const EventPopupEdit: React.VFC<Props> = (props: Props) => {
-	const { selectedEvent, onSwitchView, onClose } = props;
-	const dispatch = useDispatch();
+	const { selectedEvent, onSave, onClose } = props;
 	
 	const [ title, setTitle ] = React.useState<string>(selectedEvent.title);
 	const [ description, setDescription ] = React.useState<string>(selectedEvent.description);
@@ -23,11 +20,11 @@ const EventPopupEdit: React.VFC<Props> = (props: Props) => {
 	
 	const handlerChangeTitle = React.useCallback((value: string): void => {
 		setTitle(value);
-	}, []);
+	}, [setTitle]);
 	
 	const handlerChangeDescription = React.useCallback((value: string): void => {
 			setDescription(value);
-	}, []);
+	}, [setDescription]);
 	
 	const handlerChangeTimestamp = React.useCallback((value: number): void => {
 		setTimestamp(value);
@@ -37,17 +34,16 @@ const EventPopupEdit: React.VFC<Props> = (props: Props) => {
 		(value: boolean): void => setHasTime(value), [setHasTime]
 	);
 	
-	const handlerSave = React.useCallback((): void => {
-		dispatch(saveEvent({
+	const handlerSave = React.useCallback(
+		(): void => onSave({
 			...selectedEvent,
 			title,
 			description,
 			timestamp,
 			hasTime,
-		}));
-		
-		onSwitchView('show')
-	}, [title, description, timestamp, hasTime, onSwitchView]);
+		}),
+		[title, description, timestamp, hasTime, onSave]
+	);
 	
 	return (
 		<>
@@ -100,4 +96,4 @@ const EventPopupEdit: React.VFC<Props> = (props: Props) => {
 	);
 };
 
-export default EventPopupEdit;
+export default React.memo(EventPopupEdit);
