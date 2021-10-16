@@ -1,6 +1,6 @@
 @import './variables';
 @import './ui-kit';
-@import './list';
+@import './content';
 @import './event';
 @import './event-popup';
 
@@ -119,13 +119,6 @@ body {
 		width: 100%;
 		min-height: 351px;
 		
-		&-title {
-			font-size: 20px;
-			font-weight: 600;
-			padding: 9px 0 0;
-			color: var(--text-color);
-		}
-		
 		&-list {
 			display: flex;
 			flex-direction: column;
@@ -173,9 +166,6 @@ body {
 		overflow: hidden;
 		padding: 9px 0 0;
 		
-		&__content-title {
-			padding: 0;
-		}
 		&__calendar .org-calendar {
 			width: 320px;
 		}

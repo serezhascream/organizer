@@ -64,19 +64,19 @@ const OrganizerContent: React.VFC<Props> = (props: Props) => {
 	return (
 		<>
 			<div className="org-container__divider" />
-			<section className="org-list">
-				<div className="org-list__header">
-					<div className="org-container__content-title">
+			<section className="org-content">
+				<div className="org-content__header">
+					<div className="org-content__header-title">
 						{ eventListTitle }
 					</div>
 					<Icon
 						name="add"
-						className="org-list__add-button"
+						className="org-content__add-button"
 						onClick={handlerCreateEvent}
 					/>
 				</div>
-				<div className="org-list__wrapper">
-					<div className="org-list__content">
+				<div className="org-content__wrapper">
+					<div className="org-content__content">
 						<EventsList
 							events={events}
 							selectedDay={selectedDay}

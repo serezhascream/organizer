@@ -18,7 +18,7 @@ const EventsList: React.VFC<Props> = (props: Props) => {
 	
 	if (! events.length) {
 		return (
-			<div className="org-list__placeholder">No events yet.</div>
+			<div className="org-content__placeholder">No events yet.</div>
 		);
 	}
 	
