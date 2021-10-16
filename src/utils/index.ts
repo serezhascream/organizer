@@ -1,4 +1,5 @@
 import { TEventObj } from '../data/types';
+import { dateConfigShort, dateConfigLong, timeConfig } from '../data/constants';
 const get2DigitMonth = (value: number): string => ('0' + (value + 1)).slice(-2);
 const get2DigitDay = (value: number): string => ('0' + value).slice(-2);
 
@@ -8,21 +9,13 @@ export const getUniqueValues = (arr: number[]): number[] => {
 }
 
 export const getListTitle = (selectedDay: number | null): string => {
-	
 	if (! selectedDay) {
 		return 'Upcoming events';
 	}
 	
 	const date = new Date(selectedDay);
 	
-	return date.toLocaleDateString(
-		'en-US',
-		{
-			day: 'numeric',
-			month: 'long',
-			year: 'numeric',
-		},
-	);
+	return date.toLocaleDateString('en-US', dateConfigLong);
 };
 
 export const getUpdatedDate = (timestamp: number, dateString: string): number => {
@@ -71,22 +64,11 @@ export const getDateNumber = (timestamp: number): number => {
 export const getDateString = (event: TEventObj): string => {
 	const date = new Date(event.timestamp);
 	
-	const dateConfig: Intl.DateTimeFormatOptions = {
-		year: 'numeric',
-		month: '2-digit',
-		day: '2-digit',
-	};
-	
-	const timeConfig: Intl.DateTimeFormatOptions = {
-		hour: '2-digit',
-		minute: '2-digit',
-	};
-
 	if (! event.hasTime) {
-		return date.toLocaleString('en-US', dateConfig);
+		return date.toLocaleString('en-US', dateConfigShort);
 	}
 
-	return date.toLocaleString('en-US', {...dateConfig, ...timeConfig});
+	return date.toLocaleString('en-US', {...dateConfigShort, ...timeConfig});
 };
 
 export const getEventPopupTitle = (eventId: string | null, popupView: 'show' | 'edit'): string => {
@@ -99,4 +81,19 @@ export const getEventPopupTitle = (eventId: string | null, popupView: 'show' | '
 	}
 	
 	return 'Event';
+};
+
+export const getEventItemDateString = (event: TEventObj, selectedDay: number): string => {
+	const date = new Date(event.timestamp);
+
+	if (!selectedDay) {
+		return getDateString(event);
+	}
+
+	if (selectedDay && event.hasTime) {
+		const time = date.toLocaleString('en-US', timeConfig);
+		return time === '24:00' ? '00:00' : time;
+	}
+
+	return '';
 };

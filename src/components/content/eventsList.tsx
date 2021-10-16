@@ -28,7 +28,7 @@ const EventsList: React.VFC<Props> = (props: Props) => {
 				events.map((event: TEventObj) => (
 					<Event
 						key={event.id}
-						{...event}
+						event={event}
 						selectedDay={selectedDay}
 						onOpenEvent={handlerOpenEvent}
 					/>
