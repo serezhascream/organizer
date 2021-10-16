@@ -1,0 +1,16 @@
+.org-delete-alert {
+	width: 320px;
+	
+	&__text {
+		color: var(--text-color);
+		margin-bottom: 12px;
+	}
+	&__buttons {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+	}
+	&__button-confirm {
+		margin-left: 12px;
+	}
+}

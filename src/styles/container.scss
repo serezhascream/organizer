@@ -1,0 +1,52 @@
+.org-container {
+	display: flex;
+	border-radius: 6px;
+	padding: 18px 0;
+	flex-direction: row;
+	background-color: var(--content-bg);
+	
+	&__calendar {
+		min-height: 351px;
+	}
+	&__divider {
+		display: flex;
+		width: 1px;
+		margin: 0 18px;
+		opacity: .5;
+		background-color: var(--divider-color);
+	}
+	&__content {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		min-height: 351px;
+		
+		&-list {
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+		}
+	}
+}
+
+@media screen and (max-width: 848px) {
+	.org-container {
+		flex-direction: column;
+		height: 100%;
+		overflow: hidden;
+		padding: 9px 0 0;
+		
+		&__calendar .org-calendar {
+			width: 320px;
+		}
+		&__divider {
+			width: 100%;
+			height: 1px;
+			margin: 9px 0;
+		}
+		&__content {
+			max-width: 350px;
+			margin-left: 0;
+		}
+	}
+}

@@ -1,0 +1,15 @@
+.org-settings-button {
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+	opacity: .5;
+	transition: all .15s ease-in-out;
+	
+	&:hover {
+		opacity: 1;
+	}
+	&--active {
+		color: var(--accent-color);
+		opacity: 1;
+	}
+}
