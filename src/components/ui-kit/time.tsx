@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { getUpdatedTime, getTimeString } from '../../utils';
+import { getUpdatedTime, getTimeInputValue } from '../../utils';
 
 import Switcher from './switcher';
 
@@ -20,7 +20,7 @@ const TimeInput: React.VFC<Props> = (props: Props) => {
 		setTimeIsEnabled,
 		onChange,
 	} = props;
-	const [timeValue, setTimeValue] = React.useState<string>(() => getTimeString(timestamp))
+	const [timeValue, setTimeValue] = React.useState<string>(() => getTimeInputValue(timestamp))
 	const wrapperClasses = React.useMemo(() => {
 		const classes = ['org-time-input'];
 		
@@ -40,7 +40,7 @@ const TimeInput: React.VFC<Props> = (props: Props) => {
 		onChange(getUpdatedTime(timestamp, e.target.value));
 	}, [setTimeValue, timestamp, onChange]);
 
-	React.useEffect(() => setTimeValue(getTimeString(timestamp)), [timestamp]);
+	React.useEffect(() => setTimeValue(getTimeInputValue(timestamp)), [timestamp]);
 	
 	return (
 		<div className={wrapperClasses}>

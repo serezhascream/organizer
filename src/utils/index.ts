@@ -46,13 +46,13 @@ export const getUpdatedTime = (timestamp: number, timeString?: string): number =
 	return date.getTime();
 };
 
-export const getDayDateString = (timestamp: number): string => {
+export const getDateInputValue = (timestamp: number): string => {
 	const date = new Date(timestamp);
 	
 	return `${date.getFullYear()}-${get2DigitMonth(date.getMonth())}-${get2DigitDay(date.getDate())}`;
 }
 
-export const getTimeString = (timestamp: number): string => {
+export const getTimeInputValue = (timestamp: number): string => {
 	const date = new Date(timestamp);
 	
 	const time = date.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
