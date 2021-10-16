@@ -12,32 +12,31 @@ const EventPopupEdit: React.VFC<Props> = (props: Props) => {
 	const [ hasTime, setHasTime ] = React.useState<boolean>(selectedEvent.hasTime);
 	const saveButtonIsDisabled = React.useMemo((): boolean => (! title.length), [title]);
 	
-	const handlerChangeTitle = React.useCallback((value: string): void => {
-		setTitle(value);
-	}, [setTitle]);
+	const handlerChangeTitle = React.useCallback(
+		(value: string): void => setTitle(value), [setTitle]
+	);
 	
-	const handlerChangeDescription = React.useCallback((value: string): void => {
-			setDescription(value);
-	}, [setDescription]);
+	const handlerChangeDescription = React.useCallback(
+		(value: string): void => setDescription(value), [setDescription]
+	);
 	
-	const handlerChangeTimestamp = React.useCallback((value: number): void => {
-		setTimestamp(value);
-	}, [setTimestamp]);
+	const handlerChangeTimestamp = React.useCallback(
+		(value: number): void => setTimestamp(value), [setTimestamp]
+	);
 
 	const handlerChangeHasTime = React.useCallback(
 		(value: boolean): void => setHasTime(value), [setHasTime]
 	);
 	
-	const handlerSave = React.useCallback(
-		(): void => onSave({
+	const handlerSave = React.useCallback((): void => onSave(
+		{
 			...selectedEvent,
 			title,
 			description,
 			timestamp,
 			hasTime,
-		}),
-		[title, description, timestamp, hasTime, onSave]
-	);
+		}
+	), [title, description, timestamp, hasTime, onSave]);
 	
 	return (
 		<>
@@ -75,7 +74,7 @@ const EventPopupEdit: React.VFC<Props> = (props: Props) => {
 					extraClass="org-event-popup__cancel"
 					onClick={onClose}
 				>
-					{ 'Cancel' }
+					{'Cancel'}
 				</Button>
 				<Button
 					name="save"
@@ -83,7 +82,7 @@ const EventPopupEdit: React.VFC<Props> = (props: Props) => {
 					extraClass="org-event-popup__save"
 					onClick={handlerSave}
 				>
-					{ 'Save' }
+					{'Save'}
 				</Button>
 			</div>
 		</>

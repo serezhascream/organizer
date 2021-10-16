@@ -14,13 +14,7 @@ interface Props {
 }
 
 const EventPopup: React.VFC<Props> = (props: Props) => {
-	const {
-		eventId,
-		selectedEvent,
-		onSave,
-		onClose,
-		onDeleteEvent,
-	} = props;
+	const { eventId, selectedEvent, onSave, onClose, onDeleteEvent } = props;
 	
 	const [popupView, setPopupView] = React.useState<'show' | 'edit'>(() => (eventId ? 'show' : 'edit'));
 	
@@ -31,11 +25,9 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 		(): string => getEventPopupTitle(eventId, popupView), [eventId, popupView]
 	);
 	
-	const handlerClose = React.useCallback((): void => {
-		onClose();
-	}, [onClose]);
-
+	const handlerClose = React.useCallback((): void => onClose(), [onClose]);
 	const handlerEditEvent = React.useCallback(() => setPopupView('edit'), [setPopupView]);
+	
 	const handlerDeleteEvent = React.useCallback(() => {
 		onDeleteEvent(eventId);
 		onClose();
