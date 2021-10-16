@@ -28,8 +28,11 @@ const Event: React.VFC<Props> = (props: Props) => {
 	return (
 		<div className="org-event" onClick={handlerEditEvent}>
 			<div className="org-event__headline">
+				{
+					!! dateAndTime.length &&
+					<span className="org-event__date-time">{ dateAndTime }</span>
+				}
 				<span className="org-event__title">{ title }</span>
-				<span className="org-event__date-time">{ dateAndTime }</span>
 			</div>
 			<div className="org-event__description">{ descriptionText }</div>
 		</div>
