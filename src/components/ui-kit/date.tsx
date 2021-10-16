@@ -44,4 +44,4 @@ const DateInput: React.VFC<Props> = (props: Props) => {
 	);
 };
 
-export default DateInput;
+export default React.memo(DateInput);

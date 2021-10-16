@@ -65,4 +65,4 @@ const TimeInput: React.VFC<Props> = (props: Props) => {
 	);
 };
 
-export default TimeInput;
+export default React.memo(TimeInput);

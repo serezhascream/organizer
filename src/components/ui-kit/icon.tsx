@@ -28,4 +28,4 @@ const Icon: React.VFC<Props> = (props: Props) => {
 	);
 };
 
-export default Icon;
+export default React.memo(Icon);
