@@ -14,10 +14,6 @@ export type TEventObj = {
 }
 
 export interface TRootState {
-	main: {
-		selectedDay: number | null,
-		activeContentView: string,
-	},
 	events: TEventObj[],
 	settings: {
 		theme: TTheme,
