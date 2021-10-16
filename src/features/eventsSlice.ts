@@ -1,27 +1,44 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { loadEvents } from '../utils/events';
+import { TEventObj } from '../data/types';
 
 const items = loadEvents();
-const defaultActiveEvent = {
-	day: null,
-	title: '',
-	description: '',
-};
 
 export const eventsSlice = createSlice({
 	name: 'events',
-	initialState: {
-		items,
-		selectedEvent: defaultActiveEvent,
-	},
+	initialState: items as TEventObj[],
 	reducers: {
-		addEvent: (state, action) => {
-			state.items.push(action.payload);
-			state.selectedEvent = defaultActiveEvent;
-		}
+		saveEvent: (state, action: PayloadAction<TEventObj>) => {
+			const { payload } = action;
+			const event = state.find(event => event.id === payload.id);
+			
+			if (event) {
+				
+				event.title = payload.title;
+				event.hasTime = payload.hasTime;
+				event.description = payload.description;
+				event.timestamp = payload.timestamp;
+			
+				return;
+			}
+			
+			state.push(payload);
+		},
+		deleteEvent: (state, { payload }) => {
+			const index = state.findIndex(event => event.id === payload);
+			
+			if (index < 0) {
+				return;
+			}
+			
+			state.splice(index, 1);
+		},
 	}
 });
 
-export const { addEvent } = eventsSlice.actions;
+export const {
+	saveEvent,
+	deleteEvent,
+} = eventsSlice.actions;
 
 export default eventsSlice.reducer;

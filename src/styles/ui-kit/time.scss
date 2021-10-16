@@ -1,0 +1,36 @@
+.org-time-input {
+	display: flex;
+	flex-direction: column;
+	
+	&__switcher {
+		margin-bottom: 0;
+	}
+	
+	&__label {
+		margin-bottom: 6px;
+		color: var(--text-color);
+	}
+	
+	&__input {
+		border: 1px solid var(--text-color);
+		color: var(--text-color);
+		background-color: transparent;
+		font-size: 12px;
+		width: 100%;
+		
+		padding: 12px 18px;
+		
+		-webkit-appearance: none;
+		outline: none;
+		opacity: 1;
+		transition: opacity .2s ease-in-out;
+	}
+	
+	&--disabled .org-time-input__input {
+		opacity: .6;
+	}
+}
+
+::-webkit-calendar-picker-indicator {
+	filter: var(--input-icon-filter);
+}

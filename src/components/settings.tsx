@@ -1,11 +1,19 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { TRootState } from '../data/types';
+import { removeSettings } from '../utils/settings';
+import { deleteAllEvents } from '../utils/events';
 
 import { switchTheme, switchFirstDay } from '../features/settingsSlice';
-import Switcher from './ui-kit/switcher';
+import { Popup, Switcher, Button } from './ui-kit';
 
-const Settings: React.VFC = () => {
+interface Props {
+	onClose(): void;
+}
+
+const SettingsPopup: React.VFC<Props> = (props: Props) => {
+	const { onClose = () => {} } = props;
+	
 	const dispatch = useDispatch();
 	const theme = useSelector((state: TRootState): string => state.settings.theme);
 	const firstDayIsMonday = useSelector(
@@ -24,25 +32,53 @@ const Settings: React.VFC = () => {
 		}, [dispatch]
 	);
 
+	const handlerRemoveSettings = React.useCallback(() => {
+		removeSettings();
+		window.location.reload();
+	}, []);
+
+	const handlerDeleteAllEvents = React.useCallback(() => {
+		deleteAllEvents();
+		window.location.reload();
+	}, []);
+
 	return (
-		<div className="org-settings">
-			<div className="org-container__content-title">
-				Settings
-			</div>
-			<Switcher
-				name="darkTheme"
-				checked={isDarkTheme}
-				label="Use dark theme"
-				onChange={handlerChangeTheme}
-			/>
-			<Switcher
-				name="firstDayIsMonday"
-				checked={firstDayIsMonday}
-				label="Week starts on Monday"
-				onChange={handlerChangeFirstDay}
-			/>
-		</div>
+		<Popup
+			title="Settings"
+			onClose={onClose}
+		>
+			<>
+				<Switcher
+					name="darkTheme"
+					checked={isDarkTheme}
+					label="Use dark theme"
+					onChange={handlerChangeTheme}
+				/>
+				<Switcher
+					name="firstDayIsMonday"
+					checked={firstDayIsMonday}
+					label="Week starts on Monday"
+					onChange={handlerChangeFirstDay}
+				/>
+				<div className="org-settings__subtitle">Data management</div>
+				<div className="org-settings__buttons">
+					<Button
+						name="remove_settings"
+						extraClass="org-settings__button-remove-settings"
+						onClick={handlerRemoveSettings}
+					>
+						Restore settings
+					</Button>
+					<Button
+						name="delete_events"
+						onClick={handlerDeleteAllEvents}
+					>
+						Delete all events
+					</Button>
+				</div>
+			</>
+		</Popup>
 	);
 };
 
-export default React.memo(Settings);
+export default React.memo(SettingsPopup);
