@@ -48,4 +48,4 @@ const DeleteEventAlert: React.VFC<Props> = (props: Props) => {
 	);
 };
 
-export default DeleteEventAlert;
+export default React.memo(DeleteEventAlert);
