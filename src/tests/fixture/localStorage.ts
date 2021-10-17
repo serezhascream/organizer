@@ -22,4 +22,8 @@ export default {
 			description: "asdfkasdflj lasdfklkj"
 		}
 	],
+	orgCalendarSettings: {
+		theme: 'dark',
+		firstDayIsMonday: true,
+	}
 };
