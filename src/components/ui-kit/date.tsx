@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { testIds } from '../../data/tests';
+
 import { getUpdatedDate, getDateInputValue } from '../../utils';
 
 interface Props {
@@ -36,6 +38,7 @@ const DateInput: React.VFC<Props> = (props: Props) => {
 			<label className="org-date-input__label">Date</label>
 			<input
 				className="org-date-input__input"
+				data-testid={testIds.dateInput}
 				type="date"
 				value={dateValue}
 				onChange={handlerChange}

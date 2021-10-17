@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 
 import Icon from './icon';
 import { portalId } from '../../data/constants';
+import { testIds } from '../../data/tests';
 
 interface Props {
 	title: string;
@@ -29,9 +30,10 @@ const Popup: React.VFC<Props> = (props: Props) => {
 	);
 	
 	return createPortal(
-		<div className="org-popup">
+		<div className="org-popup" data-testid={testIds.popupWrapper}>
 			<div
 				className="org-popup__overlay"
+				data-testid={testIds.popupOverlay}
 				onClick={handlerClose}
 			/>
 			<div className={containerClasses}>
@@ -40,6 +42,7 @@ const Popup: React.VFC<Props> = (props: Props) => {
 					<Icon
 						name="close"
 						className="org-popup__header-close"
+						data-testid={testIds.popupCloseButton}
 						onClick={handlerClose}
 					/>
 				</div>

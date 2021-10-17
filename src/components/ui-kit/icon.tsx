@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { testIds } from '../../data/tests';
 interface Props {
 	name: string;
 	className?: string;
@@ -20,7 +21,7 @@ const Icon: React.VFC<Props> = (props: Props) => {
 	}, [className]);
 	
 	return (
-		<div className={classNames} onClick={onClick}>
+		<div className={classNames} data-testid={testIds} onClick={onClick}>
 			<svg className="org-icon__svg">
 				<use xlinkHref={`#${name}`}></use>
 			</svg>

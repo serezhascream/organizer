@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { getUpdatedTime, getTimeInputValue } from '../../utils';
+import { testIds } from '../../data/tests';
 
 import Switcher from './switcher';
 
@@ -58,6 +59,7 @@ const TimeInput: React.VFC<Props> = (props: Props) => {
 				type="time"
 				value={timeValue}
 				className="org-time-input__input"
+				data-testid={testIds.timeInput}
 				disabled={! timeIsEnabled}
 				onChange={handlerChange}
 			/>
