@@ -34,7 +34,7 @@ const DateInput: React.VFC<Props> = (props: Props) => {
 	React.useEffect(() => setDateValue(getDateInputValue(timestamp)), [timestamp]);
 	
 	return (
-		<div className={wrapperClasses}>
+		<div className={wrapperClasses} data-testid={testIds.dateWrapper}>
 			<label className="org-date-input__label">Date</label>
 			<input
 				className="org-date-input__input"

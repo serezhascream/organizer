@@ -2,6 +2,7 @@ export const testIds = {
 	/* ui-kit */
 	button: 'component-ui-kit-button',
 	dateInput: 'component-ui-kit-date-input',
+	dateWrapper: 'component-ui-kit-date-wrapper',
 	icon: 'component-ui-kit-icon',
 	iconUse: 'component-ui-kit-icon-use',
 	input: 'component-ui-kit-input',
