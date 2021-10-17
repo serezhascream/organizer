@@ -15,4 +15,6 @@ export const testIds = {
 	textarea: 'component-ui-kit-textarea',
 	textareaWrapper: 'component-ui-kit-textarea-wrapper',
 	timeInput: 'component-ui-kit-time-input',
+	timeInputSwitcher: 'component-ui-kit-time-input-switcher',
+	timeWrapper: 'component-ui-kit-time-wrapper',
 };
