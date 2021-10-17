@@ -4,11 +4,17 @@ import { testIds } from '../../data/tests';
 interface Props {
 	name: string;
 	className?: string;
+	testId?: string;
 	onClick?: () => void;
 }
 
 const Icon: React.VFC<Props> = (props: Props) => {
-	const { name, className = null, onClick = () => {} } = props;
+	const {
+		name,
+		className = null,
+		testId = testIds.icon,
+		onClick = () => {}
+	} = props;
 
 	const classNames = React.useMemo(() => {
 		const classes = ['org-icon'];
@@ -21,7 +27,7 @@ const Icon: React.VFC<Props> = (props: Props) => {
 	}, [className]);
 	
 	return (
-		<div className={classNames} data-testid={testIds} onClick={onClick}>
+		<div className={classNames} data-testid={testId} onClick={onClick}>
 			<svg className="org-icon__svg">
 				<use xlinkHref={`#${name}`}></use>
 			</svg>
