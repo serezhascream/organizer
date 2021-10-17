@@ -76,6 +76,6 @@ describe('components > ui-kit > Button', () => {
 
 		userEvent.click(screen.getByTestId(testIds.button));
 
-		expect(handlerClick.mock.results[0].value).toEqual(buttonName);
+		expect(handlerClick).toHaveBeenCalledWith(buttonName);
 	});
 });
