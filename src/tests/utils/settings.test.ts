@@ -1,7 +1,7 @@
 import localStorageMock from '../mock/localStorage';
 import localStorageFixture from '../fixture/localStorage';
 
-import { getSettings, saveSettings, removeSettings } from '../../utils/settings';
+import * as u from '../../utils/settings';
 
 describe('utils > settings', () => {
 	const localStorage = JSON.stringify(localStorageFixture);
@@ -13,25 +13,25 @@ describe('utils > settings', () => {
 	});
 	
 	it('getSettings returns the correct object', () => {
-		const settings = getSettings();
+		const settings = u.getSettings();
 		
 		expect(settings.theme).toEqual('dark');
 	});
 	
 	it('setSettings saves settings', () => {
-		const settings = getSettings();
+		const settings = u.getSettings();
 		
-		saveSettings({ ...settings, theme: 'light' });
+		u.saveSettings({ ...settings, theme: 'light' });
 		
-		const savedSettings = getSettings();
+		const savedSettings = u.getSettings();
 		
 		expect(savedSettings.theme).toEqual('light');
 	});
 	
 	it('removeSettings removes settings', () => {
-		removeSettings();
+		u.removeSettings();
 		
-		const settings = getSettings();
+		const settings = u.getSettings();
 		
 		expect(settings).toEqual({});
 	});
