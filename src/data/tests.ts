@@ -3,6 +3,7 @@ export const testIds = {
 	button: 'component-ui-kit-button',
 	dateInput: 'component-ui-kit-date-input',
 	icon: 'component-ui-kit-icon',
+	iconUse: 'component-ui-kit-icon-use',
 	input: 'component-ui-kit-input',
 	inputWrapper: 'component-ui-kit-input-wrapper',
 	popupCloseButton: 'component-ui-kit-popup-close-button',

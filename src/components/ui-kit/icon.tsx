@@ -29,7 +29,7 @@ const Icon: React.VFC<Props> = (props: Props) => {
 	return (
 		<div className={classNames} data-testid={testId} onClick={onClick}>
 			<svg className="org-icon__svg">
-				<use xlinkHref={`#${name}`}></use>
+				<use data-testid={testIds.iconUse} xlinkHref={`#${name}`}></use>
 			</svg>
 		</div>
 	);
