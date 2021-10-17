@@ -16,7 +16,7 @@ interface Props {
 const TimeInput: React.VFC<Props> = (props: Props) => {
 	const {
 		timestamp,
-		className,
+		className = null,
 		timeIsEnabled,
 		setTimeIsEnabled,
 		onChange,
@@ -44,12 +44,13 @@ const TimeInput: React.VFC<Props> = (props: Props) => {
 	React.useEffect(() => setTimeValue(getTimeInputValue(timestamp)), [timestamp]);
 	
 	return (
-		<div className={wrapperClasses}>
+		<div className={wrapperClasses} data-testid={testIds.timeWrapper}>
 			<div className="org-time-input__label">
 				<Switcher
 					name="timeSwitcher"
 					label="Time"
 					opposite
+					wrapperTestId={testIds.timeInputSwitcher}
 					className="org-time-input__switcher"
 					checked={timeIsEnabled}
 					onChange={setTimeIsEnabled}
