@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 
-import DateInput from '../date';
-import { testIds } from '../../../data/tests';
+import DateInput from '../../components/ui-kit/date';
+import { testIds } from '../../data/tests';
 
 
 describe('components > ui-kit > DateInput', () => {

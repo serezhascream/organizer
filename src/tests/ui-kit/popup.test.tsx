@@ -2,9 +2,9 @@ import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 
-import Popup from '../popup';
-import { testIds } from '../../../data/tests';
-import { portalId } from '../../../data/constants';
+import Popup from '../../components/ui-kit/popup';
+import { testIds } from '../../data/tests';
+import { portalId } from '../../data/constants';
 
 
 describe('components > ui-kit > Popup', () => {

@@ -2,8 +2,8 @@ import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 
-import Textarea from '../textarea';
-import { testIds } from '../../../data/tests';
+import Textarea from '../../components/ui-kit/textarea';
+import { testIds } from '../../data/tests';
 
 describe('components > ui-kit > Textarea', () => {
 	it('renders', () => {
