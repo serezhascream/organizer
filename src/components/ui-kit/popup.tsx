@@ -42,7 +42,7 @@ const Popup: React.VFC<Props> = (props: Props) => {
 					<Icon
 						name="close"
 						className="org-popup__header-close"
-						data-testid={testIds.popupCloseButton}
+						testId={testIds.popupCloseButton}
 						onClick={handlerClose}
 					/>
 				</div>
