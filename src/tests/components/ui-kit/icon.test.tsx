@@ -2,8 +2,8 @@ import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 
-import Icon from '../../components/ui-kit/icon';
-import { testIds } from '../../data/tests';
+import Icon from '../../../components/ui-kit/icon';
+import { testIds } from '../../../data/tests';
 
 describe('components > ui-kit > Icon', () => {
 	it('renders', () => {

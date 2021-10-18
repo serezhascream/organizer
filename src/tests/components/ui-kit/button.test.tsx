@@ -2,8 +2,8 @@ import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 
-import Button from '../../components/ui-kit/button';
-import { testIds } from '../../data/tests';
+import Button from '../../../components/ui-kit/button';
+import { testIds } from '../../../data/tests';
 
 describe('components > ui-kit > Button', () => {
 	it('renders', () => {

@@ -2,8 +2,8 @@ import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 
-import Input from '../../components/ui-kit/input';
-import { testIds } from '../../data/tests';
+import Input from '../../../components/ui-kit/input';
+import { testIds } from '../../../data/tests';
 
 describe('components > ui-kit > Input', () => {
 	it('renders', () => {

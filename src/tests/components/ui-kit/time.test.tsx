@@ -2,8 +2,8 @@ import * as React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 
-import TimeInput from '../../components/ui-kit/time';
-import { testIds } from '../../data/tests';
+import TimeInput from '../../../components/ui-kit/time';
+import { testIds } from '../../../data/tests';
 
 
 describe('components > ui-kit > TimeInput', () => {
