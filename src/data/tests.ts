@@ -17,9 +17,11 @@ export const testIds = {
 	timeInput: 'component-ui-kit-time-input',
 	timeInputSwitcher: 'component-ui-kit-time-input-switcher',
 	timeWrapper: 'component-ui-kit-time-wrapper',
-	/* components */
+	/* components - settings */
 	settingsThemeSwitcher: 'component-settings-theme-switcher',
 	settingsFirstDaySwitcher: 'components-settings-theme-switcher',
 	settingsRemoveSettingsButton: 'components-settings-remove-settings-button',
 	settingsRemoveEventsButton: 'components-settings-remove-events-button',
+	settingsPopupWrapper: 'components-settings-popup-wrapper',
+	settingsPopupOverlay: 'components-settings-popup-overlay',
 };

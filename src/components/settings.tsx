@@ -49,6 +49,8 @@ const SettingsPopup: React.VFC<Props> = (props: Props) => {
 	return (
 		<Popup
 			title="Settings"
+			wrapperTestId={testIds.settingsPopupWrapper}
+			overlayTestId={testIds.settingsPopupOverlay}
 			onClose={onClose}
 		>
 			<>

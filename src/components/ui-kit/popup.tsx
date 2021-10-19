@@ -9,11 +9,20 @@ interface Props {
 	title: string;
 	className?: string;
 	children: React.ReactNode;
+	wrapperTestId?: string;
+	overlayTestId?: string;
 	onClose(): void;
 }
 
 const Popup: React.VFC<Props> = (props: Props) => {
-	const { title, className = null, children, onClose = () => {} } = props;
+	const {
+		title,
+		className = null,
+		children,
+		wrapperTestId = testIds.popupWrapper,
+		overlayTestId = testIds.popupOverlay,
+		onClose = () => {},
+	} = props;
 	
 	const containerClasses = React.useMemo(() => {
 		const classes = ['org-popup__container'];
@@ -30,10 +39,10 @@ const Popup: React.VFC<Props> = (props: Props) => {
 	);
 	
 	return createPortal(
-		<div className="org-popup" data-testid={testIds.popupWrapper}>
+		<div className="org-popup" data-testid={wrapperTestId}>
 			<div
 				className="org-popup__overlay"
-				data-testid={testIds.popupOverlay}
+				data-testid={overlayTestId}
 				onClick={handlerClose}
 			/>
 			<div className={containerClasses}>
