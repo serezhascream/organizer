@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import SettingsPopup from './settings';
-import { Icon } from './ui-kit';
+import Icon from './ui-kit/icon';
 
 const Header: React.VFC = () => {
 	const [settingsPopupIsActive, setSettingsPopupIsActive] = React.useState(false);

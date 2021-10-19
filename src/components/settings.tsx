@@ -5,7 +5,10 @@ import { removeSettings } from '../utils/settings';
 import { deleteAllEvents } from '../utils/events';
 
 import { switchTheme, switchFirstDay } from '../features/settingsSlice';
-import { Popup, Switcher, Button } from './ui-kit';
+
+import Popup from '../components/ui-kit/popup';
+import Switcher from '../components/ui-kit/switcher';
+import Button from '../components/ui-kit/button';
 
 interface Props {
 	onClose(): void;

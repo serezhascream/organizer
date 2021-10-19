@@ -1,7 +1,12 @@
 import * as React from 'react';
 
-import { Input, Textarea, DateInput, TimeInput, Button} from '../ui-kit';
 import { TEditPopupEditProps as Props } from '../../data/types';
+
+import Input from '../ui-kit/input';
+import Textarea from '../ui-kit/textarea';
+import DateInput from '../ui-kit/date';
+import TimeInput from '../ui-kit/time';
+import Button from '../ui-kit/button';
 
 const EventPopupEdit: React.VFC<Props> = (props: Props) => {
 	const { selectedEvent, onSave, onClose } = props;

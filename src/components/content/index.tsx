@@ -6,7 +6,7 @@ import { getListTitle } from '../../utils';
 import { getEvents, getEvent } from '../../selectors/events';
 import { saveEvent } from '../../features/eventsSlice';
 
-import { Icon } from '../ui-kit';
+import Icon from '../ui-kit/icon';
 import EventsList from './list';
 import EventPopup from '../eventPopup';
 import DeleteEventAlert from '../deleteEventAlert';

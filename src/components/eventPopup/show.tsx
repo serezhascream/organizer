@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import { Icon, Button} from '../ui-kit';
+import Icon from '../ui-kit/icon';
+import Button from '../ui-kit/button';
 import { TEditPopupShowProps as Props } from '../../data/types';
 
 const EventPopupShow: React.VFC<Props> = (props: Props) => {

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { TEventObj } from '../../data/types';
 import { getDateString, getEventPopupTitle } from '../../utils';
-import { Popup } from '../ui-kit';
+import Popup from '../ui-kit/popup';
 import Content from './content';
 
 interface Props {
