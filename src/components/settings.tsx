@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { TRootState } from '../data/types';
+import { testIds } from '../data/tests';
 import { removeSettings } from '../utils/settings';
 import { deleteAllEvents } from '../utils/events';
 
@@ -55,12 +56,14 @@ const SettingsPopup: React.VFC<Props> = (props: Props) => {
 					name="darkTheme"
 					checked={isDarkTheme}
 					label="Use dark theme"
+					wrapperTestId={testIds.settingsThemeSwitcher}
 					onChange={handlerChangeTheme}
 				/>
 				<Switcher
 					name="firstDayIsMonday"
 					checked={firstDayIsMonday}
 					label="Week starts on Monday"
+					wrapperTestId={testIds.settingsFirstDaySwitcher}
 					onChange={handlerChangeFirstDay}
 				/>
 				<div className="org-settings__subtitle">Data management</div>
@@ -68,12 +71,14 @@ const SettingsPopup: React.VFC<Props> = (props: Props) => {
 					<Button
 						name="remove_settings"
 						extraClass="org-settings__button-remove-settings"
+						testId={testIds.settingsRemoveSettingsButton}
 						onClick={handlerRemoveSettings}
 					>
 						Restore settings
 					</Button>
 					<Button
 						name="delete_events"
+						testId={testIds.settingsRemoveEventsButton}
 						onClick={handlerDeleteAllEvents}
 					>
 						Delete all events
