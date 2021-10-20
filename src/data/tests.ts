@@ -34,6 +34,7 @@ export const testIds = {
 	/* components - event popup */
 	eventPopupWrapper: 'component-event-popup-wrapper',
 	eventPopupOverlay: 'component-event-popup-overlay',
+	eventPopupCloseButton: 'component-event-popup-close-button',
 	/* components - event popup - edit */
 	eventPopupEditTitle: 'component-event-popup-edit-title',
 	eventPopupEditDescription: 'component-event-popup-edit-description',

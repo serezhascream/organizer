@@ -44,6 +44,7 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 			title={popupTitle}
 			wrapperTestId={testIds.eventPopupWrapper}
 			overlayTestId={testIds.eventPopupOverlay}
+			closeButtonTestId={testIds.eventPopupCloseButton}
 			onClose={handlerClose}
 		>
 			<Content
