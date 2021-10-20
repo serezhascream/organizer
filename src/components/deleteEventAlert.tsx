@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import Popup from '../components/ui-kit/popup';
 import Button from '../components/ui-kit/button';
 import { deleteEvent } from '../features/eventsSlice';
+import { testIds } from '../data/tests';
 
 interface Props {
 	eventId: string;
@@ -25,6 +26,8 @@ const DeleteEventAlert: React.VFC<Props> = (props: Props) => {
 		<Popup
 			title="Delete event"
 			className="org-delete-alert"
+			wrapperTestId={testIds.deleteAlertWrapper}
+			overlayTestId={testIds.deleteAlertOverlay}
 			onClose={onClose}
 		>
 			<div className="org-delete-alert__text">
@@ -33,6 +36,7 @@ const DeleteEventAlert: React.VFC<Props> = (props: Props) => {
 			<div className="org-delete-alert__buttons">
 				<Button
 					name="Cancel"
+					testId={testIds.deleteAlertButtonCancel}
 					onClick={handlerCancel}
 				>
 					Cancel
@@ -40,6 +44,7 @@ const DeleteEventAlert: React.VFC<Props> = (props: Props) => {
 				<Button
 					name="confirm"
 					extraClass="org-delete-alert__button-confirm"
+					testId={testIds.deleteAlertButtonConfirm}
 					onClick={handlerConfirm}
 				>
 					Confirm

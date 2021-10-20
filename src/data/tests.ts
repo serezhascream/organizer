@@ -29,4 +29,10 @@ export const testIds = {
 	settingsRemoveEventsButton: 'components-settings-remove-events-button',
 	settingsPopupWrapper: 'components-settings-popup-wrapper',
 	settingsPopupOverlay: 'components-settings-popup-overlay',
+	
+	/* components - delete event alert */
+	deleteAlertOverlay: 'component-delete-alert-overlay',
+	deleteAlertWrapper: 'component-delete-alert-wrapper',
+	deleteAlertButtonCancel: 'component-delete-alert-cancel',
+	deleteAlertButtonConfirm: 'component-delete-alert-confirm',
 };
