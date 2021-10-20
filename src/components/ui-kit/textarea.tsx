@@ -3,11 +3,12 @@ import * as React from 'react';
 import { testIds } from '../../data/tests';
 
 interface Props {
-	name: string,
-	value: string,
-	label?: string,
-	extraClass?: string,
-	onChange(value: string, name: string): void
+	name: string;
+	value: string;
+	label?: string;
+	extraClass?: string;
+	testId?: string;
+	onChange(value: string, name: string): void;
 }
 
 const Textarea: React.VFC<Props> = (props: Props) => {
@@ -16,6 +17,7 @@ const Textarea: React.VFC<Props> = (props: Props) => {
 		value,
 		label = '',
 		extraClass = '',
+		testId = testIds.textarea,
 		onChange = () => {},
 	} = props;
 	
@@ -50,7 +52,7 @@ const Textarea: React.VFC<Props> = (props: Props) => {
 				name={name}
 				value={text}
 				onChange={handlerChange}
-				data-testid={testIds.textarea}
+				data-testid={testId}
 			/>
 		
 		</div>
