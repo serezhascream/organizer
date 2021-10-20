@@ -10,6 +10,8 @@ interface Props {
 	className?: string;
 	timeIsEnabled: boolean;
 	setTimeIsEnabled(value: boolean): void;
+	switcherTestId?: string;
+	inputTestId?: string;
 	onChange(value: number): void;
 }
 
@@ -19,6 +21,8 @@ const TimeInput: React.VFC<Props> = (props: Props) => {
 		className = null,
 		timeIsEnabled,
 		setTimeIsEnabled,
+		switcherTestId = testIds.timeInputSwitcher,
+		inputTestId = testIds.timeInput,
 		onChange,
 	} = props;
 	const [timeValue, setTimeValue] = React.useState<string>(() => getTimeInputValue(timestamp))
@@ -50,7 +54,7 @@ const TimeInput: React.VFC<Props> = (props: Props) => {
 					name="timeSwitcher"
 					label="Time"
 					opposite
-					wrapperTestId={testIds.timeInputSwitcher}
+					wrapperTestId={switcherTestId}
 					className="org-time-input__switcher"
 					checked={timeIsEnabled}
 					onChange={setTimeIsEnabled}
@@ -60,7 +64,7 @@ const TimeInput: React.VFC<Props> = (props: Props) => {
 				type="time"
 				value={timeValue}
 				className="org-time-input__input"
-				data-testid={testIds.timeInput}
+				data-testid={inputTestId}
 				disabled={! timeIsEnabled}
 				onChange={handlerChange}
 			/>
