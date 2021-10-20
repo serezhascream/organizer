@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { TEventObj } from '../../data/types';
+import { testIds } from '../../data/tests'
 import { getDateString, getEventPopupTitle } from '../../utils';
 import Popup from '../ui-kit/popup';
 import Content from './content';
@@ -39,7 +40,12 @@ const EventPopup: React.VFC<Props> = (props: Props) => {
 	}, [onSave]);
 	
 	return (
-		<Popup title={popupTitle} onClose={handlerClose}>
+		<Popup
+			title={popupTitle}
+			wrapperTestId={testIds.eventPopupWrapper}
+			overlayTestId={testIds.eventPopupOverlay}
+			onClose={handlerClose}
+		>
 			<Content
 				view={popupView}
 				dateString={dateString}

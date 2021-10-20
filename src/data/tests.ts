@@ -30,6 +30,24 @@ export const testIds = {
 	settingsPopupWrapper: 'components-settings-popup-wrapper',
 	settingsPopupOverlay: 'components-settings-popup-overlay',
 	
+	/* components - event popup */
+	eventPopupWrapper: 'component-event-popup-wrapper',
+	eventPopupOverlay: 'component-event-popup-overlay',
+	/* components - event popup - edit */
+	eventPopupEditTitle: 'component-event-popup-edit-title',
+	eventPopupEditDescription: 'component-event-popup-edit-description',
+	eventPopupEditDateInput: 'component-event-popup-edit-date-input',
+	eventPopupEditTimeSwitcher: 'component-event-popup-edit-time-switcher',
+	eventPopupEditTimeInput: 'component-event-popup-edit-time-input',
+	eventPopupEditButtonCancel: 'component-event-popup-edit-button-cancel',
+	eventPopupEditButtonSave: 'component-event-poupu-edit-button-save',
+	/* components - event popup - show */
+	eventPopupShowTitle: 'component-event-popup-show-title',
+	eventPopupShowDescription: 'component-event-popup-show-title',
+	eventPopupShowDateTime: 'component-event-popup-show-date-time',
+	eventPopupShowButtonDelete: 'component-event-popup-show-button-delete',
+	eventPopupShowButtonEdit: 'component-event-popup-show-button-edit',
+	
 	/* components - delete event alert */
 	deleteAlertOverlay: 'component-delete-alert-overlay',
 	deleteAlertWrapper: 'component-delete-alert-wrapper',
