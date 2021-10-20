@@ -11,6 +11,7 @@ interface Props {
 	children: React.ReactNode;
 	wrapperTestId?: string;
 	overlayTestId?: string;
+	closeButtonTestId?: string;
 	onClose(): void;
 }
 
@@ -21,6 +22,7 @@ const Popup: React.VFC<Props> = (props: Props) => {
 		children,
 		wrapperTestId = testIds.popupWrapper,
 		overlayTestId = testIds.popupOverlay,
+		closeButtonTestId = testIds.popupCloseButton,
 		onClose = () => {},
 	} = props;
 	
@@ -51,7 +53,7 @@ const Popup: React.VFC<Props> = (props: Props) => {
 					<Icon
 						name="close"
 						className="org-popup__header-close"
-						testId={testIds.popupCloseButton}
+						testId={closeButtonTestId}
 						onClick={handlerClose}
 					/>
 				</div>
