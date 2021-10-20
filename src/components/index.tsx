@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { TRootState } from '../data/types';
+import { testIds } from '../data/tests';
 
 import Calendar from './calendar';
 import Header from './header';
@@ -21,7 +22,7 @@ const Organizer: React.VFC = () => {
 	}, [theme]);
 	
 	return (
-		<main className="org-wrapper">
+		<main className="org-wrapper" data-testid={testIds.mainWrapper}>
 			<Header />
 			<div className="org-divider" />
 			<section className="org-container">

@@ -17,6 +17,11 @@ export const testIds = {
 	timeInput: 'component-ui-kit-time-input',
 	timeInputSwitcher: 'component-ui-kit-time-input-switcher',
 	timeWrapper: 'component-ui-kit-time-wrapper',
+	
+	mainWrapper: 'components-main-wrapper',
+	
+	openSettingsButton: 'components-open-settings-button',
+	
 	/* components - settings */
 	settingsThemeSwitcher: 'component-settings-theme-switcher',
 	settingsFirstDaySwitcher: 'components-settings-theme-switcher',

@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { testIds } from '../data/tests';
+
 import SettingsPopup from './settings';
 import Icon from './ui-kit/icon';
 
@@ -31,6 +33,7 @@ const Header: React.VFC = () => {
 				<Icon
 					name={'settings'}
 					className={iconClasses}
+					testId={testIds.openSettingsButton}
 					onClick={handlerOpenSettings}
 				/>
 			</section>
