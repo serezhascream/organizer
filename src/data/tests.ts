@@ -21,6 +21,7 @@ export const testIds = {
 	mainWrapper: 'components-main-wrapper',
 	
 	openSettingsButton: 'components-open-settings-button',
+	addEventButton: 'components-add-event-button',
 	
 	/* components - settings */
 	settingsThemeSwitcher: 'component-settings-theme-switcher',

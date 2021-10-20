@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { TRootState, TEventObj } from '../../data/types';
+import { testIds } from '../../data/tests';
 import { getListTitle } from '../../utils';
 import { getEvents, getEvent } from '../../selectors/events';
 import { saveEvent } from '../../features/eventsSlice';
@@ -72,6 +73,7 @@ const OrganizerContent: React.VFC<Props> = (props: Props) => {
 					<Icon
 						name="add"
 						className="org-content__add-button"
+						testId={testIds.addEventButton}
 						onClick={handlerCreateEvent}
 					/>
 				</div>
