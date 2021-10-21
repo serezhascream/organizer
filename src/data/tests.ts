@@ -45,7 +45,7 @@ export const testIds = {
 	eventPopupEditButtonSave: 'component-event-poupu-edit-button-save',
 	/* components - event popup - show */
 	eventPopupShowTitle: 'component-event-popup-show-title',
-	eventPopupShowDescription: 'component-event-popup-show-title',
+	eventPopupShowDescription: 'component-event-popup-show-description',
 	eventPopupShowDateTime: 'component-event-popup-show-date-time',
 	eventPopupShowButtonDelete: 'component-event-popup-show-button-delete',
 	eventPopupShowButtonEdit: 'component-event-popup-show-button-edit',
