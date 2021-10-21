@@ -78,7 +78,7 @@ const OrganizerContent: React.VFC<Props> = (props: Props) => {
 					/>
 				</div>
 				<div className="org-content__wrapper">
-					<div className="org-content__content">
+					<div className="org-content__content" data-testid={testIds.eventListContentWrapper}>
 						<EventsList
 							events={events}
 							selectedDay={selectedDay}

@@ -19,9 +19,7 @@ export const testIds = {
 	timeWrapper: 'component-ui-kit-time-wrapper',
 	
 	mainWrapper: 'components-main-wrapper',
-	
 	openSettingsButton: 'components-open-settings-button',
-	addEventButton: 'components-add-event-button',
 	
 	/* components - settings */
 	settingsThemeSwitcher: 'component-settings-theme-switcher',
@@ -55,4 +53,8 @@ export const testIds = {
 	deleteAlertWrapper: 'component-delete-alert-wrapper',
 	deleteAlertButtonCancel: 'component-delete-alert-cancel',
 	deleteAlertButtonConfirm: 'component-delete-alert-confirm',
+	
+	/* components - content */
+	addEventButton: 'components-add-event-button',
+	eventListContentWrapper: 'component-event-list-content-wrapper',
 };
