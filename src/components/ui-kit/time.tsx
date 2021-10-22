@@ -6,21 +6,23 @@ import { testIds } from '../../data/tests';
 import Switcher from './switcher';
 
 interface Props {
+	inputName?: string;
+	switcherName?: string;
 	timestamp: number;
 	className?: string;
 	timeIsEnabled: boolean;
-	setTimeIsEnabled(value: boolean): void;
 	switcherTestId?: string;
 	inputTestId?: string;
-	onChange(value: number): void;
+	onChange(value: number | boolean, name: string): void;
 }
 
 const TimeInput: React.VFC<Props> = (props: Props) => {
 	const {
+		inputName = 'time',
+		switcherName = 'timeSwitcher',
 		timestamp,
 		className = null,
 		timeIsEnabled,
-		setTimeIsEnabled,
 		switcherTestId = testIds.timeInputSwitcher,
 		inputTestId = testIds.timeInput,
 		onChange,
@@ -42,8 +44,12 @@ const TimeInput: React.VFC<Props> = (props: Props) => {
 
 	const handlerChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		setTimeValue(e.target.value);
-		onChange(getUpdatedTime(timestamp, e.target.value));
-	}, [setTimeValue, timestamp, onChange]);
+		onChange(getUpdatedTime(timestamp, e.target.value), inputName);
+	}, [setTimeValue, timestamp, inputName, onChange]);
+
+	const handlerChangeSwitcher = React.useCallback((value: boolean) => {
+		onChange(value, switcherName);
+	}, []);
 
 	React.useEffect(() => setTimeValue(getTimeInputValue(timestamp)), [timestamp]);
 	
@@ -51,16 +57,17 @@ const TimeInput: React.VFC<Props> = (props: Props) => {
 		<div className={wrapperClasses} data-testid={testIds.timeWrapper}>
 			<div className="org-time-input__label">
 				<Switcher
-					name="timeSwitcher"
+					name={switcherName}
 					label="Time"
 					opposite
 					wrapperTestId={switcherTestId}
 					className="org-time-input__switcher"
 					checked={timeIsEnabled}
-					onChange={setTimeIsEnabled}
+					onChange={handlerChangeSwitcher}
 				/>
 			</div>
 			<input
+				name={inputName}
 				type="time"
 				value={timeValue}
 				className="org-time-input__input"
