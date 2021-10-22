@@ -1,5 +1,4 @@
 export const testIds = {
-	/* ui-kit */
 	button: 'component-ui-kit-button',
 	dateInput: 'component-ui-kit-date-input',
 	dateWrapper: 'component-ui-kit-date-wrapper',
@@ -20,41 +19,40 @@ export const testIds = {
 	
 	mainWrapper: 'components-main-wrapper',
 	openSettingsButton: 'components-open-settings-button',
-	
-	/* components - settings */
-	settingsThemeSwitcher: 'component-settings-theme-switcher',
-	settingsFirstDaySwitcher: 'components-settings-theme-switcher',
-	settingsRemoveSettingsButton: 'components-settings-remove-settings-button',
-	settingsRemoveEventsButton: 'components-settings-remove-events-button',
-	settingsPopupWrapper: 'components-settings-popup-wrapper',
-	settingsPopupOverlay: 'components-settings-popup-overlay',
-	
-	/* components - event popup */
-	eventPopupWrapper: 'component-event-popup-wrapper',
-	eventPopupOverlay: 'component-event-popup-overlay',
-	eventPopupCloseButton: 'component-event-popup-close-button',
-	/* components - event popup - edit */
-	eventPopupEditTitle: 'component-event-popup-edit-title',
-	eventPopupEditDescription: 'component-event-popup-edit-description',
-	eventPopupEditDateInput: 'component-event-popup-edit-date-input',
-	eventPopupEditTimeSwitcher: 'component-event-popup-edit-time-switcher',
-	eventPopupEditTimeInput: 'component-event-popup-edit-time-input',
-	eventPopupEditButtonCancel: 'component-event-popup-edit-button-cancel',
-	eventPopupEditButtonSave: 'component-event-poupu-edit-button-save',
-	/* components - event popup - show */
-	eventPopupShowTitle: 'component-event-popup-show-title',
-	eventPopupShowDescription: 'component-event-popup-show-description',
-	eventPopupShowDateTime: 'component-event-popup-show-date-time',
-	eventPopupShowButtonDelete: 'component-event-popup-show-button-delete',
-	eventPopupShowButtonEdit: 'component-event-popup-show-button-edit',
-	
-	/* components - delete event alert */
-	deleteAlertOverlay: 'component-delete-alert-overlay',
-	deleteAlertWrapper: 'component-delete-alert-wrapper',
-	deleteAlertButtonCancel: 'component-delete-alert-cancel',
-	deleteAlertButtonConfirm: 'component-delete-alert-confirm',
-	
-	/* components - content */
 	addEventButton: 'components-add-event-button',
 	eventListContentWrapper: 'component-event-list-content-wrapper',
 };
+
+export const deleteAlertTestIds = {
+	overlay: 'component-delete-alert-overlay',
+	wrapper: 'component-delete-alert-wrapper',
+	buttonCancel: 'component-delete-alert-cancel',
+	buttonConfirm: 'component-delete-alert-confirm',
+};
+
+export const settingsTestIds = {
+	themeSwitcher: 'component-settings-theme-switcher',
+	firstDaySwitcher: 'components-settings-theme-switcher',
+	removeSettingsButton: 'components-settings-remove-settings-button',
+	removeEventsButton: 'components-settings-remove-events-button',
+	popupWrapper: 'components-settings-popup-wrapper',
+	popupOverlay: 'components-settings-popup-overlay',
+};
+
+export const eventPopupTestIds = {
+	wrapper: 'component-event-popup-wrapper',
+	overlay: 'component-event-popup-overlay',
+	closeButton: 'component-event-popup-close-button',
+	editTitle: 'component-event-popup-edit-title',
+	editDescription: 'component-event-popup-edit-description',
+	editDateInput: 'component-event-popup-edit-date-input',
+	editTimeSwitcher: 'component-event-popup-edit-time-switcher',
+	editTimeInput: 'component-event-popup-edit-time-input',
+	editButtonCancel: 'component-event-popup-edit-button-cancel',
+	editButtonSave: 'component-event-poupu-edit-button-save',
+	showTitle: 'component-event-popup-show-title',
+	showDescription: 'component-event-popup-show-description',
+	showDateTime: 'component-event-popup-show-date-time',
+	showButtonDelete: 'component-event-popup-show-button-delete',
+	showButtonEdit: 'component-event-popup-show-button-edit',
+}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { TEditPopupEditProps as Props } from '../../data/types';
-import { testIds } from '../../data/tests';
+import { eventPopupTestIds as testIds } from '../../data/tests'
 
 import Input from '../ui-kit/input';
 import Textarea from '../ui-kit/textarea';
@@ -51,14 +51,14 @@ const EventPopupEdit: React.VFC<Props> = (props: Props) => {
 				value={title}
 				extraClass="org-event-popup__title"
 				label="Title"
-				testId={testIds.eventPopupEditTitle}
+				testId={testIds.editTitle}
 				onChange={handlerChangeTitle}
 			/>
 			<div className="org-event-popup__date-and-time">
 				<DateInput
 					timestamp={timestamp}
 					className="org-event-popup__date-input"
-					testId={testIds.eventPopupEditDateInput}
+					testId={testIds.editDateInput}
 					onChange={handlerChangeTimestamp}
 				/>
 				<TimeInput
@@ -66,8 +66,8 @@ const EventPopupEdit: React.VFC<Props> = (props: Props) => {
 					className="org-event-popup__time-input"
 					timeIsEnabled={hasTime}
 					setTimeIsEnabled={handlerChangeHasTime}
-					switcherTestId={testIds.eventPopupEditTimeSwitcher}
-					inputTestId={testIds.eventPopupEditTimeInput}
+					switcherTestId={testIds.editTimeSwitcher}
+					inputTestId={testIds.editTimeInput}
 					onChange={handlerChangeTimestamp}
 				/>
 			</div>
@@ -76,14 +76,14 @@ const EventPopupEdit: React.VFC<Props> = (props: Props) => {
 				value={description}
 				extraClass="org-event-popup__description"
 				label="Description"
-				testId={testIds.eventPopupEditDescription}
+				testId={testIds.editDescription}
 				onChange={handlerChangeDescription}
 			/>
 			<div className="org-event-popup__edit-buttons">
 				<Button
 					name="cancel"
 					extraClass="org-event-popup__cancel"
-					testId={testIds.eventPopupEditButtonCancel}
+					testId={testIds.editButtonCancel}
 					onClick={onClose}
 				>
 					{'Cancel'}
@@ -92,7 +92,7 @@ const EventPopupEdit: React.VFC<Props> = (props: Props) => {
 					name="save"
 					disabled={saveButtonIsDisabled}
 					extraClass="org-event-popup__save"
-					testId={testIds.eventPopupEditButtonSave}
+					testId={testIds.editButtonSave}
 					onClick={handlerSave}
 				>
 					{'Save'}

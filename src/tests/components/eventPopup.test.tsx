@@ -6,7 +6,11 @@ import localStorageFixture from '../fixture/localStorage';
 import localStorageMock from '../mock/localStorage';
 import { getDateInputValue } from '../../utils';
 
-import { testIds } from '../../data/tests';
+import {
+	testIds,
+	eventPopupTestIds as eTestIds,
+	deleteAlertTestIds as dTestIds,
+} from '../../data/tests';
 import { portalId } from '../../data/constants';
 import Organizer from '../../components';
 
@@ -41,78 +45,78 @@ describe('components > EventPopup', () => {
 
 	const fillFields = () => {
 		fireEvent.change(
-			screen.getByTestId(testIds.eventPopupEditTitle),
+			screen.getByTestId(eTestIds.editTitle),
 			{ target: { value: newEventToCreate.title }}
 		);
 
 		fireEvent.change(
-			screen.getByTestId(testIds.eventPopupEditDescription),
+			screen.getByTestId(eTestIds.editDescription),
 			{ target: { value: newEventToCreate.description } }
 		);
 
 		fireEvent.change(
-			screen.getByTestId(testIds.eventPopupEditDateInput),
+			screen.getByTestId(eTestIds.editDateInput),
 			{ target: { value: newEventToCreate.date } }
 		);
 	};
 	
 	it('click on add event button opens the event popup', () => {
-		expect(screen.getByTestId(testIds.eventPopupWrapper)).toBeInTheDocument();
+		expect(screen.getByTestId(eTestIds.wrapper)).toBeInTheDocument();
 	});
 
 	it('click on overlay closes the event popup', () => {
-		userEvent.click(screen.getByTestId(testIds.eventPopupOverlay));
+		userEvent.click(screen.getByTestId(eTestIds.overlay));
 		
-		expect(screen.queryByTestId(testIds.eventPopupWrapper)).not.toBeInTheDocument();
+		expect(screen.queryByTestId(eTestIds.wrapper)).not.toBeInTheDocument();
 	});
 
 	it('click on cancel button closes the event popup', () => {
-		userEvent.click(screen.getByTestId(testIds.eventPopupEditButtonCancel));
+		userEvent.click(screen.getByTestId(eTestIds.editButtonCancel));
 		
-		expect(screen.queryByTestId(testIds.eventPopupWrapper)).not.toBeInTheDocument();
+		expect(screen.queryByTestId(eTestIds.wrapper)).not.toBeInTheDocument();
 	});
 
 	it('click on popup close button closes the event popup', () => {
-		userEvent.click(screen.getByTestId(testIds.eventPopupCloseButton));
+		userEvent.click(screen.getByTestId(eTestIds.closeButton));
 		
-		expect(screen.queryByTestId(testIds.eventPopupWrapper)).not.toBeInTheDocument();
+		expect(screen.queryByTestId(eTestIds.wrapper)).not.toBeInTheDocument();
 	});
 
 	it('save button is disabled by default', () => {
-		expect(screen.getByTestId(testIds.eventPopupEditButtonSave)).toBeDisabled();
+		expect(screen.getByTestId(eTestIds.editButtonSave)).toBeDisabled();
 	})
 
 	it('save button enables after filling a title input', () => {
 		fireEvent.change(
-			screen.getByTestId(testIds.eventPopupEditTitle),
+			screen.getByTestId(eTestIds.editTitle),
 			{ target: { value: newEventToCreate.title }}
 		);
 		
-		expect(screen.getByTestId(testIds.eventPopupEditButtonSave)).not.toBeDisabled();
+		expect(screen.getByTestId(eTestIds.editButtonSave)).not.toBeDisabled();
 	});
 	
 	it('creates an event and shows it in the popup', () => {
 		fillFields();
 		
-		userEvent.click(screen.getByTestId(testIds.eventPopupEditButtonSave));
+		userEvent.click(screen.getByTestId(eTestIds.editButtonSave));
 
-		expect(screen.queryByTestId(testIds.eventPopupEditTitle)).not.toBeInTheDocument();
-		expect(screen.getByTestId(testIds.eventPopupShowTitle)).toBeInTheDocument();
+		expect(screen.queryByTestId(eTestIds.editTitle)).not.toBeInTheDocument();
+		expect(screen.getByTestId(eTestIds.showTitle)).toBeInTheDocument();
 		expect(
-			screen.getByTestId(testIds.eventPopupShowTitle).textContent
+			screen.getByTestId(eTestIds.showTitle).textContent
 		).toEqual(newEventToCreate.title);
 		expect(
-			screen.getByTestId(testIds.eventPopupShowDescription).textContent
+			screen.getByTestId(eTestIds.showDescription).textContent
 		).toEqual(newEventToCreate.description);
 	});
 	
 	it('created event appears in the event list', () => {
 		fillFields();
 
-		expect(screen.getByTestId(testIds.eventPopupEditTimeInput)).toBeDisabled();
+		expect(screen.getByTestId(eTestIds.editTimeInput)).toBeDisabled();
 		
-		userEvent.click(screen.getByTestId(testIds.eventPopupEditButtonSave));
-		userEvent.click(screen.getByTestId(testIds.eventPopupOverlay));
+		userEvent.click(screen.getByTestId(eTestIds.editButtonSave));
+		userEvent.click(screen.getByTestId(eTestIds.overlay));
 
 		expect(screen.getByText(newEventToCreate.title)).toBeInTheDocument();
 		expect(screen.getByTestId(testIds.eventListContentWrapper).children.length).toEqual(1);
@@ -120,33 +124,33 @@ describe('components > EventPopup', () => {
 
 	it('creates a new event with time', () => {
 		fillFields();
-		const timeInput = screen.getByTestId(testIds.eventPopupEditTimeInput);
+		const timeInput = screen.getByTestId(eTestIds.editTimeInput);
 		
-		userEvent.click(screen.getByTestId(testIds.eventPopupEditTimeSwitcher));
+		userEvent.click(screen.getByTestId(eTestIds.editTimeSwitcher));
 
 		expect(timeInput).not.toBeDisabled();
 		
 		fireEvent.change(timeInput, { target: { value: newEventToCreate.time }})
 
-		userEvent.click(screen.getByTestId(testIds.eventPopupEditButtonSave));
+		userEvent.click(screen.getByTestId(eTestIds.editButtonSave));
 
 		expect(
-			screen.getByTestId(testIds.eventPopupShowDateTime)
+			screen.getByTestId(eTestIds.showDateTime)
 		).toHaveTextContent(newEventToCreate.time);
 	});
 	
 	it('deletes the created event', () => {
 		fillFields();
 		
-		userEvent.click(screen.getByTestId(testIds.eventPopupEditButtonSave));
+		userEvent.click(screen.getByTestId(eTestIds.editButtonSave));
 		expect(screen.getByTestId(testIds.eventListContentWrapper).children.length).toEqual(1);
 
-		userEvent.click(screen.getByTestId(testIds.eventPopupShowButtonDelete))
-		expect(screen.getByTestId(testIds.deleteAlertWrapper)).toBeInTheDocument();
+		userEvent.click(screen.getByTestId(eTestIds.showButtonDelete))
+		expect(screen.getByTestId(dTestIds.wrapper)).toBeInTheDocument();
 
-		userEvent.click(screen.getByTestId(testIds.deleteAlertButtonConfirm));
-		expect(screen.queryByTestId(testIds.eventPopupWrapper)).not.toBeInTheDocument();
-		expect(screen.queryByTestId(testIds.deleteAlertWrapper)).not.toBeInTheDocument();
+		userEvent.click(screen.getByTestId(dTestIds.buttonConfirm));
+		expect(screen.queryByTestId(eTestIds.wrapper)).not.toBeInTheDocument();
+		expect(screen.queryByTestId(dTestIds.wrapper)).not.toBeInTheDocument();
 		
 		expect(screen.queryByText(newEventToCreate.title)).not.toBeInTheDocument();
 	});

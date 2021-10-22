@@ -3,7 +3,7 @@ import * as React from 'react';
 import Icon from '../ui-kit/icon';
 import Button from '../ui-kit/button';
 import { TEditPopupShowProps as Props } from '../../data/types';
-import { testIds } from '../../data/tests';
+import { eventPopupTestIds as testIds } from '../../data/tests'
 
 const EventPopupShow: React.VFC<Props> = (props: Props) => {
 	const { dateString, selectedEvent, onOpenEditor, onDeleteEvent } = props;
@@ -12,13 +12,13 @@ const EventPopupShow: React.VFC<Props> = (props: Props) => {
 		<>
 			<h3
 				className="org-event-popup__show-title"
-				data-testid={testIds.eventPopupShowTitle}
+				data-testid={testIds.showTitle}
 			>
 				{selectedEvent.title}
 			</h3>
 			<div
 				className="org-event-popup__show-date"
-				data-testid={testIds.eventPopupShowDateTime}
+				data-testid={testIds.showDateTime}
 			>
 				{ dateString }
 			</div>
@@ -26,7 +26,7 @@ const EventPopupShow: React.VFC<Props> = (props: Props) => {
 				!! selectedEvent.description.length &&
 				<p
 					className="org-event-popup__show-description"
-					data-testid={testIds.eventPopupShowDescription}
+					data-testid={testIds.showDescription}
 				>
 					{selectedEvent.description}
 				</p>
@@ -35,12 +35,12 @@ const EventPopupShow: React.VFC<Props> = (props: Props) => {
 				<Icon
 					name="delete"
 					className="org-event-popup__button-delete"
-					testId={testIds.eventPopupShowButtonDelete}
+					testId={testIds.showButtonDelete}
 					onClick={onDeleteEvent}
 				/>
 				<Button
 					name="edit"
-					testId={testIds.eventPopupShowButtonEdit}
+					testId={testIds.showButtonEdit}
 					onClick={onOpenEditor}
 				>
 					{'Edit'}

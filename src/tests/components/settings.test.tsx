@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event'
 import localStorageFixture from '../fixture/localStorage';
 import localStorageMock from '../mock/localStorage';
 
-import { testIds } from '../../data/tests';
+import { testIds, settingsTestIds as sTestIds } from '../../data/tests';
 import { portalId } from '../../data/constants';
 import Organizer from '../../components';
 
@@ -42,31 +42,31 @@ describe('components > Settings ', () => {
 	
 	it('settings popup opens on click', () => {
 		expect(screen.getByTestId(testIds.mainWrapper)).toBeInTheDocument();
-		expect(screen.getByTestId(testIds.settingsPopupWrapper)).toBeInTheDocument();
+		expect(screen.getByTestId(sTestIds.popupWrapper)).toBeInTheDocument();
 	});
 
 	it('theme switcher switches the theme', () => {
-		userEvent.click(screen.getByTestId(testIds.settingsThemeSwitcher));
+		userEvent.click(screen.getByTestId(sTestIds.themeSwitcher));
 
 		expect(document.querySelector('html').getAttribute('data-theme')).toEqual('light');
 	});
 
 	it('day switcher switches the first day of week', () => {
-		userEvent.click(screen.getByTestId(testIds.settingsFirstDaySwitcher));
+		userEvent.click(screen.getByTestId(sTestIds.firstDaySwitcher));
 
 		const list = screen.getByText('Sun').parentNode;
 		expect(list.children[0].textContent).toEqual('Sun');
 	});
 	
 	it('click on button removes settings', () => {
-		userEvent.click(screen.getByTestId(testIds.settingsRemoveSettingsButton))
+		userEvent.click(screen.getByTestId(sTestIds.removeSettingsButton))
 
 		expect(window.localStorage.getItem('orgCalendarSettings')).toBeFalsy();
 		expect(window.location.reload).toHaveBeenCalled();
 	});
 	
 	it('click on button removes events', () => {
-		userEvent.click(screen.getByTestId(testIds.settingsRemoveEventsButton))
+		userEvent.click(screen.getByTestId(sTestIds.removeEventsButton))
 		
 		expect(window.localStorage.getItem('orgCalendarEvents')).toBeFalsy();
 		expect(window.location.reload).toHaveBeenCalled();
