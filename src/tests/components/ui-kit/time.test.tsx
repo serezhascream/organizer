@@ -15,7 +15,6 @@ describe('components > ui-kit > TimeInput', () => {
 			<TimeInput
 				timestamp={timestamp}
 				timeIsEnabled={false}
-				setTimeIsEnabled={() => {}}
 				onChange={() => {}}
 			/>
 		);
@@ -28,7 +27,6 @@ describe('components > ui-kit > TimeInput', () => {
 			<TimeInput
 				timestamp={timestamp}
 				timeIsEnabled={false}
-				setTimeIsEnabled={() => {}}
 				onChange={() => {}}
 			/>
 		);
@@ -41,7 +39,6 @@ describe('components > ui-kit > TimeInput', () => {
 			<TimeInput
 				timestamp={timestamp}
 				timeIsEnabled={false}
-				setTimeIsEnabled={() => {}}
 				onChange={() => {}}
 			/>
 		);
@@ -57,7 +54,6 @@ describe('components > ui-kit > TimeInput', () => {
 				timestamp={timestamp}
 				timeIsEnabled={false}
 				className={wrapperClassName}
-				setTimeIsEnabled={() => {}}
 				onChange={() => {}}
 			/>
 		);
@@ -66,20 +62,19 @@ describe('components > ui-kit > TimeInput', () => {
 	});
 	
 	it('calls callback when clicked on switcher', () => {
-		const handlerClickOnSwitch = jest.fn(value => value);
+		const handlerChange = jest.fn(value => value);
 		
 		render(
 			<TimeInput
 				timestamp={timestamp}
 				timeIsEnabled={false}
-				setTimeIsEnabled={handlerClickOnSwitch}
-				onChange={() => {}}
+				onChange={handlerChange}
 			/>
 		);
 	
 		userEvent.click(screen.getByTestId(testIds.timeInputSwitcher));
 		
-		expect(handlerClickOnSwitch).toHaveBeenCalledWith(true, 'timeSwitcher');
+		expect(handlerChange).toHaveBeenCalledWith(true, 'timeSwitcher');
 	});
 	it('returns expected value on change', () => {
 		const testTimeValue = '22:35';
@@ -89,7 +84,6 @@ describe('components > ui-kit > TimeInput', () => {
 			<TimeInput
 				timestamp={timestamp}
 				timeIsEnabled={true}
-				setTimeIsEnabled={() => {}}
 				onChange={handlerChange}
 			/>
 		);
@@ -101,6 +95,6 @@ describe('components > ui-kit > TimeInput', () => {
 			}
 		);
 		
-		expect(handlerChange).toHaveBeenCalledWith(1615059300000);
+		expect(handlerChange).toHaveBeenCalledWith(1615059300000, 'time');
 	});
 });

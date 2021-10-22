@@ -5,14 +5,16 @@ import { testIds } from '../../data/tests';
 import { getUpdatedDate, getDateInputValue } from '../../utils';
 
 interface Props {
+	name?: string;
 	timestamp: number;
 	className?: string;
 	testId?: string;
-	onChange(value: number): void;
+	onChange(value: number, name: string): void;
 }
 
 const DateInput: React.VFC<Props> = (props: Props) => {
 	const {
+		name = 'date',
 		timestamp,
 		className = null,
 		testId = testIds.dateInput,
@@ -34,8 +36,8 @@ const DateInput: React.VFC<Props> = (props: Props) => {
 		setDateValue(e.target.value);
 		const updatedDate = getUpdatedDate(timestamp, e.target.value);
 		
-		onChange(updatedDate);
-	}, [onChange, timestamp, setDateValue]);
+		onChange(updatedDate, name);
+	}, [onChange, timestamp, setDateValue, name]);
 
 	React.useEffect(() => setDateValue(getDateInputValue(timestamp)), [timestamp]);
 	

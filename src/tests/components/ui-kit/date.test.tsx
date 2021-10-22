@@ -46,6 +46,6 @@ describe('components > ui-kit > DateInput', () => {
 			}
 		);
 		
-		expect(handlerChange).toHaveBeenCalledWith(1614978000000);
+		expect(handlerChange).toHaveBeenCalledWith(1614978000000, 'date');
 	});
 });
