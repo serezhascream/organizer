@@ -40,16 +40,18 @@ const TimeInput: React.VFC<Props> = (props: Props) => {
 		}
 
 		return classes.join(' ');
-	}, [className, timeIsEnabled])
+	}, [className, timeIsEnabled]);
 
 	const handlerChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		setTimeValue(e.target.value);
-		onChange(getUpdatedTime(timestamp, e.target.value), inputName);
+		const updatedTime = getUpdatedTime(timestamp, e.target.value);
+		
+		onChange(updatedTime, inputName);
 	}, [setTimeValue, timestamp, inputName, onChange]);
 
 	const handlerChangeSwitcher = React.useCallback((value: boolean) => {
 		onChange(value, switcherName);
-	}, []);
+	}, [switcherName]);
 
 	React.useEffect(() => setTimeValue(getTimeInputValue(timestamp)), [timestamp]);
 	
