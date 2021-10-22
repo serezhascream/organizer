@@ -8,6 +8,8 @@ interface Props {
 	label: string;
 	opposite?: boolean;
 	className?: string;
+	wrapperTestId?: string;
+	checkboxTestId?: string;
 	onChange(checked: boolean, name:string): void;
 }
 
@@ -18,6 +20,8 @@ const Switcher: React.VFC<Props> = (props: Props) => {
 		label = '',
 		opposite = false,
 		className = null,
+		wrapperTestId = testIds.switcher,
+		checkboxTestId = testIds.switcherCheckbox,
 		onChange = () => {}
 	} = props;
 	
@@ -46,11 +50,11 @@ const Switcher: React.VFC<Props> = (props: Props) => {
 		<div
 			className={switcherWrapperClasses}
 			onClick={handleChange}
-			data-testid={testIds.switcher}
+			data-testid={wrapperTestId}
 		>
 			<span
 				className={`org-switcher__checkbox${classChecked}`}
-				data-testid={testIds.switcherCheckbox}
+				data-testid={checkboxTestId}
 			/>
 			<span className="org-switcher__label">{ label }</span>
 		</div>

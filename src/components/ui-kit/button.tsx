@@ -7,6 +7,7 @@ interface Props {
 	name: string;
 	disabled?: boolean;
 	extraClass?: string;
+	testId?: string;
 	onClick(name:string): void;
 }
 
@@ -16,6 +17,7 @@ const Button: React.VFC<Props> = (props: Props) => {
 		name = '',
 		extraClass = '',
 		disabled = false,
+		testId = testIds.button,
 		onClick = () => {},
 	} = props;
 	
@@ -40,7 +42,7 @@ const Button: React.VFC<Props> = (props: Props) => {
 		<button
 			className={buttonClasses}
 			onClick={handlerClick}
-			data-testid={testIds.button}
+			data-testid={testId}
 			disabled={disabled}
 		>
 			{ children }

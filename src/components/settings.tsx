@@ -1,11 +1,15 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { TRootState } from '../data/types';
+import { settingsTestIds as testIds } from '../data/tests';
 import { removeSettings } from '../utils/settings';
 import { deleteAllEvents } from '../utils/events';
 
 import { switchTheme, switchFirstDay } from '../features/settingsSlice';
-import { Popup, Switcher, Button } from './ui-kit';
+
+import Popup from '../components/ui-kit/popup';
+import Switcher from '../components/ui-kit/switcher';
+import Button from '../components/ui-kit/button';
 
 interface Props {
 	onClose(): void;
@@ -45,6 +49,8 @@ const SettingsPopup: React.VFC<Props> = (props: Props) => {
 	return (
 		<Popup
 			title="Settings"
+			wrapperTestId={testIds.popupWrapper}
+			overlayTestId={testIds.popupOverlay}
 			onClose={onClose}
 		>
 			<>
@@ -52,12 +58,14 @@ const SettingsPopup: React.VFC<Props> = (props: Props) => {
 					name="darkTheme"
 					checked={isDarkTheme}
 					label="Use dark theme"
+					wrapperTestId={testIds.themeSwitcher}
 					onChange={handlerChangeTheme}
 				/>
 				<Switcher
 					name="firstDayIsMonday"
 					checked={firstDayIsMonday}
 					label="Week starts on Monday"
+					wrapperTestId={testIds.firstDaySwitcher}
 					onChange={handlerChangeFirstDay}
 				/>
 				<div className="org-settings__subtitle">Data management</div>
@@ -65,12 +73,14 @@ const SettingsPopup: React.VFC<Props> = (props: Props) => {
 					<Button
 						name="remove_settings"
 						extraClass="org-settings__button-remove-settings"
+						testId={testIds.removeSettingsButton}
 						onClick={handlerRemoveSettings}
 					>
 						Restore settings
 					</Button>
 					<Button
 						name="delete_events"
+						testId={testIds.removeEventsButton}
 						onClick={handlerDeleteAllEvents}
 					>
 						Delete all events

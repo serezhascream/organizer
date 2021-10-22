@@ -2,7 +2,7 @@ import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 
-import Switcher from '../switcher';
+import Switcher from '../../../components/ui-kit/switcher';
 import { testIds } from '../../../data/tests';
 
 describe('components > ui-kit > Switcher', () => {

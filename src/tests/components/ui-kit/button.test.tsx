@@ -2,7 +2,7 @@ import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 
-import Button from '../button';
+import Button from '../../../components/ui-kit/button';
 import { testIds } from '../../../data/tests';
 
 describe('components > ui-kit > Button', () => {
@@ -76,6 +76,6 @@ describe('components > ui-kit > Button', () => {
 
 		userEvent.click(screen.getByTestId(testIds.button));
 
-		expect(handlerClick.mock.results[0].value).toEqual(buttonName);
+		expect(handlerClick).toHaveBeenCalledWith(buttonName);
 	});
 });

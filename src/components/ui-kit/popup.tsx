@@ -3,16 +3,28 @@ import { createPortal } from 'react-dom';
 
 import Icon from './icon';
 import { portalId } from '../../data/constants';
+import { testIds } from '../../data/tests';
 
 interface Props {
 	title: string;
 	className?: string;
 	children: React.ReactNode;
+	wrapperTestId?: string;
+	overlayTestId?: string;
+	closeButtonTestId?: string;
 	onClose(): void;
 }
 
 const Popup: React.VFC<Props> = (props: Props) => {
-	const { title, className = null, children, onClose = () => {} } = props;
+	const {
+		title,
+		className = null,
+		children,
+		wrapperTestId = testIds.popupWrapper,
+		overlayTestId = testIds.popupOverlay,
+		closeButtonTestId = testIds.popupCloseButton,
+		onClose = () => {},
+	} = props;
 	
 	const containerClasses = React.useMemo(() => {
 		const classes = ['org-popup__container'];
@@ -29,9 +41,10 @@ const Popup: React.VFC<Props> = (props: Props) => {
 	);
 	
 	return createPortal(
-		<div className="org-popup">
+		<div className="org-popup" data-testid={wrapperTestId}>
 			<div
 				className="org-popup__overlay"
+				data-testid={overlayTestId}
 				onClick={handlerClose}
 			/>
 			<div className={containerClasses}>
@@ -40,6 +53,7 @@ const Popup: React.VFC<Props> = (props: Props) => {
 					<Icon
 						name="close"
 						className="org-popup__header-close"
+						testId={closeButtonTestId}
 						onClick={handlerClose}
 					/>
 				</div>

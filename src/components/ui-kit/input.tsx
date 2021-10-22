@@ -8,6 +8,7 @@ interface Props {
 	inputType?: string;
 	value: string | number | null;
 	extraClass?: string;
+	testId?: string,
 	onChange(value:string | number | null, name: string): void;
 }
 
@@ -18,6 +19,7 @@ const Input: React.VFC<Props> = (props: Props) => {
 		inputType = 'text',
 		value = '',
 		extraClass = '',
+		testId = testIds.input,
 		onChange = () => {},
 	} = props;
 	
@@ -57,7 +59,7 @@ const Input: React.VFC<Props> = (props: Props) => {
 				value={inputValue}
 				className="org-input__input"
 				onChange={handlerChange}
-				data-testid={testIds.input}
+				data-testid={testId}
 			/>
 		</div>
 	);

@@ -2,11 +2,12 @@ import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { TRootState, TEventObj } from '../../data/types';
+import { testIds } from '../../data/tests';
 import { getListTitle } from '../../utils';
 import { getEvents, getEvent } from '../../selectors/events';
 import { saveEvent } from '../../features/eventsSlice';
 
-import { Icon } from '../ui-kit';
+import Icon from '../ui-kit/icon';
 import EventsList from './list';
 import EventPopup from '../eventPopup';
 import DeleteEventAlert from '../deleteEventAlert';
@@ -72,11 +73,12 @@ const OrganizerContent: React.VFC<Props> = (props: Props) => {
 					<Icon
 						name="add"
 						className="org-content__add-button"
+						testId={testIds.addEventButton}
 						onClick={handlerCreateEvent}
 					/>
 				</div>
 				<div className="org-content__wrapper">
-					<div className="org-content__content">
+					<div className="org-content__content" data-testid={testIds.eventListContentWrapper}>
 						<EventsList
 							events={events}
 							selectedDay={selectedDay}

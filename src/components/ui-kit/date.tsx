@@ -1,15 +1,23 @@
 import * as React from 'react';
 
+import { testIds } from '../../data/tests';
+
 import { getUpdatedDate, getDateInputValue } from '../../utils';
 
 interface Props {
 	timestamp: number;
 	className?: string;
+	testId?: string;
 	onChange(value: number): void;
 }
 
 const DateInput: React.VFC<Props> = (props: Props) => {
-	const { timestamp, className = null, onChange } = props;
+	const {
+		timestamp,
+		className = null,
+		testId = testIds.dateInput,
+		onChange,	
+	} = props;
 	const [dateValue, setDateValue] = React.useState<string>(() => getDateInputValue(timestamp));
 
 	const wrapperClasses = React.useMemo(() => {
@@ -32,10 +40,11 @@ const DateInput: React.VFC<Props> = (props: Props) => {
 	React.useEffect(() => setDateValue(getDateInputValue(timestamp)), [timestamp]);
 	
 	return (
-		<div className={wrapperClasses}>
+		<div className={wrapperClasses} data-testid={testIds.dateWrapper}>
 			<label className="org-date-input__label">Date</label>
 			<input
 				className="org-date-input__input"
+				data-testid={testId}
 				type="date"
 				value={dateValue}
 				onChange={handlerChange}
