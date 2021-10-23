@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { testIds } from '../data/tests';
+import getClassNames from '../utils/getClassNames';
 
 import SettingsPopup from './settings';
 import Icon from './ui-kit/icon';
@@ -16,15 +17,12 @@ const Header: React.VFC = () => {
 		(): void => setSettingsPopupIsActive(false), [setSettingsPopupIsActive]
 	);
 
-	const iconClasses = React.useMemo(() => {
-		const classes = ['org-settings-button'];
-		
-		if (settingsPopupIsActive) {
-			classes.push('org-settings-button--active');
-		}
-
-		return classes.join(' ');
-	}, [settingsPopupIsActive]);
+	const iconClasses = React.useMemo(
+		() => getClassNames(
+			'org-settings-button',
+			{ 'org-settings-button--active': settingsPopupIsActive }
+		), [settingsPopupIsActive]
+	);
 	
 	return (
 		<>

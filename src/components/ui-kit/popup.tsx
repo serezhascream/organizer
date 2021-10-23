@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createPortal } from 'react-dom';
-
+import getClassNames from '../../utils/getClassNames';
 import Icon from './icon';
 import { portalId } from '../../data/constants';
 import { testIds } from '../../data/tests';
@@ -26,15 +26,9 @@ const Popup: React.VFC<Props> = (props: Props) => {
 		onClose = () => {},
 	} = props;
 	
-	const containerClasses = React.useMemo(() => {
-		const classes = ['org-popup__container'];
-
-		if (className) {
-			classes.push(className);
-		}
-
-		return classes.join(' ');
-	}, [className]);
+	const containerClasses = React.useMemo(
+		() => getClassNames('org-popup__container', className), [className]
+	);
 	
 	const handlerClose = React.useCallback(
 		(): void => onClose(), [onClose]

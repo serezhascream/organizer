@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { getUpdatedTime, getTimeInputValue } from '../../utils';
 import { testIds } from '../../data/tests';
+import getClassNames from '../../utils/getClassNames';
 
 import Switcher from './switcher';
 
@@ -28,19 +29,15 @@ const TimeInput: React.VFC<Props> = (props: Props) => {
 		onChange,
 	} = props;
 	const [timeValue, setTimeValue] = React.useState<string>(() => getTimeInputValue(timestamp))
-	const wrapperClasses = React.useMemo(() => {
-		const classes = ['org-time-input'];
-		
-		if (className) {
-			classes.push(className);
-		}
-
-		if (! timeIsEnabled) {
-			classes.push('org-time-input--disabled');
-		}
-
-		return classes.join(' ');
-	}, [className, timeIsEnabled]);
+	
+	const wrapperClasses = React.useMemo(
+		() => getClassNames(
+			'org-time-input',
+			className,
+			{ 'org-time-input--disabled': ! timeIsEnabled }
+		),
+		[className, timeIsEnabled],
+	);
 
 	const handlerChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		setTimeValue(e.target.value);

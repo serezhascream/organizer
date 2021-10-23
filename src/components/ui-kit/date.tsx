@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import getClassNames from '../../utils/getClassNames';
 import { testIds } from '../../data/tests';
 
 import { getUpdatedDate, getDateInputValue } from '../../utils';
@@ -22,15 +23,9 @@ const DateInput: React.VFC<Props> = (props: Props) => {
 	} = props;
 	const [dateValue, setDateValue] = React.useState<string>(() => getDateInputValue(timestamp));
 
-	const wrapperClasses = React.useMemo(() => {
-		const classes = ['org-date-input'];
-		
-		if (className) {
-			classes.push(className);
-		}
-
-		return classes.join(' ');
-	}, [className]);
+	const wrapperClasses = React.useMemo(
+		() => getClassNames('org-date-input', className), [className]
+	);
 
 	const handlerChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		setDateValue(e.target.value);

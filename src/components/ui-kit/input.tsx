@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import getClassNames from '../../utils/getClassNames';
 import { testIds } from '../../data/tests';
 
 interface Props {
@@ -28,15 +29,10 @@ const Input: React.VFC<Props> = (props: Props) => {
 		setInputValue
 	] = React.useState<string | number | null>(value);
 	
-	const inputClasses = React.useMemo(() => {
-		const classes = ['org-input'];
-
-		if (extraClass.length) {
-			classes.push(extraClass);
-		}
-
-		return classes.join(' ');
-	}, [extraClass]);
+	
+	const inputClasses = React.useMemo(
+		() => getClassNames('org-input', extraClass), [extraClass]
+	);
 
 	const handlerChange = React.useCallback(
 		(e: React.ChangeEvent<HTMLInputElement>): void => {
