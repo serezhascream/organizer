@@ -1,6 +1,8 @@
 import * as React from 'react';
 
+import getClassNames from '../../utils/getClassNames';
 import { testIds } from '../../data/tests';
+
 interface Props {
 	name: string;
 	className?: string;
@@ -16,15 +18,10 @@ const Icon: React.VFC<Props> = (props: Props) => {
 		onClick = () => {}
 	} = props;
 
-	const classNames = React.useMemo(() => {
-		const classes = ['org-icon'];
-
-		if (className) {
-			classes.push(className);
-		}
-
-		return classes.join(' ');
-	}, [className]);
+	
+	const classNames = React.useMemo(
+		() => getClassNames('org-icon', className), [className]
+	);
 	
 	return (
 		<div className={classNames} data-testid={testId} onClick={onClick}>

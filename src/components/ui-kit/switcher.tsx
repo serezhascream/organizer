@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import getClassNames from '../../utils/getClassNames';
 import { testIds } from '../../data/tests';
 
 interface Props {
@@ -25,21 +26,20 @@ const Switcher: React.VFC<Props> = (props: Props) => {
 		onChange = () => {}
 	} = props;
 	
-	const switcherWrapperClasses = React.useMemo(() => {
-		const classes = ['org-switcher'];
-
-		if (opposite) {
-			classes.push('org-switcher--opposite');
-		}
-
-		if (className) {
-			classes.push(className);
-		}
-
-		return classes.join(' ');
-	}, [opposite]);
+	const switcherWrapperClasses = React.useMemo(
+		() => getClassNames(
+			'org-switcher',
+			className,
+			{'org-switcher--opposite': opposite}
+		), [className, opposite]
+	);
 	
-	const classChecked = React.useMemo(() => (checked ? ' org-switcher__checkbox--checked' : ''), [checked]);
+	const checkboxClassNames = React.useMemo(
+		() => getClassNames(
+			'org-switcher__checkbox',
+			{ 'org-switcher__checkbox--checked': checked }
+		), [checked]
+	);
 	
 	const handleChange = React.useCallback(
 		(): void => onChange(!checked, name),
@@ -53,7 +53,7 @@ const Switcher: React.VFC<Props> = (props: Props) => {
 			data-testid={wrapperTestId}
 		>
 			<span
-				className={`org-switcher__checkbox${classChecked}`}
+				className={checkboxClassNames}
 				data-testid={checkboxTestId}
 			/>
 			<span className="org-switcher__label">{ label }</span>

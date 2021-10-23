@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import getClassNames from '../../utils/getClassNames';
 import { testIds } from '../../data/tests';
 
 interface Props {
@@ -22,15 +23,10 @@ const Textarea: React.VFC<Props> = (props: Props) => {
 	} = props;
 	
 	const [text, setText] = React.useState<string>(value);
-	const wrapperClasses = React.useMemo(() => {
-		const classes = ['org-textarea'];
-
-		if (extraClass.length) {
-			classes.push(extraClass);
-		}
-
-		return classes.join(' ');
-	}, [extraClass]);
+	
+	const wrapperClasses = React.useMemo(
+		() => getClassNames('org-textarea', extraClass), [extraClass]
+	);
 	
 	const handlerChange = React.useCallback(
 		(e: React.ChangeEvent<HTMLTextAreaElement>): void => {
