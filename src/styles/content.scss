@@ -32,26 +32,6 @@
 		display: flex;
 		overflow: hidden;
 		margin-right: -18px;
-		
-		&:before,
-		&:after {
-			content: '';
-			position: absolute;
-			left: 0;
-			right: 0;
-			height: 24px;
-			z-index: 1;
-		}
-		
-		&:before {
-			top: 0;
-			background: linear-gradient(0deg, rgba(0,0,0,0) 0%, var(--content-bg-rgba, rgba(0,0,0,0)) 50%);
-		}
-		
-		&:after {
-			bottom: 0;
-			background: linear-gradient(180deg, rgba(0,0,0,0) 0%, var(--content-bg-rgba, rgba(0,0,0,0)) 50%);
-		}
 	}
 	&__content {
 		display: flex;
