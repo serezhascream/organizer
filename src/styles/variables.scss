@@ -1,6 +1,7 @@
 html {
 	--app-bg: #FDFAF9;
 	--content-bg: #FDFAF9;
+	--content-bg-rgba: rgb(253, 250, 249, 1);
 	--text-color: #111614;
 	--accent-color: #BD2C2C;
 	--shadow-color: #B5B5B5;
@@ -10,6 +11,7 @@ html {
 	&[data-theme="dark"] {
 		--app-bg: #111614;
 		--content-bg: #111614;
+		--content-bg-rgba: rgba(17, 22, 20, 1);
 		--text-color: #FDFAF9;
 		--shadow-color: #0c0c0c;
 		--divider-color: #353535;

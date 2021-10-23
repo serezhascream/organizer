@@ -45,12 +45,12 @@
 		
 		&:before {
 			top: 0;
-			background: linear-gradient(0deg, rgba(0,0,0,0) 0%, var(--content-bg) 50%);
+			background: linear-gradient(0deg, rgba(0,0,0,0) 0%, var(--content-bg-rgba, rgba(0,0,0,0)) 50%);
 		}
 		
 		&:after {
 			bottom: 0;
-			background: linear-gradient(180deg, rgba(0,0,0,0) 0%, var(--content-bg) 50%);
+			background: linear-gradient(180deg, rgba(0,0,0,0) 0%, var(--content-bg-rgba, rgba(0,0,0,0)) 50%);
 		}
 	}
 	&__content {
